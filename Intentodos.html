@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Para mi Princesa</title>
+
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'UnifrakturCook', cursive;
+  background: radial-gradient(#2b0018, #000);
+  overflow: hidden;
+  color: white;
+}
+
+#inicio, #carta, #final {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#inicio {
+  display: flex;
+}
+
+h1 {
+  font-size: 48px;
+  margin-bottom: 30px;
+}
+
+button {
+  font-size: 24px;
+  padding: 15px 30px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+#empezar {
+  background: purple;
+  color: white;
+}
+
+#carta {
+  display: flex;
+}
+
+.carta {
+  background: darkred;
+  width: 80%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 20px;
+  border: 5px solid gold;
+  position: relative;
+  text-align: center;
+}
+
+.frases {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.corazon {
+  font-size: 80px;
+  color: purple;
+}
+
+.opciones {
+  margin-top: 20px;
+}
+
+#si {
+  background: purple;
+  color: white;
+}
+
+#no {
+  background: black;
+  color: white;
+  margin-left: 10px;
+}
+
+#final {
+  display: none;
+  text-align: center;
+}
+
+.heart {
+  position: fixed;
+  color: purple;
+  font-size: 60px;
+  animation: flotar 6s linear infinite;
+}
+
+@keyframes flotar {
+  from {
+    bottom: -100px;
+    opacity: 1;
+  }
+  to {
+    bottom: 110%;
+    opacity: 0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div id="inicio">
+  <h1>Para mi Princesa</h1>
+  <button id="empezar">Empezar</button>
+</div>
+
+<div id="carta">
+  <div class="carta">
+    <div class="frases">
+      Para el amor de mi vida · Eres mi mundo · Nunca me dejes ·  
+      Te amo con mi alma · Te amo ·  
+      Ojalá ser pirata para secuestrar este tesoro ·  
+      Si Shrek pudo conquistar a la princesa, yo también tengo esperanza
+    </div>
+
+    <div class="corazon">💜</div>
+
+    <div class="opciones">
+      <button id="si">Sí, sí quiero</button>
+      <button id="no">No</button>
+    </div>
+  </div>
+</div>
+
+<div id="final">
+  <h1>Gracias por hacerme la persona más feliz del universo, aunque sea por un día 💜</h1>
+</div>
+
+<audio id="musica1" src="https://dl.sndup.net/p6r4/MyLoveMineAllMine.mp3"></audio>
+<audio id="musica2" src="https://dl.sndup.net/3mfx/cafune.mp3"></audio>
+
+<script>
+const inicio = document.getElementById("inicio");
+const carta = document.getElementById("carta");
+const final = document.getElementById("final");
+const si = document.getElementById("si");
+const no = document.getElementById("no");
+
+let escalaSi = 1;
+let escalaNo = 1;
+
+document.getElementById("empezar").onclick = () => {
+  inicio.style.display = "none";
+  carta.style.display = "flex";
+
+  const m1 = document.getElementById("musica1");
+  const m2 = document.getElementById("musica2");
+
+  m1.play();
+  setTimeout(() => {
+    m1.pause();
+    m2.play();
+  }, 15000);
+};
+
+no.onclick = () => {
+  escalaNo -= 0.15;
+  escalaSi += 0.15;
+
+  no.style.transform = `scale(${escalaNo})`;
+  si.style.transform = `scale(${escalaSi})`;
+
+  if (escalaNo <= 0.2) no.style.display = "none";
+};
+
+si.onclick = () => {
+  carta.style.display = "none";
+  final.style.display = "flex";
+};
+
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerHTML = "💜";
+  h.style.left = Math.random() * 100 + "vw";
+  document.body.appendChild(h);
+  setTimeout(() => h.remove(), 6000);
+}, 300);
+</script>
+
+</body>
+  </html>
+  
