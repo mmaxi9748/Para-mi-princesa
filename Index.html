@@ -1,136 +1,123 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Universo</title>
+<title>Mi Amor Silencioso</title>
 
 <style>
 body{
   margin:0;
   overflow:hidden;
   font-family:Arial, sans-serif;
-  background: linear-gradient(-45deg, #3a0ca3, #4361ee, #7209b7, #f72585);
-  background-size:400% 400%;
-  animation: fondo 15s ease infinite;
+  background: radial-gradient(circle at center, #2a003f 0%, #0d001a 70%, #000000 100%);
 }
 
-@keyframes fondo{
-  0%{background-position:0% 50%;}
-  50%{background-position:100% 50%;}
-  100%{background-position:0% 50%;}
-}
-
+/* Contenedor */
 .contenedor{
   position:relative;
   width:100vw;
   height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
 }
 
-.nucleo{
-  width:120px;
-  height:120px;
-  border-radius:50%;
-  background: radial-gradient(circle, #fff, #ffd166, transparent);
-  position:absolute;
-  animation: latido 2s infinite;
-}
-
-@keyframes latido{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.2);}
-  100%{transform:scale(1);}
-}
-
-.orbita{
-  position:absolute;
-  width:400px;
-  height:400px;
-  border-radius:50%;
-  animation: girar 20s linear infinite;
-}
-
-@keyframes girar{
-  from{transform:rotate(0deg);}
-  to{transform:rotate(360deg);}
-}
-
+/* Cartas */
 .carta{
   position:absolute;
   font-size:28px;
   cursor:pointer;
+  animation: flotar linear infinite;
+  opacity:0.9;
 }
 
+/* Animación de arriba hacia abajo */
+@keyframes flotar{
+  0%{
+    transform: translateY(-10vh);
+  }
+  100%{
+    transform: translateY(110vh);
+  }
+}
+
+/* Mensaje */
 .mensaje{
   position:fixed;
-  bottom:20px;
+  bottom:30px;
   left:50%;
   transform:translateX(-50%);
-  background:rgba(0,0,0,0.8);
+  background:rgba(20,0,40,0.9);
   color:white;
-  padding:15px;
-  border-radius:10px;
+  padding:18px;
+  border-radius:15px;
   max-width:85%;
   text-align:center;
+  font-size:16px;
   display:none;
+  box-shadow:0 0 20px rgba(180,0,255,0.6);
 }
 </style>
 </head>
 <body>
 
-<div class="contenedor">
-
-<div class="nucleo"></div>
-
-<div class="orbita" id="orbita"></div>
-
-</div>
-
+<div class="contenedor" id="contenedor"></div>
 <div class="mensaje" id="mensaje"></div>
 
 <script>
-const mensajes=[
-"Te amo sin esperar respuesta.",
+const mensajes = [
+"Te amo en silencio.",
+"Te amo sin esperar nada.",
+"Eres lo más bonito que me pasó.",
 "Me encanta tu sonrisa.",
 "Tus ojos me hechizan.",
-"Tu voz es mi canción favorita.",
 "Te amo aunque solo viva en mí.",
-"Eres mi pensamiento favorito.",
-"Te amo profundamente.",
-"No espero nada, solo amarte.",
-"Tu risa ilumina todo.",
+"Tu voz es mi melodía favorita.",
+"Eres mi pensamiento constante.",
+"Te amo con paciencia.",
+"Tu presencia ilumina mi mundo.",
 "Te amo sin condiciones.",
-"Tu presencia cambia mi mundo.",
-"Te amo sin prisas.",
-"Eres inspiración constante.",
-"Te amo aunque sea en silencio.",
-"Este amor es real aunque solo viva en mí.",
 "Me enamora tu forma de ser.",
 "Cada gesto tuyo me cautiva.",
-"Te amo con paciencia infinita.",
-"Eres mi luz.",
-"Te amo simplemente porque existes."
+"Te amo profundamente.",
+"Tu risa es mi alegría.",
+"Te amo aunque no lo sepas.",
+"Eres mi inspiración.",
+"Te amo más de lo que imaginas.",
+"Tu mirada me desarma.",
+"Te amo simplemente porque existes.",
+"Mi corazón late por ti.",
+"Eres mi sueño favorito.",
+"Te amo con todo lo que soy.",
+"No espero respuesta, solo amarte.",
+"Eres mi estrella favorita.",
+"Te amo incluso en silencio.",
+"Tu esencia me enamora.",
+"Te amo cada día más.",
+"Eres mi paz.",
+"Te amo… aunque solo viva en mí."
 ];
 
-const orbita=document.getElementById("orbita");
+const contenedor = document.getElementById("contenedor");
+const mensajeBox = document.getElementById("mensaje");
 
-for(let i=0;i<30;i++){
-  let carta=document.createElement("div");
-  carta.className="carta";
-  carta.innerHTML="💌";
-  carta.style.top="0px";
-  carta.style.left="50%";
-  carta.style.transform=`rotate(${i*12}deg) translate(200px) rotate(-${i*12}deg)`;
-  carta.onclick=()=>{
-    let box=document.getElementById("mensaje");
-    box.innerText=mensajes[Math.floor(Math.random()*mensajes.length)];
-    box.style.display="block";
-    setTimeout(()=>box.style.display="none",4000);
+/* Crear muchas cartas */
+for(let i=0; i<40; i++){
+  let carta = document.createElement("div");
+  carta.className = "carta";
+  carta.innerHTML = "💌";
+  
+  carta.style.left = Math.random()*100 + "vw";
+  carta.style.animationDuration = (5 + Math.random()*10) + "s";
+  carta.style.fontSize = (20 + Math.random()*20) + "px";
+  
+  carta.onclick = () => {
+    mensajeBox.innerText = mensajes[Math.floor(Math.random()*mensajes.length)];
+    mensajeBox.style.display = "block";
+    setTimeout(() => {
+      mensajeBox.style.display = "none";
+    }, 4000);
   };
-  orbita.appendChild(carta);
+
+  contenedor.appendChild(carta);
 }
 </script>
 
