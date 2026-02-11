@@ -4,150 +4,110 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mi Universo</title>
-
 <style>
 body{
     margin:0;
     overflow:hidden;
-    background: radial-gradient(circle at center, #3a0ca3, #240046, #000814);
-    font-family: Arial, sans-serif;
+    background:black;
+    font-family:Arial, sans-serif;
 }
-
-#universo{
-    position:relative;
-    width:100vw;
-    height:100vh;
-    transform-style: preserve-3d;
-    perspective:1000px;
+canvas{
+    display:block;
 }
-
-.carta{
-    position:absolute;
-    font-size:28px;
-    cursor:pointer;
-    transition: transform 0.3s;
-}
-
-.carta:hover{
-    transform: scale(1.5);
-}
-
 .mensaje{
     position:fixed;
     bottom:20px;
     left:50%;
     transform:translateX(-50%);
-    background:rgba(255,255,255,0.15);
-    backdrop-filter:blur(8px);
-    padding:15px;
-    border-radius:15px;
-    max-width:85%;
-    text-align:center;
+    background:rgba(0,0,0,0.7);
     color:white;
+    padding:15px;
+    border-radius:10px;
+    max-width:80%;
+    text-align:center;
     display:none;
-    font-size:16px;
 }
 </style>
 </head>
-
 <body>
 
-<div id="universo"></div>
+<canvas id="c"></canvas>
 <div class="mensaje" id="mensaje"></div>
 
 <script>
-const universo = document.getElementById("universo");
-const mensajeBox = document.getElementById("mensaje");
+const canvas = document.getElementById("c");
+const ctx = canvas.getContext("2d");
+
+function resize(){
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
+
+let tiempo = 0;
+let formar = false;
 
 const mensajes = [
-"Te amo sin esperar nada a cambio.",
+"Te amo sin esperar respuesta.",
+"Te amo en silencio.",
 "Me encanta tu noble sonrisa.",
 "Tus ojos parecen esmeraldas que me hechizan.",
-"Tu voz es mi melodía favorita.",
-"Te amo incluso en silencio.",
-"Tu cabello brilla como oro.",
-"Admiro cada parte de tu forma de ser.",
-"Te amo aunque sea solo mío.",
-"Tu risa ilumina mis días.",
-"Te amo con paciencia infinita.",
-"Tu presencia cambia mi mundo.",
-"Te amo sin presionarte.",
-"Cada gesto tuyo me enamora.",
-"Te amo incluso si no soy tu elección.",
-"Tu piel parece porcelana delicada.",
-"Eres el sentimiento más puro.",
-"Te amo profundamente.",
-"No espero respuesta, solo amarte.",
-"Tu mirada toca mi alma.",
-"Te amo con respeto absoluto.",
-"Tu esencia me inspira.",
-"Te amo en cada pensamiento.",
-"Tu forma de existir me fascina.",
-"Te amo sin prisas.",
+"Tu voz es mi canción favorita.",
+"Te amo aunque solo viva en mí.",
+"Tu esencia ilumina mi mundo.",
+"Te amo sin presión.",
 "Eres mi pensamiento favorito.",
-"Te amo desde la calma.",
-"Tu voz vive en mi memoria.",
-"Te amo porque existes.",
-"Si amar es verte feliz, te amo.",
-"Este amor es real aunque sea mío.",
-"Te amo más allá de cualquier respuesta."
+"Te amo profundamente.",
+"Admiro cada parte de ti.",
+"Te amo incluso en tus días grises.",
+"Eres el sentimiento más puro.",
+"No espero nada, solo amarte.",
+"Te amo con sinceridad absoluta.",
+"Tu risa es mi universo.",
+"Te amo sin condiciones.",
+"Tu presencia cambia todo.",
+"Te amo sin prisas.",
+"Tu mirada toca mi alma.",
+"Te amo con respeto.",
+"Eres inspiración constante.",
+"Te amo aunque sea en silencio.",
+"Si amar es verte feliz, entonces te amo.",
+"Este amor es real aunque solo viva en mí.",
+"Me enamora tu forma de ser.",
+"Cada gesto tuyo me cautiva.",
+"Te amo con paciencia infinita.",
+"Eres mi luz.",
+"Te amo simplemente porque existes."
 ];
 
 let cartas = [];
-
 for(let i=0;i<35;i++){
-    let carta = document.createElement("div");
-    carta.className = "carta";
-    carta.innerHTML = "💌";
-    universo.appendChild(carta);
-
     cartas.push({
-        elemento:carta,
-        radio:150 + Math.random()*200,
-        angulo:Math.random()*Math.PI*2,
-        velocidad:0.01 + Math.random()*0.01,
-        mensaje:mensajes[Math.floor(Math.random()*mensajes.length)]
-    });
-
-    carta.addEventListener("click", ()=>{
-        mensajeBox.innerText = cartas[i].mensaje;
-        mensajeBox.style.display = "block";
-        setTimeout(()=>mensajeBox.style.display="none",5000);
+        radio: 200 + Math.random()*300,
+        ang: Math.random()*Math.PI*2,
+        vel: 0.002 + Math.random()*0.002,
+        altura: (Math.random()-0.5)*200,
+        mensaje: mensajes[Math.floor(Math.random()*mensajes.length)]
     });
 }
 
-let rotacion = 0;
-
-function animar(){
-    rotacion += 0.005;
-
-    cartas.forEach(c=>{
-        c.angulo += c.velocidad;
-
-        let x = Math.cos(c.angulo + rotacion) * c.radio;
-        let y = Math.sin(c.angulo) * 80;
-
-        c.elemento.style.left = (window.innerWidth/2 + x) + "px";
-        c.elemento.style.top = (window.innerHeight/2 + y) + "px";
-    });
-
-    requestAnimationFrame(animar);
+function proyectar(x,y,z){
+    let scale = 600/(600+z);
+    return {
+        x: x*scale + canvas.width/2,
+        y: y*scale + canvas.height/2,
+        s: scale
+    }
 }
 
-animar();
-
-let inicioX = 0;
-
-universo.addEventListener("touchstart", e=>{
-    inicioX = e.touches[0].clientX;
-});
-
-universo.addEventListener("touchmove", e=>{
-    let moverX = e.touches[0].clientX;
-    rotacion += (moverX - inicioX) * 0.005;
-    inicioX = moverX;
-});
-</script>
-
-</body>
-</html>
+function drawFondo(){
+    let grad = ctx.createRadialGradient(
+        canvas.width/2, canvas.height/2, 0,
+        canvas.width/2, canvas.height/2, canvas.width
+    );
+    grad.addColorStop(0,"#1a0a3a");
+    grad.addColorStop(0.5,"#000814");
+    grad.addColorStop(1,"black");
+    c
+    
