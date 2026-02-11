@@ -65,8 +65,18 @@ body {
 
 .decor-text {
   position: absolute;
+  background: #ffb6c1;
+  color: #4a0f2f;
+  padding: 6px 10px;
+  border-radius: 20px;
   font-size: 10px;
-  opacity: 0.7;
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
 
 .decor-text.top { top: 6px; left: 10px; right: 10px; }
@@ -137,7 +147,12 @@ button {
 
 <!-- INTRO -->
 <div id="intro">
-  <h1>Para Mi Princesa 💜</h1>
+  <h1>
+Para el amor de mi vida<br>
+la señorita Abipatitafea 💖<br>
+Pulga · Xiomara · Mi Princesa
+  </h1>
+  
   <button id="startBtn">Empezar</button>
 </div>
 
@@ -195,12 +210,25 @@ startBtn.onclick = () => {
   }, 15000);
 };
 
+const noQuestions = [
+  "¿Por qué no? 😔",
+  "¿Hice algo mal? 💔",
+  "¿Seguro que no? 🥺",
+  "Me estás rompiendo el corazón… 😢",
+  "Por favor… no me hagas llorar 😭",
+  "Ya estoy llorando de verdad… 💧"
+];
+
+let noIndex = 0;
+
 noBtn.onclick = () => {
-  yesScale += 0.2;
-  noScale -= 0.15;
-  if (noScale <= 0.1) noBtn.style.display = "none";
-  yesBtn.style.transform = `scale(${yesScale})`;
-  noBtn.style.transform = `scale(${noScale})`;
+  text.innerHTML = noQuestions[noIndex];
+  noIndex++;
+
+  if (noIndex >= noQuestions.length) {
+    noBtn.innerHTML = "😭";
+    noBtn.style.fontSize = "28px";
+  }
 };
 
 yesBtn.onclick = () => {
