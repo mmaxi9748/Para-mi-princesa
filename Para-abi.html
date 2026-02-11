@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Universo</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at center, #1a0033, #000814, #000000);
+    color: white;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.carta {
+    position: absolute;
+    width: 220px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(6px);
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.3);
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+    text-align: center;
+}
+
+.carta:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.2);
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<div class="carta" style="top:20%; left:15%;" onclick="mostrarMensaje(0)">💌 Carta 1</div>
+<div class="carta" style="top:60%; left:70%;" onclick="mostrarMensaje(1)">💌 Carta 2</div>
+<div class="carta" style="top:40%; left:40%;" onclick="mostrarMensaje(2)">💌 Carta 3</div>
+<div class="carta" style="top:75%; left:25%;" onclick="mostrarMensaje(3)">💌 Carta 4</div>
+
+<script>
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+let angleX = 0;
+let angleY = 0;
+let mouseDown = false;
+let lastX, lastY;
+
+for (let i = 0; i < 800; i++) {
+    stars.push({
+        x: (Math.random() - 0.5) * 2000,
+        y: (Math.random() - 0.5) * 2000,
+        z: (Math.random() - 0.5) * 2000
+    });
+}
+
+function drawStars() {
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    for (let star of stars) {
+        let x = star.x;
+        let y = star.y;
+        let z = star.z;
+
+        let rotX = y * Math.cos(angleX) - z * Math.sin(angleX);
+        let rotZ = y * Math.sin(angleX) + z * Math.cos(angleX);
+        let rotY = x * Math.cos(angleY) - rotZ * Math.sin(angleY);
+        rotZ = x * Math.sin(angleY) + rotZ * Math.cos(angleY);
+
+        let scale = 400 / (400 + rotZ);
+        let px = rotY * scale + canvas.width / 2;
+        let py = rotX * scale + canvas.height / 2;
+
+        ctx.fillStyle = "hsl(" + (rotZ + 1000) / 10 + ", 100%, 70%)";
+        ctx.fillRect(px, py, 2, 2);
+    }
+
+    requestAnimationFrame(drawStars);
+}
+
+drawStars();
+
+document.addEventListener("mousedown", e => {
+    mouseDown = true;
+    lastX = e.clientX;
+    lastY = e.clientY;
+});
+
+document.addEventListener("mouseup", () => mouseDown = false);
+
+document.addEventListener("mousemove", e => {
+    if (!mouseDown) return;
+    angleY += (e.clientX - lastX) * 0.005;
+    angleX += (e.clientY - lastY) * 0.005;
+    lastX = e.clientX;
+    lastY = e.clientY;
+});
+
+const mensajes = [
+    "Te amo... sin esperar respuesta. Porque lo que siento no necesita condiciones.",
+    "Te amo desde el silencio, desde la calma, desde este lugar donde aprendí lo que es querer de verdad.",
+    "No sé si algún día mirarás hacia mí de la misma forma... pero aun así, te amo.",
+    "Si amar significa desear tu felicidad incluso si no es conmigo, entonces sí... te amo de la forma más sincera que conozco."
+];
+
+function mostrarMensaje(index) {
+    alert(mensajes[index]);
+}
+</script>
+
+</body>
+  </html>
+  
