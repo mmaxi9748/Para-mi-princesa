@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un viaje hacia ti</title>
+
+<style>
+body {
+    margin: 0;
+    overflow: hidden;
+    background: black;
+    font-family: 'Arial', sans-serif;
+    color: white;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.texto {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 40%;
+    font-size: 26px;
+    opacity: 0;
+    transition: opacity 2s;
+    padding: 30px;
+}
+
+.visible {
+    opacity: 1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+<div class="texto" id="frase"></div>
+
+<script>
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+
+for (let i = 0; i < 500; i++) {
+    stars.push({
+        x: (Math.random() - 0.5) * canvas.width,
+        y: (Math.random() - 0.5) * canvas.height,
+        z: Math.random() * canvas.width
+    });
+}
+
+function drawStars() {
+    ctx.fillStyle = "black";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = "white";
+    for (let i = 0; i < stars.length; i++) {
+        let star = stars[i];
+        star.z -= 2;
+
+        if (star.z <= 0) {
+            star.z = canvas.width;
+        }
+
+        let k = 128.0 / star.z;
+        let px = star.x * k + canvas.width / 2;
+        let py = star.y * k + canvas.height / 2;
+
+        if (px >= 0 && px <= canvas.width && py >= 0 && py <= canvas.height) {
+            let size = (1 - star.z / canvas.width) * 4;
+            ctx.fillRect(px, py, size, size);
+        }
+    }
+
+    requestAnimationFrame(drawStars);
+}
+
+drawStars();
+
+const frases = [
+    "No sé en qué momento empezaste a convertirte en mi pensamiento favorito...",
+    "pero desde entonces algo en mí ya no es igual.",
+    "Te amo... aunque quizás todavía no sea el momento de decirlo en voz alta.",
+    "Te amo en silencio, en paciencia y en esperanza.",
+    "No quiero presionarte, ni apresurar lo que el tiempo debe construir.",
+    "Solo quiero que sepas que para mí eres el amor de mi vida.",
+    "Y si el destino decide que aún no es ahora...",
+    "voy a esperar.",
+    "Porque lo que siento no es un capricho.",
+    "Es un amor que crece cada día.",
+    "Te amo por lo que eres.",
+    "Te amo por cómo me haces sentir.",
+    "Y si algún día decides caminar hacia mí...",
+    "no importa el tiempo que pase,",
+    "no importa lo que tenga que mejorar, cambiar o construir en mí...",
+    "estaré dispuesto a todo si es por estar a tu lado.",
+    "Porque cuando es amor verdadero...",
+    "no se presiona, se espera.",
+    "Y yo, por ti, esperaría lo que haga falta."
+];
+
+let index = 0;
+const fraseElemento = document.getElementById("frase");
+
+function mostrarFrase() {
+    fraseElemento.classList.remove("visible");
+
+    setTimeout(() => {
+        fraseElemento.textContent = frases[index];
+        fraseElemento.classList.add("visible");
+        index++;
+
+        if (index >= frases.length) {
+            index = 0;
+        }
+    }, 1000);
+}
+
+setInterval(mostrarFrase, 5500);
+mostrarFrase();
+</script>
+
+</body>
+  </html>
+  
