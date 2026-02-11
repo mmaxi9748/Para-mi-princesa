@@ -3,15 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mi Universo 3D</title>
+<title>Mi Universo</title>
 
 <style>
 body{
     margin:0;
     overflow:hidden;
-    background: radial-gradient(circle at 20% 20%, #2a0055, #001233, #000000);
+    background: radial-gradient(circle at 50% 40%, #3a0ca3, #240046, #000814);
     font-family: Arial, sans-serif;
-    color:white;
 }
 
 canvas{
@@ -20,176 +19,72 @@ canvas{
     left:0;
 }
 
-.mensajeBox{
+.mensaje{
     position:fixed;
-    bottom:30px;
+    bottom:20px;
     left:50%;
     transform:translateX(-50%);
-    background:rgba(255,255,255,0.1);
-    backdrop-filter:blur(10px);
-    padding:20px;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(8px);
+    padding:15px;
     border-radius:15px;
-    max-width:70%;
+    max-width:85%;
     text-align:center;
-    font-size:18px;
+    color:white;
     display:none;
+    font-size:16px;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="scene"></canvas>
-<div class="mensajeBox" id="mensajeBox"></div>
+<canvas id="c"></canvas>
+<div class="mensaje" id="mensaje"></div>
 
 <script>
-const canvas = document.getElementById("scene");
+const canvas = document.getElementById("c");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
 
-let angleY = 0;
-let angleX = 0;
-let mouseDown = false;
-let lastX, lastY;
-
-let cartas = [];
-let estrellas = [];
-
-for(let i=0;i<1000;i++){
-    estrellas.push({
-        x:(Math.random()-0.5)*3000,
-        y:(Math.random()-0.5)*3000,
-        z:(Math.random()-0.5)*3000
-    });
+function resize(){
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
 }
+resize();
+window.addEventListener("resize", resize);
 
-const mensajes=[
-// (mismos 32 mensajes resumidos aquí por espacio)
-"Te amo sin esperar respuesta.",
-"Te amo en silencio y con paciencia.",
+let angle = 0;
+let rotation = 0;
+
+const mensajes = [
+"Te amo sin esperar nada a cambio.",
 "Me encanta tu noble sonrisa.",
 "Tus ojos parecen esmeraldas que me hechizan.",
-"Tu voz es mi canción favorita.",
-"Te amo incluso si no soy tu elección.",
-"Tu esencia ilumina mis días.",
-"Te amo sin presión.",
-"Tu risa es mi universo.",
-"Te amo aunque solo viva en mí.",
+"Tu voz es mi melodía favorita.",
+"Te amo incluso en silencio.",
 "Tu cabello brilla como oro.",
-"Admiro tu fuerza interior.",
-"Te amo con calma infinita.",
-"Tu forma de ser me enamora.",
-"Te amo incluso en tus días grises.",
+"Admiro cada parte de tu forma de ser.",
+"Te amo aunque sea solo mío.",
+"Tu risa ilumina mis días.",
+"Te amo con paciencia infinita.",
+"Tu presencia cambia mi mundo.",
+"Te amo sin presionarte.",
+"Cada gesto tuyo me enamora.",
+"Te amo incluso si no soy tu elección.",
 "Tu piel parece porcelana delicada.",
 "Eres el sentimiento más puro.",
-"Te amo porque existes.",
-"No espero nada, solo amarte.",
-"Te amo con sinceridad absoluta.",
-"Cada gesto tuyo me cautiva.",
-"Te amo sin condiciones.",
-"Tu presencia cambia mi mundo.",
+"Te amo profundamente.",
+"No espero respuesta, solo amarte.",
+"Tu mirada toca mi alma.",
+"Te amo con respeto absoluto.",
+"Tu esencia me inspira.",
+"Te amo en cada pensamiento.",
+"Tu forma de existir me fascina.",
 "Te amo sin prisas.",
 "Eres mi pensamiento favorito.",
-"Te amo aunque sea en silencio.",
-"Tu mirada toca mi alma.",
-"Te amo con respeto.",
-"Eres inspiración constante.",
-"Te amo profundamente.",
-"Si amar es verte feliz, entonces te amo.",
-"Y aunque sea solo mío… este amor es real."
-];
-
-for(let i=0;i<35;i++){
-    cartas.push({
-        radio: 300 + Math.random()*300,
-        angulo: Math.random()*Math.PI*2,
-        velocidad: 0.002 + Math.random()*0.002,
-        altura: (Math.random()-0.5)*400,
-        mensaje: mensajes[Math.floor(Math.random()*mensajes.length)]
-    });
-}
-
-function proyectar(x,y,z){
-    let scale = 800/(800+z);
-    return {
-        x: x*scale + canvas.width/2,
-        y: y*scale + canvas.height/2,
-        scale: scale
-    }
-}
-
-function draw(){
-    ctx.fillStyle="rgba(0,0,0,0.3)";
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-
-    angleY += 0.0005;
-
-    // Estrellas
-    for(let s of estrellas){
-        let scale = 600/(600+s.z);
-        let x = s.x*scale + canvas.width/2;
-        let y = s.y*scale + canvas.height/2;
-        ctx.fillStyle="white";
-        ctx.fillRect(x,y,2,2);
-    }
-
-    // Cartas orbitando
-    for(let c of cartas){
-        c.angulo += c.velocidad;
-
-        let x = Math.cos(c.angulo)*c.radio;
-        let z = Math.sin(c.angulo)*c.radio;
-        let y = c.altura;
-
-        // Rotación global
-        let rotX = y*Math.cos(angleX)-z*Math.sin(angleX);
-        let rotZ = y*Math.sin(angleX)+z*Math.cos(angleX);
-        let rotY = x*Math.cos(angleY)-rotZ*Math.sin(angleY);
-        rotZ = x*Math.sin(angleY)+rotZ*Math.cos(angleY);
-
-        let p = proyectar(rotY, rotX, rotZ);
-
-        ctx.font = 30*p.scale + "px Arial";
-        ctx.fillText("💌", p.x, p.y);
-
-        c.screenX = p.x;
-        c.screenY = p.y;
-        c.size = 30*p.scale;
-    }
-
-    requestAnimationFrame(draw);
-}
-
-draw();
-
-document.addEventListener("mousedown",e=>{
-    mouseDown=true;
-    lastX=e.clientX;
-    lastY=e.clientY;
-});
-document.addEventListener("mouseup",()=>mouseDown=false);
-document.addEventListener("mousemove",e=>{
-    if(!mouseDown) return;
-    angleY+=(e.clientX-lastX)*0.005;
-    angleX+=(e.clientY-lastY)*0.005;
-    lastX=e.clientX;
-    lastY=e.clientY;
-});
-
-canvas.addEventListener("click",e=>{
-    for(let c of cartas){
-        let dx=e.clientX-c.screenX;
-        let dy=e.clientY-c.screenY;
-        if(Math.sqrt(dx*dx+dy*dy)<c.size){
-            const box=document.getElementById("mensajeBox");
-            box.innerText=c.mensaje;
-            box.style.display="block";
-            setTimeout(()=>box.style.display="none",5000);
-        }
-    }
-});
-</script>
-
-</body>
-</html>
+"Te amo desde la calma.",
+"Tu voz vive en mi memoria.",
+"Te amo porque existes.",
+"Si amar es verte feliz, te amo.",
+"Este amor es real aunqu
+    
