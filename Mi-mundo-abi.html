@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Universo Para Ti</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family: Arial, sans-serif;
+    background: radial-gradient(circle at 30% 30%, #2a0055, #000428, #000000);
+}
+
+canvas{
+    position:fixed;
+    top:0;
+    left:0;
+}
+
+.carta{
+    position:absolute;
+    font-size:28px;
+    cursor:pointer;
+    transition: transform 0.4s;
+    animation: flotar 6s ease-in-out infinite alternate;
+}
+
+.carta:hover{
+    transform: scale(1.6);
+}
+
+@keyframes flotar{
+    from{ transform: translateY(-10px); }
+    to{ transform: translateY(10px); }
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="stars"></canvas>
+
+<script>
+const canvas = document.getElementById("stars");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let stars = [];
+let angleX = 0;
+let angleY = 0;
+let mouseDown = false;
+let lastX, lastY;
+
+for(let i=0;i<1000;i++){
+    stars.push({
+        x:(Math.random()-0.5)*3000,
+        y:(Math.random()-0.5)*3000,
+        z:(Math.random()-0.5)*3000
+    });
+}
+
+function drawStars(){
+    ctx.fillStyle="rgba(0,0,0,0.25)";
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+
+    for(let star of stars){
+        star.z -= 2;
+        if(star.z < -1500) star.z = 1500;
+
+        let scale = 600/(600+star.z);
+        let x = star.x*scale + canvas.width/2;
+        let y = star.y*scale + canvas.height/2;
+
+        ctx.fillStyle = "hsl(" + (star.z+1500)/5 + ",100%,70%)";
+        ctx.fillRect(x,y,2,2);
+    }
+
+    angleY += 0.0005;
+    requestAnimationFrame(drawStars);
+}
+
+drawStars();
+
+document.addEventListener("mousedown",e=>{
+    mouseDown=true;
+    lastX=e.clientX;
+    lastY=e.clientY;
+});
+document.addEventListener("mouseup",()=>mouseDown=false);
+document.addEventListener("mousemove",e=>{
+    if(!mouseDown) return;
+    angleY+=(e.clientX-lastX)*0.003;
+    angleX+=(e.clientY-lastY)*0.003;
+    lastX=e.clientX;
+    lastY=e.clientY;
+});
+
+const mensajes=[
+"Me encanta tu noble sonrisa, es el mejor regalo que puedo recibir al verte.",
+"Me fascinan tus ojos que parecen esmeraldas que me hechizan profundamente.",
+"Cuando me miras siento que un ángel atraviesa mi alma.",
+"Tu piel de porcelana parece tan delicada que el mundo debería cuidarte.",
+"Tu cabello brilla como finas cuerdas de oro bajo cualquier luz.",
+"Tu voz es mi canción favorita incluso cuando me regañas.",
+"Me enamora cada cambio de carácter tuyo.",
+"Amo tu dulzura… aunque no siempre esté dirigida hacia mí.",
+"Te amo sin condiciones, incluso si nunca soy tu elección.",
+"Te amo en silencio, sin exigir nada.",
+"Te amo aunque solo sea un sentimiento que vive en mí.",
+"Tu presencia ilumina mis días más oscuros.",
+"Cada gesto tuyo se queda grabado en mi memoria.",
+"Tu risa es mi sonido favorito en el universo.",
+"Te amo con paciencia infinita.",
+"Te amo sin esperar que me ames igual.",
+"Si amar es desear tu felicidad antes que la mía, entonces te amo de verdad.",
+"Tu forma de caminar, de hablar, de existir… me cautiva.",
+"Admiro la fuerza que llevas dentro.",
+"Te amo incluso en tus días grises.",
+"Te amo por cada imperfección que te hace única.",
+"No eres un trofeo… eres el sueño que cuido en silencio.",
+"Si algún día te das cuenta de lo que siento, aquí estaré.",
+"Te amo desde la calma y la esperanza.",
+"Tu esencia es lo que más me enamora.",
+"Te amo porque contigo aprendí lo que significa amar.",
+"No importa cuánto tiempo pase, este sentimiento seguirá intacto.",
+"Te amo sin prisas, sin presión.",
+"Te amo en cada pensamiento que me roba una sonrisa.",
+"Eres el sentimiento más puro que he conocido.",
+"Te amo porque simplemente existes.",
+"Y aunque este amor sea solo mío… seguirá siendo real."
+];
+
+for(let i=0;i<35;i++){
+    let carta=document.createElement("div"
+  
