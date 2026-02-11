@@ -9,14 +9,27 @@
 body{
     margin:0;
     overflow:hidden;
-    background: radial-gradient(circle at 50% 40%, #3a0ca3, #240046, #000814);
+    background: radial-gradient(circle at center, #3a0ca3, #240046, #000814);
     font-family: Arial, sans-serif;
 }
 
-canvas{
-    position:fixed;
-    top:0;
-    left:0;
+#universo{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    transform-style: preserve-3d;
+    perspective:1000px;
+}
+
+.carta{
+    position:absolute;
+    font-size:28px;
+    cursor:pointer;
+    transition: transform 0.3s;
+}
+
+.carta:hover{
+    transform: scale(1.5);
 }
 
 .mensaje{
@@ -39,22 +52,12 @@ canvas{
 
 <body>
 
-<canvas id="c"></canvas>
+<div id="universo"></div>
 <div class="mensaje" id="mensaje"></div>
 
 <script>
-const canvas = document.getElementById("c");
-const ctx = canvas.getContext("2d");
-
-function resize(){
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resize();
-window.addEventListener("resize", resize);
-
-let angle = 0;
-let rotation = 0;
+const universo = document.getElementById("universo");
+const mensajeBox = document.getElementById("mensaje");
 
 const mensajes = [
 "Te amo sin esperar nada a cambio.",
@@ -86,5 +89,65 @@ const mensajes = [
 "Tu voz vive en mi memoria.",
 "Te amo porque existes.",
 "Si amar es verte feliz, te amo.",
-"Este amor es real aunqu
-  
+"Este amor es real aunque sea mío.",
+"Te amo más allá de cualquier respuesta."
+];
+
+let cartas = [];
+
+for(let i=0;i<35;i++){
+    let carta = document.createElement("div");
+    carta.className = "carta";
+    carta.innerHTML = "💌";
+    universo.appendChild(carta);
+
+    cartas.push({
+        elemento:carta,
+        radio:150 + Math.random()*200,
+        angulo:Math.random()*Math.PI*2,
+        velocidad:0.01 + Math.random()*0.01,
+        mensaje:mensajes[Math.floor(Math.random()*mensajes.length)]
+    });
+
+    carta.addEventListener("click", ()=>{
+        mensajeBox.innerText = cartas[i].mensaje;
+        mensajeBox.style.display = "block";
+        setTimeout(()=>mensajeBox.style.display="none",5000);
+    });
+}
+
+let rotacion = 0;
+
+function animar(){
+    rotacion += 0.005;
+
+    cartas.forEach(c=>{
+        c.angulo += c.velocidad;
+
+        let x = Math.cos(c.angulo + rotacion) * c.radio;
+        let y = Math.sin(c.angulo) * 80;
+
+        c.elemento.style.left = (window.innerWidth/2 + x) + "px";
+        c.elemento.style.top = (window.innerHeight/2 + y) + "px";
+    });
+
+    requestAnimationFrame(animar);
+}
+
+animar();
+
+let inicioX = 0;
+
+universo.addEventListener("touchstart", e=>{
+    inicioX = e.touches[0].clientX;
+});
+
+universo.addEventListener("touchmove", e=>{
+    let moverX = e.touches[0].clientX;
+    rotacion += (moverX - inicioX) * 0.005;
+    inicioX = moverX;
+});
+</script>
+
+</body>
+</html>
