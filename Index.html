@@ -8,8 +8,7 @@
 body{
     margin:0;
     overflow:hidden;
-    background:black;
-    font-family:Arial, sans-serif;
+    background:#0b0033;
 }
 canvas{
     display:block;
@@ -19,12 +18,13 @@ canvas{
     bottom:20px;
     left:50%;
     transform:translateX(-50%);
-    background:rgba(0,0,0,0.7);
+    background:rgba(0,0,0,0.8);
     color:white;
     padding:15px;
-    border-radius:10px;
-    max-width:80%;
+    border-radius:12px;
+    max-width:85%;
     text-align:center;
+    font-size:16px;
     display:none;
 }
 </style>
@@ -50,50 +50,37 @@ let formar = false;
 
 const mensajes = [
 "Te amo sin esperar respuesta.",
-"Te amo en silencio.",
 "Me encanta tu noble sonrisa.",
-"Tus ojos parecen esmeraldas que me hechizan.",
+"Tus ojos me hechizan profundamente.",
 "Tu voz es mi canción favorita.",
-"Te amo aunque solo viva en mí.",
+"Te amo incluso en silencio.",
 "Tu esencia ilumina mi mundo.",
 "Te amo sin presión.",
 "Eres mi pensamiento favorito.",
 "Te amo profundamente.",
-"Admiro cada parte de ti.",
-"Te amo incluso en tus días grises.",
-"Eres el sentimiento más puro.",
 "No espero nada, solo amarte.",
-"Te amo con sinceridad absoluta.",
 "Tu risa es mi universo.",
 "Te amo sin condiciones.",
 "Tu presencia cambia todo.",
 "Te amo sin prisas.",
 "Tu mirada toca mi alma.",
-"Te amo con respeto.",
 "Eres inspiración constante.",
-"Te amo aunque sea en silencio.",
-"Si amar es verte feliz, entonces te amo.",
-"Este amor es real aunque solo viva en mí.",
-"Me enamora tu forma de ser.",
-"Cada gesto tuyo me cautiva.",
-"Te amo con paciencia infinita.",
-"Eres mi luz.",
-"Te amo simplemente porque existes."
+"Te amo aunque este amor viva solo en mí."
 ];
 
 let cartas = [];
 for(let i=0;i<35;i++){
     cartas.push({
-        radio: 200 + Math.random()*300,
+        radio: 150 + Math.random()*200,
         ang: Math.random()*Math.PI*2,
-        vel: 0.002 + Math.random()*0.002,
-        altura: (Math.random()-0.5)*200,
+        vel: 0.01 + Math.random()*0.01,
+        altura: (Math.random()-0.5)*150,
         mensaje: mensajes[Math.floor(Math.random()*mensajes.length)]
     });
 }
 
 function proyectar(x,y,z){
-    let scale = 600/(600+z);
+    let scale = 400/(400+z);
     return {
         x: x*scale + canvas.width/2,
         y: y*scale + canvas.height/2,
@@ -102,12 +89,75 @@ function proyectar(x,y,z){
 }
 
 function drawFondo(){
-    let grad = ctx.createRadialGradient(
+    let grad = ctx.createLinearGradient(0,0,0,canvas.height);
+    grad.addColorStop(0,"#3a0ca3");
+    grad.addColorStop(0.5,"#4361ee");
+    grad.addColorStop(1,"#f72585");
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+}
+
+function draw(){
+    tiempo++;
+    drawFondo();
+
+    if(tiempo > 1000) formar = true;
+
+    // Núcleo brillante
+    let glow = 60 + Math.sin(tiempo*0.1)*20;
+    let g = ctx.createRadialGradient(
         canvas.width/2, canvas.height/2, 0,
-        canvas.width/2, canvas.height/2, canvas.width
+        canvas.width/2, canvas.height/2, glow*3
     );
-    grad.addColorStop(0,"#1a0a3a");
-    grad.addColorStop(0.5,"#000814");
-    grad.addColorStop(1,"black");
-    c
-    
+    g.addColorStop(0,"#ffffff");
+    g.addColorStop(0.3,"#ffd166");
+    g.addColorStop(1,"transparent");
+    ctx.fillStyle = g;
+    ctx.beginPath();
+    ctx.arc(canvas.width/2, canvas.height/2, glow*3, 0, Math.PI*2);
+    ctx.fill();
+
+    cartas.forEach((c,i)=>{
+        let x,y,z;
+
+        if(!formar){
+            c.ang += c.vel;
+            x = Math.cos(c.ang)*c.radio;
+            z = Math.sin(c.ang)*c.radio;
+            y = c.altura;
+        }else{
+            let t = i * 0.5;
+            x = 16*Math.pow(Math.sin(t),3)*8;
+            y = -(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))*8;
+            z = 0;
+        }
+
+        let p = proyectar(x,y,z);
+        ctx.font = 30*p.s + "px Arial";
+        ctx.fillText("💌", p.x, p.y);
+
+        c.sx = p.x;
+        c.sy = p.y;
+        c.size = 30*p.s;
+    });
+
+    requestAnimationFrame(draw);
+}
+draw();
+
+canvas.addEventListener("click", e=>{
+    cartas.forEach(c=>{
+        let dx = e.clientX - c.sx;
+        let dy = e.clientY - c.sy;
+        if(Math.sqrt(dx*dx+dy*dy) < c.size){
+            let box = document.getElementById("mensaje");
+            box.innerText = c.mensaje;
+            box.style.display="block";
+            setTimeout(()=>box.style.display="none",4000);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
