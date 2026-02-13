@@ -1,12 +1,11 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La carta del campesino</title>
+<title>Para mi princesa Abi</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,13 +16,34 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family:'EB Garamond', serif;
+    font-family:'Cormorant Garamond', serif;
     overflow:hidden;
 }
 
-/* Carta flotante */
+/* ✨ Partículas */
+.particula{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    opacity:0.8;
+    animation:flotarParticula linear infinite;
+}
+
+@keyframes flotarParticula{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    to{
+        transform:translateY(-10vh);
+        opacity:1;
+    }
+}
+
+/* ✉ Carta flotante */
 .carta{
-    font-size:80px;
+    font-size:85px;
     cursor:pointer;
     animation:flotar 3s ease-in-out infinite;
 }
@@ -45,7 +65,7 @@ body{
     align-items:center;
     opacity:0;
     visibility:hidden;
-    transition:0.5s;
+    transition:0.6s;
 }
 
 .overlay.active{
@@ -53,14 +73,14 @@ body{
     visibility:visible;
 }
 
-/* Pergamino */
+/* 📜 Pergamino */
 .pergamino{
-    background:linear-gradient(to bottom,#f5e6c8,#e6d3a3);
+    background:linear-gradient(to bottom,#f8ecd2,#e8d3a3);
     width:95%;
-    max-width:600px;
-    height:85vh;
-    padding:25px;
-    border-radius:10px;
+    max-width:650px;
+    height:88vh;
+    padding:40px;
+    border-radius:12px;
     box-shadow:0 0 40px rgba(0,0,0,0.9);
     position:relative;
     display:flex;
@@ -68,13 +88,23 @@ body{
     justify-content:space-between;
 }
 
+/* Título romántico */
+.titulo{
+    font-family:'Great Vibes', cursive;
+    font-size:42px;
+    text-align:center;
+    color:#7a0019;
+    margin-bottom:15px;
+}
+
 /* Contenido */
 .page{
     display:none;
     overflow-y:auto;
-    font-size:17px;
-    line-height:1.7;
+    font-size:20px;
+    line-height:1.8;
     text-align:justify;
+    flex-grow:1;
 }
 
 .page.active{
@@ -85,15 +115,16 @@ body{
 .controls{
     display:flex;
     justify-content:space-between;
-    margin-top:10px;
+    margin-top:15px;
 }
 
 button{
-    padding:8px 16px;
+    padding:8px 18px;
     border:none;
-    background:#6d0019;
+    background:#7a0019;
     color:white;
-    border-radius:5px;
+    border-radius:6px;
+    font-size:14px;
 }
 
 .cerrar{
@@ -102,12 +133,24 @@ button{
     right:20px;
     font-size:20px;
     cursor:pointer;
-    color:#333;
+    color:#444;
 }
 
 </style>
 </head>
 <body>
+
+<!-- ✨ Partículas -->
+<script>
+for(let i=0;i<40;i++){
+    let p=document.createElement("div");
+    p.className="particula";
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(5+Math.random()*5)+"s";
+    p.style.background=Math.random()>0.5?"gold":"#ff2e63";
+    document.body.appendChild(p);
+}
+</script>
 
 <div class="carta" onclick="abrir()">✉</div>
 
@@ -116,58 +159,34 @@ button{
 
 <div class="cerrar" onclick="cerrar()">✖</div>
 
-<!-- HOJA 1 -->
+<div class="titulo">Para mi princesa Abi</div>
+
+<!-- HOJAS -->
 <div class="page active">
-Hace mucho mucho tiempo atras existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio solo su gratitud, este joven campesino era de alguien de cuerpo grande y con una estatura superior a la de los demás, lastimosamente era algo tímido y bastante sumiso ante las personas, pero había algo en el que pocos sabían que el no quería hacer nada de lo que hacía solo deseaba vivir una vida tranquila y sin complicaciones, hasta que un día conocía a una chica y se enamoro a primera vista, lamentablemente este campesino era muy despistado y no conocía lo que eran eso así que solo penso que le gustaba la compañía de esa mujer.
+Hace mucho mucho tiempo atras existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio solo su gratitud...
 </div>
 
-<!-- HOJA 2 -->
 <div class="page">
-Con el tiempo pasaban mas y mas tiempo juntos, cada vez se iban conociendo uno al otro y el iba sintiendo cosas que jamás había sentido, hasta que la noble mujer recomendó mandarse cartas para siempre estar en contacto, y ahi la vio por primera vez no solo era una mujer encantadora con una dulce voz, era mas que eso, era una hermosa princesa de cabellos dorados y ojos esmeralda, y desde ese momento el campesino quedó impresionado con su majestuosidad y belleza, y nunca volvió a ver a una mujer tan hermosa como está princesa.
+Este joven campesino era de alguien de cuerpo grande y con una estatura superior a la de los demás, lastimosamente era algo tímido y bastante sumiso...
 </div>
 
-<!-- HOJA 3 -->
 <div class="page">
-Pero el campesino sabía que el no era el más atractivo y que la princesa nunca se fijaría en el, asi sue decidio esconderle a la princesa por mucho tiempo lo que sentía por miedo a que esta se vaya por pensar que solo es alguien interesado, y asi paso un largo tiempo ambos seguían en contacto diariamente y con el tiempo el campesino no podía ignorar para siempre todo lo que sentía por la princesa.
+Hasta que un día conocía a una chica y se enamoro a primera vista...
 </div>
 
-<!-- HOJA 4 -->
 <div class="page">
-Pero tenía que callar porque siempre que escuchaba a la princesa hablar de su caballero ideal solo podía agachar la cabeza y decirle que llegaria ese caballero para ella algun dia, y también porque sabia que vivían en mundos totalmente distintos y la princesa nunca lo elegiría.
+Descubrió que era una hermosa princesa de cabellos dorados y ojos esmeralda...
 </div>
 
-<!-- HOJA 5 -->
 <div class="page">
-Pero el campesino nunca se rindió por más noches en vela que pasará, por más dolores en el pecho que sintiera el nunca dejo de sentir eso por la princesa, hasta que un día entre valor y lágrimas decidio invitarle una carta expresándole todos sus sentimientos y aunque el ya sabía la respuesta esa pizca de esperanza nunca se fue de sus ojos.
+Pero el campesino sabía que nunca lo elegiría, aun así jamás dejó de sentir lo que sentía...
 </div>
 
-<!-- HOJA 6 -->
 <div class="page">
-Y aunque recibió lo que mas temia no dejó de poner esa sonrisa en su rostro porque siempre se dijo que si no logras algo a la primera solo tienes que seguir intentando hasta conseguirlo, y asi transcurrió el tiempo cada dia con mas frecuencia le escribía a la princesa.
-</div>
-
-<!-- HOJA 7 -->
-<div class="page">
-Se dedico a conocerla mas, a saber todos sus gustos o sus miedos, que no le gustaba o que hacía cada cosa que para muchos insignificante para el eran el mejor conocimiento que podría tener, y aunque en muchas ocasiones se peleaba y distanciaba con sus familiares y conocidos por decirle que abandonara la idea el siempre supo lo que quería.
-</div>
-
-<!-- HOJA 8 -->
-<div class="page">
-Pero eso no funcionaba, y aunque el solía meter mucho la pata siempre buscaba la manera de arreglarlo ya que perder a esa princesa sería el fin de su mundo.
-</div>
-
-<!-- HOJA 9 -->
-<div class="page">
-Por eso decide sufrir en silencio, pero esperando, porque aunque sabe que nunca ocurrirá el tiene ese sueño de poder tener la vida de sus sueños junto a esa mujer que tanto ama, de demostrarle en cada mañana tarde y noche el amor que siente por ella.
-</div>
-
-<!-- HOJA 10 -->
-<div class="page">
-Y si esto no es un cuento de hadas donde el campesino logra conquistar a la princesa, el sigue intentándolo cada día.
-
+Y aunque esto no sea un cuento de hadas donde el campesino logra conquistar a la princesa...
+<br><br>
 Por eso mi querida princesa, mi amada Abi, mi mundo Xiomara.
-Cómo muchas veces anterior quiero hacerte la misma pregunta.
-
+<br><br>
 Me dejarías el gran y hermoso honor de ser tu san Valentin
 </div>
 
@@ -181,8 +200,8 @@ Me dejarías el gran y hermoso honor de ser tu san Valentin
 
 <script>
 
-let current = 0;
-const pages = document.querySelectorAll(".page");
+let current=0;
+const pages=document.querySelectorAll(".page");
 
 function abrir(){
     document.getElementById("overlay").classList.add("active");
@@ -193,19 +212,19 @@ function cerrar(){
 }
 
 function show(index){
-    pages.forEach(p => p.classList.remove("active"));
+    pages.forEach(p=>p.classList.remove("active"));
     pages[index].classList.add("active");
 }
 
 function next(){
-    if(current < pages.length-1){
+    if(current<pages.length-1){
         current++;
         show(current);
     }
 }
 
 function prev(){
-    if(current > 0){
+    if(current>0){
         current--;
         show(current);
     }
