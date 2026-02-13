@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Para mi princesa Abi</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:wght@500&display=swap" rel="stylesheet">
 
 <style>
-
 body{
     margin:0;
     height:100vh;
@@ -16,39 +15,32 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    font-family:'Cormorant Garamond', serif;
     overflow:hidden;
+    font-family:'Cormorant Garamond', serif;
 }
 
-/* ✨ Partículas */
+/* Partículas */
 .particula{
     position:absolute;
     width:6px;
     height:6px;
     border-radius:50%;
-    opacity:0.8;
-    animation:flotarParticula linear infinite;
-}
-
-@keyframes flotarParticula{
-    from{
-        transform:translateY(100vh);
-        opacity:0;
-    }
-    to{
-        transform:translateY(-10vh);
-        opacity:1;
-    }
-}
-
-/* ✉ Carta flotante */
-.carta{
-    font-size:85px;
-    cursor:pointer;
-    animation:flotar 3s ease-in-out infinite;
+    animation:flotar linear infinite;
 }
 
 @keyframes flotar{
+    from{transform:translateY(100vh); opacity:0;}
+    to{transform:translateY(-10vh); opacity:1;}
+}
+
+/* Carta */
+.carta{
+    font-size:85px;
+    cursor:pointer;
+    animation:flotarCarta 3s ease-in-out infinite;
+}
+
+@keyframes flotarCarta{
     0%{transform:translateY(0);}
     50%{transform:translateY(-20px);}
     100%{transform:translateY(0);}
@@ -59,7 +51,7 @@ body{
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.85);
+    background:rgba(0,0,0,0.9);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -73,49 +65,44 @@ body{
     visibility:visible;
 }
 
-/* 📜 Pergamino */
+/* Pergamino */
 .pergamino{
     background:linear-gradient(to bottom,#f8ecd2,#e8d3a3);
     width:95%;
     max-width:650px;
     height:88vh;
-    padding:40px;
+    padding:35px;
     border-radius:12px;
     box-shadow:0 0 40px rgba(0,0,0,0.9);
-    position:relative;
     display:flex;
     flex-direction:column;
-    justify-content:space-between;
 }
 
-/* Título romántico */
 .titulo{
     font-family:'Great Vibes', cursive;
-    font-size:42px;
+    font-size:40px;
     text-align:center;
     color:#7a0019;
     margin-bottom:15px;
 }
 
-/* Contenido */
 .page{
-    display:none;
+    flex-grow:1;
     overflow-y:auto;
     font-size:20px;
     line-height:1.8;
     text-align:justify;
-    flex-grow:1;
+    display:none;
 }
 
 .page.active{
     display:block;
 }
 
-/* Botones */
 .controls{
     display:flex;
     justify-content:space-between;
-    margin-top:15px;
+    margin-top:10px;
 }
 
 button{
@@ -124,29 +111,26 @@ button{
     background:#7a0019;
     color:white;
     border-radius:6px;
-    font-size:14px;
 }
 
 .cerrar{
     position:absolute;
     top:15px;
     right:20px;
-    font-size:20px;
     cursor:pointer;
-    color:#444;
+    font-size:20px;
 }
 
 </style>
 </head>
 <body>
 
-<!-- ✨ Partículas -->
 <script>
 for(let i=0;i<40;i++){
     let p=document.createElement("div");
     p.className="particula";
     p.style.left=Math.random()*100+"vw";
-    p.style.animationDuration=(5+Math.random()*5)+"s";
+    p.style.animationDuration=(6+Math.random()*6)+"s";
     p.style.background=Math.random()>0.5?"gold":"#ff2e63";
     document.body.appendChild(p);
 }
@@ -158,37 +142,9 @@ for(let i=0;i<40;i++){
 <div class="pergamino">
 
 <div class="cerrar" onclick="cerrar()">✖</div>
-
 <div class="titulo">Para mi princesa Abi</div>
 
-<!-- HOJAS -->
-<div class="page active">
-Hace mucho mucho tiempo atras existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio solo su gratitud...
-</div>
-
-<div class="page">
-Este joven campesino era de alguien de cuerpo grande y con una estatura superior a la de los demás, lastimosamente era algo tímido y bastante sumiso...
-</div>
-
-<div class="page">
-Hasta que un día conocía a una chica y se enamoro a primera vista...
-</div>
-
-<div class="page">
-Descubrió que era una hermosa princesa de cabellos dorados y ojos esmeralda...
-</div>
-
-<div class="page">
-Pero el campesino sabía que nunca lo elegiría, aun así jamás dejó de sentir lo que sentía...
-</div>
-
-<div class="page">
-Y aunque esto no sea un cuento de hadas donde el campesino logra conquistar a la princesa...
-<br><br>
-Por eso mi querida princesa, mi amada Abi, mi mundo Xiomara.
-<br><br>
-Me dejarías el gran y hermoso honor de ser tu san Valentin
-</div>
+<div id="pagesContainer"></div>
 
 <div class="controls">
 <button onclick="prev()">◀</button>
@@ -198,10 +154,30 @@ Me dejarías el gran y hermoso honor de ser tu san Valentin
 </div>
 </div>
 
+<!-- TEXTO COMPLETO ORIGINAL -->
+<script id="textoOriginal" type="text/plain">
+PEGA AQUI TODO EL TEXTO ORIGINAL COMPLETO EXACTAMENTE COMO ME LO ENVIASTE
+SIN CORTAR NADA
+SIN MODIFICAR NADA
+</script>
+
 <script>
 
 let current=0;
-const pages=document.querySelectorAll(".page");
+let pages=[];
+const container=document.getElementById("pagesContainer");
+
+function dividirTexto(texto){
+    const longitudPorPagina=1200;
+    for(let i=0;i<texto.length;i+=longitudPorPagina){
+        let pagina=document.createElement("div");
+        pagina.className="page";
+        pagina.innerText=texto.slice(i,i+longitudPorPagina);
+        container.appendChild(pagina);
+    }
+    pages=document.querySelectorAll(".page");
+    pages[0].classList.add("active");
+}
 
 function abrir(){
     document.getElementById("overlay").classList.add("active");
@@ -229,6 +205,9 @@ function prev(){
         show(current);
     }
 }
+
+const texto=document.getElementById("textoOriginal").textContent.trim();
+dividirTexto(texto);
 
 </script>
 
