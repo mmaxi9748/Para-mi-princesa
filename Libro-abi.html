@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -8,7 +8,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond&display=swap" rel="stylesheet">
 
 <style>
-
 body{
     margin:0;
     height:100vh;
@@ -20,16 +19,11 @@ body{
     font-family: 'EB Garamond', serif;
 }
 
-/* ✉ CARTA FLOTANTE */
+/* Carta flotante */
 .carta{
     font-size:80px;
     cursor:pointer;
     animation: flotar 3s ease-in-out infinite;
-    transition: transform 0.3s;
-}
-
-.carta:hover{
-    transform: scale(1.1);
 }
 
 @keyframes flotar{
@@ -38,12 +32,12 @@ body{
     100%{ transform: translateY(0px);}
 }
 
-/* FONDO OSCURO CUANDO SE ABRE */
+/* Overlay */
 .overlay{
     position:fixed;
     width:100%;
     height:100%;
-    background:rgba(0,0,0,0.8);
+    background:rgba(0,0,0,0.85);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -57,15 +51,15 @@ body{
     visibility:visible;
 }
 
-/* 📜 PERGAMINO */
+/* Pergamino */
 .pergamino{
     background:linear-gradient(to bottom,#f5e6c8,#e6d3a3);
-    width:90%;
-    max-width:500px;
-    max-height:80vh;
+    width:95%;
+    max-width:600px;
+    height:90vh;
     padding:30px;
     border-radius:10px;
-    box-shadow:0 0 30px rgba(0,0,0,0.8);
+    box-shadow:0 0 40px rgba(0,0,0,0.9);
     overflow-y:auto;
     transform: scaleY(0);
     transform-origin:top;
@@ -76,7 +70,6 @@ body{
     transform: scaleY(1);
 }
 
-/* TEXTO */
 .pergamino h2{
     text-align:center;
     font-family:'Cinzel', serif;
@@ -84,11 +77,12 @@ body{
 
 .pergamino p{
     font-size:18px;
-    line-height:1.6;
+    line-height:1.7;
     text-align:justify;
+    white-space: pre-line;
 }
 
-/* BOTON CERRAR */
+/* Botón cerrar */
 .cerrar{
     position:absolute;
     top:20px;
@@ -97,7 +91,6 @@ body{
     cursor:pointer;
     color:white;
 }
-
 </style>
 </head>
 <body>
@@ -105,41 +98,29 @@ body{
 <div class="carta" onclick="abrirCarta()">✉</div>
 
 <div class="overlay" id="overlay">
-    <div class="cerrar" onclick="cerrarCarta()">✖</div>
-    <div class="pergamino">
-        <h2>📜</h2>
-        <p>
-Hace mucho mucho tiempo atrás existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio solo su gratitud...
-<br><br>
-Este joven campesino era alguien de cuerpo grande y tímido, que soñaba con una vida tranquila...
-<br><br>
-Hasta que un día conoció a una chica y se enamoró a primera vista...
-<br><br>
-Descubrió que era una hermosa princesa de cabellos dorados y ojos esmeralda...
-<br><br>
-Sabía que vivían en mundos distintos y que tal vez nunca lo elegiría, pero jamás dejó de sentir lo que sentía...
-<br><br>
-Sufrió en silencio, esperó, intentó una y otra vez, escribió cartas, poemas, dibujó retratos...
-<br><br>
-Porque aunque esto no sea un cuento de hadas donde el campesino logra conquistar a la princesa, él sigue intentándolo cada día.
-<br><br>
-Por eso mi querida princesa, mi amada Abi, mi mundo Xiomara…
-<br><br>
-¿Me dejarías el gran y hermoso honor de ser tu San Valentín?
-        </p>
-    </div>
+<div class="cerrar" onclick="cerrarCarta()">✖</div>
+
+<div class="pergamino">
+<h2>📜</h2>
+<p>
+Hace mucho mucho tiempo atras existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio solo su gratitud, este joven campesino era de alguien de cuerpo grande y con una estatura superior a la de los demás, lastimosamente era algo tímido y bastante sumiso ante las personas, pero había algo en el que pocos sabían que el no quería hacer nada de lo que hacía solo deseaba vivir una vida tranquila y sin complicaciones, hasta que un día conocía a una chica y se enamoro a primera vista, lamentablemente este campesino era muy despistado y no conocía lo que eran eso así que solo penso que le gustaba la compañía de esa mujer, con el tiempo pasaban mas y mas tiempo juntos, cada vez se iban conociendo uno al otro y el iba sintiendo cosas que jamás había sentido, hasta que la noble mujer recomendó mandarse cartas para siempre estar en contacto, y ahi la vio por primera vez no solo era una mujer encantadora con una dulce voz, era mas que eso, era una hermosa princesa de cabellos dorados y ojos esmeralda, y desde ese momento el campesino quedó impresionado con su majestuosidad y belleza, y nunca volvió a ver a una mujer tan hermosa como está princesa, pero el campesino sabía que el no era el más atractivo y que la princesa nunca se fijaría en el, asi sue decidio esconderle a la princesa por mucho tiempo lo que sentía por miedo a que esta se vaya por pensar que solo es alguien interesado, y asi paso un largo tiempo ambos seguían en contacto diariamente y con el tiempo el campesino no podía a ignorar para siempre todo lo que sentía por la princesa, pero tenía que callar porque siempre que escuchaba a la princesa hablar de su caballero ideal solo podía agachar la cabeza y decirle que llegaria ese caballero para ella algun dia, y también porque sabia que vivían en mundos totalmente distintos y la princesa nunca lo elegiría. Pero el campesino nunca se rindió por más noches en vela que pasará, por más dolores en el pecho que sintiera el nunca dejo de sentir eso por la princesa, hasta que un día entre valor y lágrimas decidio invitarle una carta expresándole todos sus sentimientos y aunque el ya sabía la respuesta esa pizca de esperanza nunca se fue de sus ojos, y aunque recibió lo que mas temia no dejó de poner esa sonrisa en su rostro porque siempre se dijo que si no logras algo a la primera solo tienes que seguir intentando hasta conseguirlo, y asi transcurrió el tiempo cada dia con mas frecuencia le escribía a la princesa, aún con el miedo de hacerla enojar o irritarla y que se aleje de el pero nunca dudando en sus palabras que demostraban cuánto la amaba, se dedico a conocerla mas, a saber todos sus gustos o sus miedos, que no le gustaba o que hacía cada cosa que para muchos insignificante para el eran el mejor conocimiento que podría tener, y aunque en muchas ocasiones se peleaba y distanciaba con sus familiares y conocidos por decirle que abandonara la idea el siempre supo lo que quería y pelearia hasta el final para conseguirlo, con cualquier tipo de metodo desde escribirle poemas y dibujarle retratos aunque no muy bonitos expresaban todos sus sentimientos ademas de darle obsequios que la hicieran ver cuánto la amaba. Pero eso no funcionaba, y aunque el solía meter mucho la pata y cagarla siempre, siempre buscaba la manera de arreglarlo ya que perder a esa princesa, a esa persona que tanto ama sería el fin del mundo, el fin se su mundo. Por eso el decide sufrir en silencio, pero esperando, porque aunque sabe que nunca ocurrirá el tiene ese sueño se poder tener la vida de sus sueños junto a esa mujer que tanto ama, de demostrarle en cada mañana tarde y noche el amor que siente por ella, de hacerla feliz en casa acción que hace de ser su caballero y protegerla de todo mal que se le presente de estar para ella en cada situación que se le presente, de estar siempre juntos porque la amo, y es algo por lo que está dispuesto a morir por ella con saber que ella seguirá sonriendo y siendo feliz.
+Y si esto no es un cuento de adas donde el campesino logra conquistar a la princesa, o al menos no por el momento, el sigue intentándolo, cada día con cada acción y con cada mensaje.
+
+Por eso mi querida princesa, mi amada Abi, mi mundo Xiomara.
+Cómo muchas veces anterior quiero hacerte la misma pregunta aunque no sea la última vez que lo haga.
+Me dejarías el gran y hermoso honor de ser tu san Valentin
+</p>
+</div>
 </div>
 
 <script>
 function abrirCarta(){
     document.getElementById("overlay").classList.add("active");
 }
-
 function cerrarCarta(){
     document.getElementById("overlay").classList.remove("active");
 }
 </script>
 
 </body>
-        </html>
-    
+</html>
