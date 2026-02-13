@@ -1,5 +1,4 @@
-
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -16,15 +15,14 @@ body{
     align-items:center;
     background: radial-gradient(circle at center, #1a001f, #000);
     font-family: 'EB Garamond', serif;
-    overflow:hidden;
 }
 
-/* LIBRO */
+/* CONTENEDOR LIBRO */
 .book{
     position:relative;
     width:900px;
     height:600px;
-    perspective:2500px;
+    perspective:3000px;
 }
 
 /* TAPA */
@@ -44,10 +42,9 @@ body{
     box-sizing:border-box;
     cursor:pointer;
     transform-origin:left;
-    transition:transform 1.2s;
-    z-index:20;
+    transition:transform 1.5s;
+    z-index:100;
     border-radius:8px;
-    box-shadow:0 0 40px rgba(0,0,0,0.8);
 }
 
 .cover.open{
@@ -63,9 +60,9 @@ body{
     padding:60px;
     box-sizing:border-box;
     transform-origin:left;
-    transition:transform 1s;
+    transition:transform 1.2s;
     border-radius:5px;
-    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    box-shadow:0 0 15px rgba(0,0,0,0.3);
     backface-visibility:hidden;
 }
 
@@ -76,26 +73,19 @@ body{
     justify-content:space-between;
 }
 
-.page p{
-    font-size:20px;
-    line-height:1.6;
-}
-
 .page-number{
     text-align:right;
-    font-size:16px;
-    opacity:0.7;
+    font-size:14px;
+    opacity:0.6;
 }
 
-/* Botones */
+/* BOTONES */
 .controls{
     position:absolute;
-    bottom:20px;
+    bottom:-60px;
     width:100%;
     display:flex;
     justify-content:space-between;
-    padding:0 40px;
-    box-sizing:border-box;
 }
 
 button{
@@ -118,135 +108,63 @@ button:hover{
 
 <div class="book">
 
-    <div class="cover" onclick="openBook()" id="cover">
-        El campesino y su sueño<br>de conquistar a la princesa
-    </div>
+<div class="cover" onclick="openBook()" id="cover">
+El campesino y su sueño<br>de conquistar a la princesa
+</div>
 
-    <!-- PÁGINAS -->
-    <div class="page" id="page1">
-        <div class="page-content">
-            <p>
-            Hace mucho mucho tiempo atrás existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio, solo su gratitud.
-            </p>
-            <div class="page-number">1</div>
-        </div>
-    </div>
+<!-- PÁGINAS -->
+<div class="page"><div class="page-content"><p>Hace mucho mucho tiempo atrás existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio, solo su gratitud.</p><div class="page-number">1</div></div></div>
 
-    <div class="page" id="page2">
-        <div class="page-content">
-            <p>
-            Este joven campesino era alguien de cuerpo grande y con una estatura superior a la de los demás. Lastimosamente era algo tímido y bastante sumiso ante las personas.
-            </p>
-            <div class="page-number">2</div>
-        </div>
-    </div>
+<div class="page"><div class="page-content"><p>Este joven campesino era alguien de cuerpo grande y bastante tímido, pero soñaba con una vida tranquila y sin complicaciones.</p><div class="page-number">2</div></div></div>
 
-    <div class="page" id="page3">
-        <div class="page-content">
-            <p>
-            Hasta que un día conoció a una chica y se enamoró a primera vista, aunque él no sabía reconocer lo que sentía.
-            </p>
-            <div class="page-number">3</div>
-        </div>
-    </div>
+<div class="page"><div class="page-content"><p>Hasta que un día conoció a una chica y se enamoró a primera vista, aunque no supo reconocerlo.</p><div class="page-number">3</div></div></div>
 
-    <div class="page" id="page4">
-        <div class="page-content">
-            <p>
-            Con el tiempo comenzaron a enviarse cartas… y entonces descubrió que no solo era una mujer encantadora, era una princesa de cabellos dorados y ojos esmeralda.
-            </p>
-            <div class="page-number">4</div>
-        </div>
-    </div>
+<div class="page"><div class="page-content"><p>Con el tiempo comenzaron a enviarse cartas… y descubrió que ella era una princesa de cabellos dorados y ojos esmeralda.</p><div class="page-number">4</div></div></div>
 
-    <div class="page" id="page5">
-        <div class="page-content">
-            <p>
-            Él sabía que vivían en mundos distintos y que quizás nunca lo elegiría… pero jamás dejó de sentir lo que sentía.
-            </p>
-            <div class="page-number">5</div>
-        </div>
-    </div>
+<div class="page"><div class="page-content"><p>Sabía que vivían en mundos distintos y que quizá nunca lo elegiría… pero jamás dejó de sentir lo que sentía.</p><div class="page-number">5</div></div></div>
 
-    <div class="page" id="page6">
-        <div class="page-content">
-            <p>
-            Entre valor y lágrimas decidió escribirle expresando todo su corazón, aun sabiendo cuál podría ser la respuesta.
-            </p>
-            <div class="page-number">6</div>
-        </div>
-    </div>
+<div class="page"><div class="page-content"><p>Entre valor y lágrimas decidió escribirle expresando todo su corazón.</p><div class="page-number">6</div></div></div>
 
-    <div class="page" id="page7">
-        <div class="page-content">
-            <p>
-            Pero el campesino no se rindió. Siguió intentando, siguió escribiendo, siguió amando en silencio.
-            </p>
-            <div class="page-number">7</div>
-        </div>
-    </div>
+<div class="page"><div class="page-content"><p>Y aunque esto no sea un cuento de hadas donde el campesino conquista a la princesa…</p><div class="page-number">7</div></div></div>
 
-    <div class="page" id="page8">
-        <div class="page-content">
-            <p>
-            Y aunque esto no sea un cuento de hadas donde el campesino conquista a la princesa…
-            </p>
-            <div class="page-number">8</div>
-        </div>
-    </div>
+<div class="page"><div class="page-content"><p>Él sigue intentándolo. Cada día. Con cada acción. Con cada mensaje.</p><div class="page-number">8</div></div></div>
 
-    <div class="page" id="page9">
-        <div class="page-content">
-            <p>
-            Él sigue intentándolo. Cada día. Con cada acción. Con cada mensaje.
-            </p>
-            <div class="page-number">9</div>
-        </div>
-    </div>
+<div class="page"><div class="page-content"><p style="font-size:26px; text-align:center;">¿Me dejarías el gran y hermoso honor de ser tu San Valentín?</p><div class="page-number">9</div></div></div>
 
-    <div class="page" id="page10">
-        <div class="page-content">
-            <p style="font-size:26px; text-align:center;">
-            ¿Me dejarías el gran y hermoso honor de ser tu San Valentín?
-            </p>
-            <div class="page-number">10</div>
-        </div>
-    </div>
-
-    <div class="controls">
-        <button onclick="prevPage()">◀</button>
-        <button onclick="nextPage()">▶</button>
-    </div>
+<div class="controls">
+<button onclick="prevPage()">◀</button>
+<button onclick="nextPage()">▶</button>
+</div>
 
 </div>
 
 <script>
-let currentPage = 0;
-const pages = document.querySelectorAll('.page');
+let current = 0;
+const pages = document.querySelectorAll(".page");
 
-pages.forEach((page, index)=>{
+pages.forEach((page, index) => {
     page.style.zIndex = pages.length - index;
 });
 
 function openBook(){
-    document.getElementById('cover').classList.add('open');
+    document.getElementById("cover").classList.add("open");
 }
 
 function nextPage(){
-    if(currentPage < pages.length){
-        pages[currentPage].style.transform = "rotateY(-160deg)";
-        currentPage++;
+    if(current < pages.length){
+        pages[current].style.transform = "rotateY(-180deg)";
+        current++;
     }
 }
 
 function prevPage(){
-    if(currentPage > 0){
-        currentPage--;
-        pages[currentPage].style.transform = "rotateY(0deg)";
+    if(current > 0){
+        current--;
+        pages[current].style.transform = "rotateY(0deg)";
     }
 }
 </script>
 
 </body>
-  </html>
+                                                                                                                                        </html>
   
