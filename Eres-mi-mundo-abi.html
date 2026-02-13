@@ -1,0 +1,75 @@
+<script>
+const mensaje = `Bueno Abi, quizás para ti todo lo que digan son tonterías pero no puedo evitar decirlas, porque se que de verdad cometo errores, que me equivoqué en más de una ocasión, que siempre hago algo que termina haciéndote enojar, y no quiero eso, no porque me moleste como te pongas sino porque no puedo soportar la idea de saber que estás así por mi culpa, y de verdad quiero ser quien te haga feliz, quien sea la razón de que sonrias con cada tontería que digo que te rías de mis malos chistes o cada error tonto que cometo, pero solo quiero estar contigo, y harías lo que fuera por eso, cambiaría todo de mi si es necesario, pero no quiero perderte, eres lo único que me mantiene cuerdo, lo único que me sostiene donde estoy, de no abandonar todo y desaparecer, porque quiero construir un futuro para mi un futuro contigo, en el que al fin pueda ser feliz`;
+
+const textoElemento = document.getElementById("texto");
+const contenedor = document.querySelector(".contenedor");
+const inicio = document.getElementById("inicio");
+const cursor = document.getElementById("cursor");
+
+let i = 0;
+
+function escribir(){
+  if(i < mensaje.length){
+    textoElemento.innerHTML += mensaje.charAt(i);
+    i++;
+    setTimeout(escribir, 30);
+  } else {
+    cursor.style.display="none";
+    contenedor.classList.add("brillo");
+
+    // Espera 2 segundos y ejecuta cierre
+    setTimeout(cierreFinal, 2000);
+  }
+}
+
+function cierreFinal(){
+  document.body.innerHTML = "";
+  document.body.style.background = "black";
+
+  setTimeout(()=>{
+    const finalText = document.createElement("div");
+    finalText.style.color="white";
+    finalText.style.fontSize="28px";
+    finalText.style.textAlign="center";
+    finalText.style.marginTop="40vh";
+    finalText.style.fontFamily="Georgia, serif";
+    document.body.appendChild(finalText);
+
+    const frase = "te amo abi lo lamento mucho por todo";
+    let j = 0;
+
+    function escribirFinal(){
+      if(j < frase.length){
+        finalText.innerHTML += frase.charAt(j);
+        j++;
+        setTimeout(escribirFinal, 80);
+      } else {
+        setTimeout(mostrarSnoopy, 800);
+      }
+    }
+
+    escribirFinal();
+
+  },1000);
+}
+
+function mostrarSnoopy(){
+  const snoopy = document.createElement("div");
+  snoopy.style.textAlign="center";
+  snoopy.style.marginTop="40px";
+
+  snoopy.innerHTML = `
+  <div style="font-size:80px;">🐶</div>
+  <div style="font-size:60px; color:red; margin-top:-10px;">❤️</div>
+  `;
+
+  document.body.appendChild(snoopy);
+}
+
+inicio.addEventListener("click",()=>{
+  inicio.style.display="none";
+  contenedor.style.opacity="1";
+  escribir();
+});
+    </script>
+    
