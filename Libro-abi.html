@@ -1,35 +1,37 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Carta para mi princesa</title>
+<title>La carta del campesino</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=EB+Garamond&display=swap" rel="stylesheet">
 
 <style>
+
 body{
     margin:0;
     height:100vh;
+    background: radial-gradient(circle at center, #2b0033, #000);
     display:flex;
     justify-content:center;
     align-items:center;
-    background: radial-gradient(circle at center, #2b0033, #000);
+    font-family:'EB Garamond', serif;
     overflow:hidden;
-    font-family: 'EB Garamond', serif;
 }
 
 /* Carta flotante */
 .carta{
     font-size:80px;
     cursor:pointer;
-    animation: flotar 3s ease-in-out infinite;
+    animation:flotar 3s ease-in-out infinite;
 }
 
 @keyframes flotar{
-    0%{ transform: translateY(0px);}
-    50%{ transform: translateY(-20px);}
-    100%{ transform: translateY(0px);}
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-20px);}
+    100%{transform:translateY(0);}
 }
 
 /* Overlay */
@@ -56,70 +58,159 @@ body{
     background:linear-gradient(to bottom,#f5e6c8,#e6d3a3);
     width:95%;
     max-width:600px;
-    height:90vh;
-    padding:30px;
+    height:85vh;
+    padding:25px;
     border-radius:10px;
     box-shadow:0 0 40px rgba(0,0,0,0.9);
+    position:relative;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+/* Contenido */
+.page{
+    display:none;
     overflow-y:auto;
-    transform: scaleY(0);
-    transform-origin:top;
-    transition: transform 0.8s ease;
-}
-
-.overlay.active .pergamino{
-    transform: scaleY(1);
-}
-
-.pergamino h2{
-    text-align:center;
-    font-family:'Cinzel', serif;
-}
-
-.pergamino p{
-    font-size:18px;
+    font-size:17px;
     line-height:1.7;
     text-align:justify;
-    white-space: pre-line;
 }
 
-/* Botón cerrar */
+.page.active{
+    display:block;
+}
+
+/* Botones */
+.controls{
+    display:flex;
+    justify-content:space-between;
+    margin-top:10px;
+}
+
+button{
+    padding:8px 16px;
+    border:none;
+    background:#6d0019;
+    color:white;
+    border-radius:5px;
+}
+
 .cerrar{
     position:absolute;
-    top:20px;
-    right:30px;
-    font-size:25px;
+    top:15px;
+    right:20px;
+    font-size:20px;
     cursor:pointer;
-    color:white;
+    color:#333;
 }
+
 </style>
 </head>
 <body>
 
-<div class="carta" onclick="abrirCarta()">✉</div>
+<div class="carta" onclick="abrir()">✉</div>
 
 <div class="overlay" id="overlay">
-<div class="cerrar" onclick="cerrarCarta()">✖</div>
-
 <div class="pergamino">
-<h2>📜</h2>
-<p>
-Hace mucho mucho tiempo atras existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio solo su gratitud, este joven campesino era de alguien de cuerpo grande y con una estatura superior a la de los demás, lastimosamente era algo tímido y bastante sumiso ante las personas, pero había algo en el que pocos sabían que el no quería hacer nada de lo que hacía solo deseaba vivir una vida tranquila y sin complicaciones, hasta que un día conocía a una chica y se enamoro a primera vista, lamentablemente este campesino era muy despistado y no conocía lo que eran eso así que solo penso que le gustaba la compañía de esa mujer, con el tiempo pasaban mas y mas tiempo juntos, cada vez se iban conociendo uno al otro y el iba sintiendo cosas que jamás había sentido, hasta que la noble mujer recomendó mandarse cartas para siempre estar en contacto, y ahi la vio por primera vez no solo era una mujer encantadora con una dulce voz, era mas que eso, era una hermosa princesa de cabellos dorados y ojos esmeralda, y desde ese momento el campesino quedó impresionado con su majestuosidad y belleza, y nunca volvió a ver a una mujer tan hermosa como está princesa, pero el campesino sabía que el no era el más atractivo y que la princesa nunca se fijaría en el, asi sue decidio esconderle a la princesa por mucho tiempo lo que sentía por miedo a que esta se vaya por pensar que solo es alguien interesado, y asi paso un largo tiempo ambos seguían en contacto diariamente y con el tiempo el campesino no podía a ignorar para siempre todo lo que sentía por la princesa, pero tenía que callar porque siempre que escuchaba a la princesa hablar de su caballero ideal solo podía agachar la cabeza y decirle que llegaria ese caballero para ella algun dia, y también porque sabia que vivían en mundos totalmente distintos y la princesa nunca lo elegiría. Pero el campesino nunca se rindió por más noches en vela que pasará, por más dolores en el pecho que sintiera el nunca dejo de sentir eso por la princesa, hasta que un día entre valor y lágrimas decidio invitarle una carta expresándole todos sus sentimientos y aunque el ya sabía la respuesta esa pizca de esperanza nunca se fue de sus ojos, y aunque recibió lo que mas temia no dejó de poner esa sonrisa en su rostro porque siempre se dijo que si no logras algo a la primera solo tienes que seguir intentando hasta conseguirlo, y asi transcurrió el tiempo cada dia con mas frecuencia le escribía a la princesa, aún con el miedo de hacerla enojar o irritarla y que se aleje de el pero nunca dudando en sus palabras que demostraban cuánto la amaba, se dedico a conocerla mas, a saber todos sus gustos o sus miedos, que no le gustaba o que hacía cada cosa que para muchos insignificante para el eran el mejor conocimiento que podría tener, y aunque en muchas ocasiones se peleaba y distanciaba con sus familiares y conocidos por decirle que abandonara la idea el siempre supo lo que quería y pelearia hasta el final para conseguirlo, con cualquier tipo de metodo desde escribirle poemas y dibujarle retratos aunque no muy bonitos expresaban todos sus sentimientos ademas de darle obsequios que la hicieran ver cuánto la amaba. Pero eso no funcionaba, y aunque el solía meter mucho la pata y cagarla siempre, siempre buscaba la manera de arreglarlo ya que perder a esa princesa, a esa persona que tanto ama sería el fin del mundo, el fin se su mundo. Por eso el decide sufrir en silencio, pero esperando, porque aunque sabe que nunca ocurrirá el tiene ese sueño se poder tener la vida de sus sueños junto a esa mujer que tanto ama, de demostrarle en cada mañana tarde y noche el amor que siente por ella, de hacerla feliz en casa acción que hace de ser su caballero y protegerla de todo mal que se le presente de estar para ella en cada situación que se le presente, de estar siempre juntos porque la amo, y es algo por lo que está dispuesto a morir por ella con saber que ella seguirá sonriendo y siendo feliz.
-Y si esto no es un cuento de adas donde el campesino logra conquistar a la princesa, o al menos no por el momento, el sigue intentándolo, cada día con cada acción y con cada mensaje.
+
+<div class="cerrar" onclick="cerrar()">✖</div>
+
+<!-- HOJA 1 -->
+<div class="page active">
+Hace mucho mucho tiempo atras existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio solo su gratitud, este joven campesino era de alguien de cuerpo grande y con una estatura superior a la de los demás, lastimosamente era algo tímido y bastante sumiso ante las personas, pero había algo en el que pocos sabían que el no quería hacer nada de lo que hacía solo deseaba vivir una vida tranquila y sin complicaciones, hasta que un día conocía a una chica y se enamoro a primera vista, lamentablemente este campesino era muy despistado y no conocía lo que eran eso así que solo penso que le gustaba la compañía de esa mujer.
+</div>
+
+<!-- HOJA 2 -->
+<div class="page">
+Con el tiempo pasaban mas y mas tiempo juntos, cada vez se iban conociendo uno al otro y el iba sintiendo cosas que jamás había sentido, hasta que la noble mujer recomendó mandarse cartas para siempre estar en contacto, y ahi la vio por primera vez no solo era una mujer encantadora con una dulce voz, era mas que eso, era una hermosa princesa de cabellos dorados y ojos esmeralda, y desde ese momento el campesino quedó impresionado con su majestuosidad y belleza, y nunca volvió a ver a una mujer tan hermosa como está princesa.
+</div>
+
+<!-- HOJA 3 -->
+<div class="page">
+Pero el campesino sabía que el no era el más atractivo y que la princesa nunca se fijaría en el, asi sue decidio esconderle a la princesa por mucho tiempo lo que sentía por miedo a que esta se vaya por pensar que solo es alguien interesado, y asi paso un largo tiempo ambos seguían en contacto diariamente y con el tiempo el campesino no podía ignorar para siempre todo lo que sentía por la princesa.
+</div>
+
+<!-- HOJA 4 -->
+<div class="page">
+Pero tenía que callar porque siempre que escuchaba a la princesa hablar de su caballero ideal solo podía agachar la cabeza y decirle que llegaria ese caballero para ella algun dia, y también porque sabia que vivían en mundos totalmente distintos y la princesa nunca lo elegiría.
+</div>
+
+<!-- HOJA 5 -->
+<div class="page">
+Pero el campesino nunca se rindió por más noches en vela que pasará, por más dolores en el pecho que sintiera el nunca dejo de sentir eso por la princesa, hasta que un día entre valor y lágrimas decidio invitarle una carta expresándole todos sus sentimientos y aunque el ya sabía la respuesta esa pizca de esperanza nunca se fue de sus ojos.
+</div>
+
+<!-- HOJA 6 -->
+<div class="page">
+Y aunque recibió lo que mas temia no dejó de poner esa sonrisa en su rostro porque siempre se dijo que si no logras algo a la primera solo tienes que seguir intentando hasta conseguirlo, y asi transcurrió el tiempo cada dia con mas frecuencia le escribía a la princesa.
+</div>
+
+<!-- HOJA 7 -->
+<div class="page">
+Se dedico a conocerla mas, a saber todos sus gustos o sus miedos, que no le gustaba o que hacía cada cosa que para muchos insignificante para el eran el mejor conocimiento que podría tener, y aunque en muchas ocasiones se peleaba y distanciaba con sus familiares y conocidos por decirle que abandonara la idea el siempre supo lo que quería.
+</div>
+
+<!-- HOJA 8 -->
+<div class="page">
+Pero eso no funcionaba, y aunque el solía meter mucho la pata siempre buscaba la manera de arreglarlo ya que perder a esa princesa sería el fin de su mundo.
+</div>
+
+<!-- HOJA 9 -->
+<div class="page">
+Por eso decide sufrir en silencio, pero esperando, porque aunque sabe que nunca ocurrirá el tiene ese sueño de poder tener la vida de sus sueños junto a esa mujer que tanto ama, de demostrarle en cada mañana tarde y noche el amor que siente por ella.
+</div>
+
+<!-- HOJA 10 -->
+<div class="page">
+Y si esto no es un cuento de hadas donde el campesino logra conquistar a la princesa, el sigue intentándolo cada día.
 
 Por eso mi querida princesa, mi amada Abi, mi mundo Xiomara.
-Cómo muchas veces anterior quiero hacerte la misma pregunta aunque no sea la última vez que lo haga.
+Cómo muchas veces anterior quiero hacerte la misma pregunta.
+
 Me dejarías el gran y hermoso honor de ser tu san Valentin
-</p>
+</div>
+
+<div class="controls">
+<button onclick="prev()">◀</button>
+<button onclick="next()">▶</button>
+</div>
+
 </div>
 </div>
 
 <script>
-function abrirCarta(){
+
+let current = 0;
+const pages = document.querySelectorAll(".page");
+
+function abrir(){
     document.getElementById("overlay").classList.add("active");
 }
-function cerrarCarta(){
+
+function cerrar(){
     document.getElementById("overlay").classList.remove("active");
 }
+
+function show(index){
+    pages.forEach(p => p.classList.remove("active"));
+    pages[index].classList.add("active");
+}
+
+function next(){
+    if(current < pages.length-1){
+        current++;
+        show(current);
+    }
+}
+
+function prev(){
+    if(current > 0){
+        current--;
+        show(current);
+    }
+}
+
 </script>
 
 </body>
