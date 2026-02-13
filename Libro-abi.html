@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>El campesino y su sueño de conquistar a la princesa</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=EB+Garamond&display=swap" rel="stylesheet">
@@ -9,23 +10,21 @@
 <style>
 body{
     margin:0;
-    height:100vh;
+    background: radial-gradient(circle at center, #1a001f, #000);
     display:flex;
     justify-content:center;
     align-items:center;
-    background: radial-gradient(circle at center, #1a001f, #000);
+    height:100vh;
     font-family: 'EB Garamond', serif;
 }
 
-/* CONTENEDOR LIBRO */
-.book{
-    position:relative;
-    width:900px;
+.book-container{
+    width:95%;
+    max-width:420px;
     height:600px;
-    perspective:3000px;
+    position:relative;
 }
 
-/* TAPA */
 .cover{
     position:absolute;
     width:100%;
@@ -37,40 +36,35 @@ body{
     align-items:center;
     text-align:center;
     font-family:'Cinzel', serif;
-    font-size:32px;
-    padding:40px;
+    font-size:22px;
+    padding:30px;
     box-sizing:border-box;
-    cursor:pointer;
+    border-radius:10px;
+    transition:transform 0.8s ease;
     transform-origin:left;
-    transition:transform 1.5s;
-    z-index:100;
-    border-radius:8px;
+    z-index:5;
 }
 
 .cover.open{
-    transform:rotateY(-160deg);
+    transform:translateX(-100%);
 }
 
-/* PÁGINAS */
 .page{
     position:absolute;
     width:100%;
     height:100%;
     background:linear-gradient(to right,#f8f1e4,#f1e3c6);
-    padding:60px;
+    padding:30px;
     box-sizing:border-box;
-    transform-origin:left;
-    transition:transform 1.2s;
-    border-radius:5px;
-    box-shadow:0 0 15px rgba(0,0,0,0.3);
-    backface-visibility:hidden;
-}
-
-.page-content{
-    height:100%;
-    display:flex;
+    border-radius:10px;
+    display:none;
     flex-direction:column;
     justify-content:space-between;
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
+}
+
+.page.active{
+    display:flex;
 }
 
 .page-number{
@@ -79,7 +73,6 @@ body{
     opacity:0.6;
 }
 
-/* BOTONES */
 .controls{
     position:absolute;
     bottom:-60px;
@@ -89,47 +82,54 @@ body{
 }
 
 button{
-    padding:10px 20px;
-    font-size:16px;
+    padding:8px 16px;
     border:none;
     background:#6d0019;
     color:white;
-    cursor:pointer;
     border-radius:5px;
-}
-
-button:hover{
-    background:#900020;
 }
 </style>
 </head>
 
 <body>
 
-<div class="book">
+<div class="book-container">
 
-<div class="cover" onclick="openBook()" id="cover">
+<div class="cover" id="cover" onclick="openBook()">
 El campesino y su sueño<br>de conquistar a la princesa
 </div>
 
-<!-- PÁGINAS -->
-<div class="page"><div class="page-content"><p>Hace mucho mucho tiempo atrás existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio, solo su gratitud.</p><div class="page-number">1</div></div></div>
+<div class="page active">
+<p>Hace mucho mucho tiempo atrás existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio.</p>
+<div class="page-number">1</div>
+</div>
 
-<div class="page"><div class="page-content"><p>Este joven campesino era alguien de cuerpo grande y bastante tímido, pero soñaba con una vida tranquila y sin complicaciones.</p><div class="page-number">2</div></div></div>
+<div class="page">
+<p>Este joven campesino era alguien grande y tímido, que solo soñaba con una vida tranquila.</p>
+<div class="page-number">2</div>
+</div>
 
-<div class="page"><div class="page-content"><p>Hasta que un día conoció a una chica y se enamoró a primera vista, aunque no supo reconocerlo.</p><div class="page-number">3</div></div></div>
+<div class="page">
+<p>Hasta que un día conoció a una chica y se enamoró sin saberlo.</p>
+<div class="page-number">3</div>
+</div>
 
-<div class="page"><div class="page-content"><p>Con el tiempo comenzaron a enviarse cartas… y descubrió que ella era una princesa de cabellos dorados y ojos esmeralda.</p><div class="page-number">4</div></div></div>
+<div class="page">
+<p>Con el tiempo descubrió que ella era una princesa de cabellos dorados y ojos esmeralda.</p>
+<div class="page-number">4</div>
+</div>
 
-<div class="page"><div class="page-content"><p>Sabía que vivían en mundos distintos y que quizá nunca lo elegiría… pero jamás dejó de sentir lo que sentía.</p><div class="page-number">5</div></div></div>
+<div class="page">
+<p>Sabía que vivían en mundos distintos… pero jamás dejó de sentir lo que sentía.</p>
+<div class="page-number">5</div>
+</div>
 
-<div class="page"><div class="page-content"><p>Entre valor y lágrimas decidió escribirle expresando todo su corazón.</p><div class="page-number">6</div></div></div>
-
-<div class="page"><div class="page-content"><p>Y aunque esto no sea un cuento de hadas donde el campesino conquista a la princesa…</p><div class="page-number">7</div></div></div>
-
-<div class="page"><div class="page-content"><p>Él sigue intentándolo. Cada día. Con cada acción. Con cada mensaje.</p><div class="page-number">8</div></div></div>
-
-<div class="page"><div class="page-content"><p style="font-size:26px; text-align:center;">¿Me dejarías el gran y hermoso honor de ser tu San Valentín?</p><div class="page-number">9</div></div></div>
+<div class="page">
+<p style="font-size:22px; text-align:center;">
+¿Me dejarías el gran y hermoso honor de ser tu San Valentín?
+</p>
+<div class="page-number">6</div>
+</div>
 
 <div class="controls">
 <button onclick="prevPage()">◀</button>
@@ -139,32 +139,33 @@ El campesino y su sueño<br>de conquistar a la princesa
 </div>
 
 <script>
-let current = 0;
+let currentPage = 0;
 const pages = document.querySelectorAll(".page");
-
-pages.forEach((page, index) => {
-    page.style.zIndex = pages.length - index;
-});
 
 function openBook(){
     document.getElementById("cover").classList.add("open");
 }
 
+function showPage(index){
+    pages.forEach(page => page.classList.remove("active"));
+    pages[index].classList.add("active");
+}
+
 function nextPage(){
-    if(current < pages.length){
-        pages[current].style.transform = "rotateY(-180deg)";
-        current++;
+    if(currentPage < pages.length -1){
+        currentPage++;
+        showPage(currentPage);
     }
 }
 
 function prevPage(){
-    if(current > 0){
-        current--;
-        pages[current].style.transform = "rotateY(0deg)";
+    if(currentPage > 0){
+        currentPage--;
+        showPage(currentPage);
     }
 }
 </script>
 
 </body>
-                                                                                                                                        </html>
-  
+    </html>
+    
