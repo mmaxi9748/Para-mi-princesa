@@ -1,152 +1,252 @@
-<!DOCTYPE html>
+
+  <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>El campesino y su sueño</title>
+<title>El campesino y su sueño de conquistar a la princesa</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=EB+Garamond&display=swap" rel="stylesheet">
 
 <style>
 body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#140a0f;
-  font-family: "Georgia", serif;
-  perspective:2500px;
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(circle at center, #1a001f, #000);
+    font-family: 'EB Garamond', serif;
+    overflow:hidden;
 }
 
-/* CONTENEDOR LIBRO */
-.libro{
-  width:340px;
-  height:500px;
-  position:relative;
-  transform-style:preserve-3d;
+/* LIBRO */
+.book{
+    position:relative;
+    width:900px;
+    height:600px;
+    perspective:2500px;
 }
 
-/* TAPA BORDO */
-.tapa{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:#6d0f1f;
-  border-radius:10px;
-  box-shadow:0 20px 50px rgba(0,0,0,0.6);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  color:#f4e7d3;
-  text-align:center;
-  padding:30px;
-  font-size:20px;
-  line-height:1.4;
-  backface-visibility:hidden;
-  transform-origin:left;
-  transition:transform 1s ease;
+/* TAPA */
+.cover{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#6d0019;
+    color:#f5e6d3;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    font-family:'Cinzel', serif;
+    font-size:32px;
+    padding:40px;
+    box-sizing:border-box;
+    cursor:pointer;
+    transform-origin:left;
+    transition:transform 1.2s;
+    z-index:20;
+    border-radius:8px;
+    box-shadow:0 0 40px rgba(0,0,0,0.8);
+}
+
+.cover.open{
+    transform:rotateY(-160deg);
 }
 
 /* PÁGINAS */
-.pagina{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(to bottom,#f5ecd9,#e8dcc3);
-  border-radius:10px;
-  box-shadow:inset 0 0 25px rgba(0,0,0,0.2);
-  padding:25px;
-  box-sizing:border-box;
-  backface-visibility:hidden;
-  transform-origin:left;
-  transition:transform 1s ease;
-  overflow-y:auto;
+.page{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(to right,#f8f1e4,#f1e3c6);
+    padding:60px;
+    box-sizing:border-box;
+    transform-origin:left;
+    transition:transform 1s;
+    border-radius:5px;
+    box-shadow:0 0 20px rgba(0,0,0,0.3);
+    backface-visibility:hidden;
 }
 
-/* TEXTO */
-.pagina p{
-  font-size:14px;
-  color:#4b3a2a;
-  line-height:1.6;
-  text-align:justify;
+.page-content{
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 }
 
-/* NUMERO PAGINA */
-.numero{
-  position:absolute;
-  bottom:10px;
-  right:15px;
-  font-size:12px;
-  color:#7a5a40;
+.page p{
+    font-size:20px;
+    line-height:1.6;
 }
 
-/* ESTADO ABIERTA */
-.abierta{
-  transform:rotateY(-180deg);
+.page-number{
+    text-align:right;
+    font-size:16px;
+    opacity:0.7;
 }
 
-/* ZONAS */
-.zona{
-  position:absolute;
-  top:0;
-  width:50%;
-  height:100%;
-  z-index:10;
+/* Botones */
+.controls{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    padding:0 40px;
+    box-sizing:border-box;
 }
 
-.izq{ left:0; }
-.der{ right:0; }
+button{
+    padding:10px 20px;
+    font-size:16px;
+    border:none;
+    background:#6d0019;
+    color:white;
+    cursor:pointer;
+    border-radius:5px;
+}
 
+button:hover{
+    background:#900020;
+}
 </style>
 </head>
+
 <body>
 
-<div class="libro">
+<div class="book">
 
-  <!-- TAPA -->
-  <div class="tapa" id="tapa">
-    El campesino y su sueño de conquistar a la princesa
-  </div>
+    <div class="cover" onclick="openBook()" id="cover">
+        El campesino y su sueño<br>de conquistar a la princesa
+    </div>
 
-  <!-- PAGINA 1 -->
-  <div class="pagina" id="pag1" style="z-index:2;">
-    <p>
-Hace mucho mucho tiempo atras existía un noble campesino que era muy bondaso y que siempre ayudaba a las personas sin esperar nada a cambio solo su gratitud, este joven campesino era de alguien de cuerpo grande y con una estatura superior a la de los demás, lastimosamente era algo tímido y bastante sumiso ante las personas, pero había algo en el que pocos sabían que el no quería hacer nada de lo que hacía solo deseaba vivir una vida tranquila y sin complicaciones, hasta que un día conocía a una chica y se enamoro a primera vista, lamentablemente este campesino era muy despistado y no conocía lo que eran eso así que solo penso que le gustaba la compañía de esa mujer, con el tiempo pasaban mas y mas tiempo juntos, cada vez se iban conociendo uno al otro y el iba sintiendo cosas que jamás había sentido, hasta que la noble mujer recomendó mandarse cartas para siempre estar en contacto, y ahi la vio por primera vez no solo era una mujer encantadora con una dulce voz, era mas que eso, era una hermosa princesa de cabellos dorados y ojos esmeralda, y desde ese momento el campesino quedó impresionado con su majestuosidad y belleza, y nunca volvió a ver a una mujer tan hermosa como está princesa, pero el campesino sabía que el no era el más atractivo y que la princesa nunca se fijaría en el, asi sue decidio esconderle a la princesa por mucho tiempo lo que sentía por miedo a que esta se vaya por pensar que solo es alguien interesado, y asi paso un largo tiempo ambos seguían en contacto diariamente y con el tiempo el campesino no podía a ignorar para siempre todo lo que sentía por la princesa, pero tenía que callar porque siempre que escuchaba a la princesa hablar de su caballero ideal solo podía agachar la cabeza y decirle que llegaria ese caballero para ella algun dia, y también porque sabia que vivían en mundos totalmente distintos y la princesa nunca lo elejiria. Pero el campesino nunca se rindió por más noches en vela que pasará, por más dolores en el pecho que sintiera el nunca dejo de sentir eso por la princesa, hasta que un día entre valor y lágrimas decidio invitarle una carta expresándole todos sus sentimientos y aunque el ya sabía la respuesta esa pizca de esperanza nunca se fue de sus ojos, y aunque recibió lo que mas temia no dejó de poner esa sonrisa en su rostro porque siempre se dijo que si no logras algo a la primera solo tienes que seguir intentando hasta conseguirlo, y asi transcurrió el tiempo cada dia con mas frecuencia le escribía a la princesa, aún con el miedo de hacerla enojar o irritarla y que se aleje de el pero nunca dudando en sus palabras que demostraban cuánto la amaba, se dedico a conocerla mas, a saber todos sus gustos o sus miedos, que no le gustaba o que hacía cada cosa que para muchos insignificante para el eran el mejor conocimiento que podría tener, y aunque en muchas ocasiones se peleaba y distanciaba con sus familiares y conocidos por decirle que abandonara la idea el siempre supo lo que quería y pelearia hasta el final para conseguirlo, con cualquier tipo de metodo desde escribirle poemas y dibujarle retratos aunque no muy bonitos expresaban todos sus sentimientos ademas de darle obsequios que la hicieran ver cuánto la amaba. Pero eso no funcionaba, y aunque el solía meter mucho la pata y cagarla siempre, siempre buscaba la manera de arreglarlo ya que perder a esa princesa, a esa persona que tanto ama sería el fin del mundo, el fin se su mundo. Por eso el decide sufrir en silencio, pero esperando, porque aunque sabe que nunca ocurrirá el tiene ese sueño se poder tener la vida de sus sueños junto a esá mujer que tanto ama, de demostrarle en cada mañana tarde y noche el amor que siente por ella, de hacerla feliz en casa acción que hace de ser su caballero y protegerla de todo mal que se le presente de estar para ella en cada situación que se le presente, de estar siempre juntos porque la amo,  y es algo pormlo que está dispuesto a morir por ella con saber que ella seguirá sonriendo y siendo feliz.
-Y si esto no es un cuento de adas donde el campesino logra conquistar a la princesa, o al menos no por el momento, el sigue intentandolo, cada día con cada acción y con cada mensaje.
+    <!-- PÁGINAS -->
+    <div class="page" id="page1">
+        <div class="page-content">
+            <p>
+            Hace mucho mucho tiempo atrás existía un noble campesino que era muy bondadoso y que siempre ayudaba a las personas sin esperar nada a cambio, solo su gratitud.
+            </p>
+            <div class="page-number">1</div>
+        </div>
+    </div>
 
-Por eso mi querida princesa, mi amada Abi, mi mundo Xiomara.
-Cómo muchas veces anterior quiero hacerte la misma pregunta aunque no sea la última vez que lo haga. 
-Me dejarías el gran y hermoso honor de ser tu san Valentin
-    </p>
-    <div class="numero">1</div>
-  </div>
+    <div class="page" id="page2">
+        <div class="page-content">
+            <p>
+            Este joven campesino era alguien de cuerpo grande y con una estatura superior a la de los demás. Lastimosamente era algo tímido y bastante sumiso ante las personas.
+            </p>
+            <div class="page-number">2</div>
+        </div>
+    </div>
 
-  <!-- ZONAS -->
-  <div class="zona izq" onclick="anterior()"></div>
-  <div class="zona der" onclick="siguiente()"></div>
+    <div class="page" id="page3">
+        <div class="page-content">
+            <p>
+            Hasta que un día conoció a una chica y se enamoró a primera vista, aunque él no sabía reconocer lo que sentía.
+            </p>
+            <div class="page-number">3</div>
+        </div>
+    </div>
+
+    <div class="page" id="page4">
+        <div class="page-content">
+            <p>
+            Con el tiempo comenzaron a enviarse cartas… y entonces descubrió que no solo era una mujer encantadora, era una princesa de cabellos dorados y ojos esmeralda.
+            </p>
+            <div class="page-number">4</div>
+        </div>
+    </div>
+
+    <div class="page" id="page5">
+        <div class="page-content">
+            <p>
+            Él sabía que vivían en mundos distintos y que quizás nunca lo elegiría… pero jamás dejó de sentir lo que sentía.
+            </p>
+            <div class="page-number">5</div>
+        </div>
+    </div>
+
+    <div class="page" id="page6">
+        <div class="page-content">
+            <p>
+            Entre valor y lágrimas decidió escribirle expresando todo su corazón, aun sabiendo cuál podría ser la respuesta.
+            </p>
+            <div class="page-number">6</div>
+        </div>
+    </div>
+
+    <div class="page" id="page7">
+        <div class="page-content">
+            <p>
+            Pero el campesino no se rindió. Siguió intentando, siguió escribiendo, siguió amando en silencio.
+            </p>
+            <div class="page-number">7</div>
+        </div>
+    </div>
+
+    <div class="page" id="page8">
+        <div class="page-content">
+            <p>
+            Y aunque esto no sea un cuento de hadas donde el campesino conquista a la princesa…
+            </p>
+            <div class="page-number">8</div>
+        </div>
+    </div>
+
+    <div class="page" id="page9">
+        <div class="page-content">
+            <p>
+            Él sigue intentándolo. Cada día. Con cada acción. Con cada mensaje.
+            </p>
+            <div class="page-number">9</div>
+        </div>
+    </div>
+
+    <div class="page" id="page10">
+        <div class="page-content">
+            <p style="font-size:26px; text-align:center;">
+            ¿Me dejarías el gran y hermoso honor de ser tu San Valentín?
+            </p>
+            <div class="page-number">10</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="prevPage()">◀</button>
+        <button onclick="nextPage()">▶</button>
+    </div>
 
 </div>
 
 <script>
-let paginaActual = 0;
-const paginas = [
-  document.getElementById("tapa"),
-  document.getElementById("pag1")
-];
+let currentPage = 0;
+const pages = document.querySelectorAll('.page');
 
-function siguiente(){
-  if(paginaActual < paginas.length){
-    paginas[paginaActual].classList.add("abierta");
-    paginaActual++;
-  }
+pages.forEach((page, index)=>{
+    page.style.zIndex = pages.length - index;
+});
+
+function openBook(){
+    document.getElementById('cover').classList.add('open');
 }
 
-function anterior(){
-  if(paginaActual > 0){
-    paginaActual--;
-    paginas[paginaActual].classList.remove("abierta");
-  }
+function nextPage(){
+    if(currentPage < pages.length){
+        pages[currentPage].style.transform = "rotateY(-160deg)";
+        currentPage++;
+    }
+}
+
+function prevPage(){
+    if(currentPage > 0){
+        currentPage--;
+        pages[currentPage].style.transform = "rotateY(0deg)";
+    }
 }
 </script>
 
 </body>
-</html>
+  </html>
+  
