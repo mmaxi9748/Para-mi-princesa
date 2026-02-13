@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Libro para Abi</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#1a0f14;
+  font-family: "Georgia", serif;
+  perspective:2000px;
+}
+
+/* Contenedor libro */
+.libro{
+  width:320px;
+  height:480px;
+  position:relative;
+  transform-style:preserve-3d;
+}
+
+/* Tapa */
+.tapa{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(145deg,#6b0f1a,#8b1c2d);
+  border-radius:8px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.6);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:#f5e6d3;
+  font-size:22px;
+  text-align:center;
+  padding:20px;
+  backface-visibility:hidden;
+  transform-origin:left;
+  transition:transform 1s ease;
+}
+
+/* Páginas */
+.pagina{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:linear-gradient(to bottom,#f4ecd8,#e8dcc2);
+  border-radius:8px;
+  box-shadow:inset 0 0 20px rgba(0,0,0,0.2);
+  padding:30px;
+  box-sizing:border-box;
+  backface-visibility:hidden;
+  transform-origin:left;
+  transition:transform 1s ease;
+}
+
+/* Texto estilo romántico */
+.pagina h2{
+  margin-top:0;
+  font-weight:normal;
+  color:#5a2a2a;
+}
+
+.pagina p{
+  color:#4a3a2a;
+  line-height:1.6;
+  font-size:15px;
+}
+
+/* Estados */
+.abierta{
+  transform:rotateY(-180deg);
+}
+
+/* Botones invisibles */
+.zona{
+  position:absolute;
+  top:0;
+  width:50%;
+  height:100%;
+  z-index:5;
+}
+
+.izq{ left:0; }
+.der{ right:0; }
+
+</style>
+</head>
+<body>
+
+<div class="libro" id="libro">
+
+  <!-- TAPA -->
+  <div class="tapa" id="tapa">
+    Para Abi<br><br>
+    Lo que siento aunque me equivoque
+  </div>
+
+  <!-- PAGINA 1 -->
+  <div class="pagina" id="pag1" style="z-index:3;">
+    <h2>Página 1</h2>
+    <p>Aquí comenzará nuestra historia...</p>
+  </div>
+
+  <!-- PAGINA 2 -->
+  <div class="pagina" id="pag2" style="z-index:2;">
+    <h2>Página 2</h2>
+    <p>Aquí irá otro fragmento importante...</p>
+  </div>
+
+  <!-- PAGINA 3 -->
+  <div class="pagina" id="pag3" style="z-index:1;">
+    <h2>Página 3</h2>
+    <p>Y aquí continuará el mensaje...</p>
+  </div>
+
+  <!-- ZONAS TACTILES -->
+  <div class="zona izq" onclick="anterior()"></div>
+  <div class="zona der" onclick="siguiente()"></div>
+
+</div>
+
+<script>
+let paginaActual = 0;
+const paginas = [
+  document.getElementById("tapa"),
+  document.getElementById("pag1"),
+  document.getElementById("pag2"),
+  document.getElementById("pag3")
+];
+
+function siguiente(){
+  if(paginaActual < paginas.length){
+    paginas[paginaActual].classList.add("abierta");
+    paginaActual++;
+  }
+}
+
+function anterior(){
+  if(paginaActual > 0){
+    paginaActual--;
+    paginas[paginaActual].classList.remove("abierta");
+  }
+}
+</script>
+
+</body>
+  </html>
+  
