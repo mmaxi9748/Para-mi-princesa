@@ -3,21 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Buenas Noches Mi Princesa</title>
+<title>Buenas Noches Abi 💜</title>
 
 <style>
 body{
     margin:0;
     padding:0;
-    height:100vh;
-    overflow:hidden;
-    font-family:'Georgia', serif;
-    background:linear-gradient(to top,#0d001a,#1a0033,#2a0050);
-    display:flex;
-    justify-content:center;
-    align-items:center;
+    font-family:'Cormorant Garamond', serif;
+    background:radial-gradient(circle at top,#2a004f,#12001f 70%);
     color:white;
-    text-align:center;
+    overflow-x:hidden;
+}
+
+/* Fondo romántico */
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:radial-gradient(circle at center, rgba(255,100,150,0.15), transparent 60%);
+    pointer-events:none;
 }
 
 /* Estrellas */
@@ -35,86 +40,114 @@ body{
     to{opacity:1;}
 }
 
-/* Luna */
-.moon{
+/* Partículas doradas */
+.sparkle{
     position:absolute;
-    top:60px;
-    right:60px;
-    width:90px;
-    height:90px;
-    background:#f5f3ce;
+    width:3px;
+    height:3px;
+    background:gold;
     border-radius:50%;
-    box-shadow:0 0 40px #fff8b0;
+    animation:float 6s linear infinite;
 }
 
-/* Caja central */
+@keyframes float{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-800px);opacity:0;}
+}
+
+/* Contenedor */
 .card{
-    max-width:90%;
-    padding:30px;
-    background:rgba(0,0,0,0.5);
-    border-radius:15px;
-    backdrop-filter:blur(8px);
-    box-shadow:0 0 30px rgba(255,255,255,0.1);
+    max-width:700px;
+    margin:80px auto;
+    padding:40px;
+    background:rgba(0,0,0,0.45);
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 0 60px rgba(255,0,100,0.3);
+    animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(20px);}
+    to{opacity:1; transform:translateY(0);}
 }
 
 h1{
-    font-size:30px;
-    margin-bottom:20px;
+    text-align:center;
+    font-size:38px;
+    margin-bottom:30px;
+    color:#ffb6e6;
+    text-shadow:0 0 15px rgba(255,100,200,0.8);
 }
 
 #message{
-    font-size:20px;
-    line-height:1.8;
-    min-height:120px;
+    font-size:24px;
+    line-height:2;
+    text-align:justify;
+    white-space:pre-wrap;
 }
 
+/* Botón */
 button{
-    margin-top:25px;
-    padding:12px 25px;
+    display:block;
+    margin:40px auto 0;
+    padding:14px 35px;
     border:none;
-    border-radius:30px;
-    font-size:16px;
-    background:linear-gradient(45deg,#ff4d6d,#ff85a1);
+    border-radius:40px;
+    font-size:18px;
+    background:linear-gradient(45deg,#ff2e93,#ff6ec7);
     color:white;
     cursor:pointer;
+    transition:0.3s;
 }
+
 button:hover{
-    transform:scale(1.05);
+    transform:scale(1.08);
+    box-shadow:0 0 20px #ff2e93;
 }
 
 /* Corazones */
 .heart{
     position:absolute;
-    color:#ff4d6d;
+    color:#ff4da6;
     font-size:20px;
-    animation:floatUp 6s linear infinite;
+    animation:rise 6s linear infinite;
 }
 
-@keyframes floatUp{
-    from{transform:translateY(0); opacity:1;}
-    to{transform:translateY(-600px); opacity:0;}
+@keyframes rise{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-800px);opacity:0;}
 }
 </style>
 </head>
+
 <body>
 
-<div class="moon"></div>
-
 <div class="card">
-    <h1>🌙 Buenas Noches Mi Princesa</h1>
+    <h1>🌙 Buenas Noches Mi Princesa Abi</h1>
     <div id="message"></div>
     <button onclick="mostrarMensaje()">Toca aquí 💌</button>
 </div>
 
 <script>
-/* Crear estrellas */
-for(let i=0;i<80;i++){
+
+/* Estrellas */
+for(let i=0;i<120;i++){
     let star=document.createElement("div");
     star.className="star";
     star.style.top=Math.random()*100+"vh";
     star.style.left=Math.random()*100+"vw";
-    star.style.animationDuration=(Math.random()*3+2)+"s";
     document.body.appendChild(star);
+}
+
+/* Partículas doradas */
+for(let i=0;i<40;i++){
+    let sparkle=document.createElement("div");
+    sparkle.className="sparkle";
+    sparkle.style.left=Math.random()*100+"vw";
+    sparkle.style.bottom="0px";
+    sparkle.style.animationDuration=(Math.random()*4+4)+"s";
+    document.body.appendChild(sparkle);
 }
 
 function escribirTexto(texto){
@@ -128,31 +161,49 @@ function escribirTexto(texto){
             clearInterval(intervalo);
             lanzarCorazones();
         }
-    },40);
+    },25);
 }
 
 function mostrarMensaje(){
-    const texto=`Quiero que esta noche puedas descansar tranquila y que sepas que sin importar el dia la hora o el lugar siempre te voy a amar, quiero cierres los ojos sabiendo que siempre pienso en ti antes de dormir, cuando me levanto y en cada momento del día, que aunque mi vida se este cayendo a pedazos mi amor por ti siempre sera el mismo y crecera cada dia mas y no importa la distancia, no importa el silencio que a veces haya siempre te amare, amare esa sonrisa que aunque tenga el peor dia de mi vida siempre me hara sonreír, amaare esa dulce voz que siempre me tranquiliza en mis peores momentos, amo esos ojos tuyos que me traen una paz que no encontare en ningun lado, y sobre todo te amo a ti, casa centímetro de tu cuerpo es lo mas hermoso que jamas vi, y por eso siempre deseo protegerte, cuidarte y ayudarte, porque tu eres mi mundo y daria lo que fuera para que estes bien. y por eso quiero desearte que sueñes con lo que mas feliz te hace y tengas una muy hermosa noche. 
-Buenas noches mi hermosa abi
-Te amo.`;
+const texto=`Quiero que esta noche puedas descansar tranquila y que sepas que sin importar el día, la hora o el lugar siempre te voy a amar.
+
+Quiero que cierres los ojos sabiendo que siempre pienso en ti antes de dormir, cuando me levanto y en cada momento del día.
+
+Que aunque mi vida se esté cayendo a pedazos, mi amor por ti siempre será el mismo y crecerá cada día más.
+
+No importa la distancia.
+No importa el silencio.
+Siempre te amaré.
+
+Amo esa sonrisa que incluso en mi peor día logra iluminarme.
+Amo tu voz que me tranquiliza.
+Amo esos ojos tuyos que me traen una paz que no encuentro en ningún lado.
+
+Y sobre todo, te amo a ti.
+
+Que sueñes con lo que más feliz te hace.
+Que descanses en calma.
+
+Buenas noches mi hermosa Abi.
+Te amo.`
 
     escribirTexto(texto);
 }
 
 function lanzarCorazones(){
-    for(let i=0;i<15;i++){
+    for(let i=0;i<25;i++){
         let heart=document.createElement("div");
         heart.className="heart";
         heart.innerHTML="❤";
         heart.style.left=Math.random()*100+"vw";
         heart.style.bottom="0px";
-        heart.style.fontSize=(Math.random()*20+15)+"px";
+        heart.style.fontSize=(Math.random()*25+15)+"px";
         document.body.appendChild(heart);
         setTimeout(()=>heart.remove(),6000);
     }
 }
+
 </script>
 
 </body>
-  </html>
-  
+</html>
