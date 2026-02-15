@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Buenas Noches Mi Princesa</title>
+
+<style>
+body{
+    margin:0;
+    padding:0;
+    height:100vh;
+    overflow:hidden;
+    font-family:'Georgia', serif;
+    background:linear-gradient(to top,#0d001a,#1a0033,#2a0050);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    text-align:center;
+}
+
+/* Estrellas */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+    from{opacity:0.2;}
+    to{opacity:1;}
+}
+
+/* Luna */
+.moon{
+    position:absolute;
+    top:60px;
+    right:60px;
+    width:90px;
+    height:90px;
+    background:#f5f3ce;
+    border-radius:50%;
+    box-shadow:0 0 40px #fff8b0;
+}
+
+/* Caja central */
+.card{
+    max-width:90%;
+    padding:30px;
+    background:rgba(0,0,0,0.5);
+    border-radius:15px;
+    backdrop-filter:blur(8px);
+    box-shadow:0 0 30px rgba(255,255,255,0.1);
+}
+
+h1{
+    font-size:30px;
+    margin-bottom:20px;
+}
+
+#message{
+    font-size:20px;
+    line-height:1.8;
+    min-height:120px;
+}
+
+button{
+    margin-top:25px;
+    padding:12px 25px;
+    border:none;
+    border-radius:30px;
+    font-size:16px;
+    background:linear-gradient(45deg,#ff4d6d,#ff85a1);
+    color:white;
+    cursor:pointer;
+}
+button:hover{
+    transform:scale(1.05);
+}
+
+/* Corazones */
+.heart{
+    position:absolute;
+    color:#ff4d6d;
+    font-size:20px;
+    animation:floatUp 6s linear infinite;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(0); opacity:1;}
+    to{transform:translateY(-600px); opacity:0;}
+}
+</style>
+</head>
+<body>
+
+<div class="moon"></div>
+
+<div class="card">
+    <h1>🌙 Buenas Noches Mi Princesa</h1>
+    <div id="message"></div>
+    <button onclick="mostrarMensaje()">Toca aquí 💌</button>
+</div>
+
+<script>
+/* Crear estrellas */
+for(let i=0;i<80;i++){
+    let star=document.createElement("div");
+    star.className="star";
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    star.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(star);
+}
+
+function escribirTexto(texto){
+    let i=0;
+    let area=document.getElementById("message");
+    area.innerHTML="";
+    let intervalo=setInterval(()=>{
+        area.innerHTML+=texto.charAt(i);
+        i++;
+        if(i>=texto.length){
+            clearInterval(intervalo);
+            lanzarCorazones();
+        }
+    },40);
+}
+
+function mostrarMensaje(){
+    const texto=`Quiero que esta noche descanses tranquila...
+Que cierres los ojos sabiendo que alguien piensa en ti antes de dormir.
+
+Que aunque el mundo sea ruidoso, mi amor por ti es suave,
+constante y sincero.
+
+No importa la distancia, no importa el silencio,
+aquí estoy...
+
+Deseándote sueños hermosos,
+y prometiéndote que mañana volveré a intentar hacerte sonreír.
+
+Buenas noches...
+Te amo.`;
+
+    escribirTexto(texto);
+}
+
+function lanzarCorazones(){
+    for(let i=0;i<15;i++){
+        let heart=document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.bottom="0px";
+        heart.style.fontSize=(Math.random()*20+15)+"px";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),6000);
+    }
+}
+</script>
+
+</body>
+  </html>
+  
