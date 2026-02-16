@@ -3,68 +3,78 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cada segundo sin ti</title>
+<title>Cada segundo por ti</title>
 
 <style>
 body{
     margin:0;
-    height:100vh;
-    background:radial-gradient(circle at center,#0a0015,#000);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    overflow:hidden;
+    min-height:100vh;
+    background:radial-gradient(circle at center,#140022,#000);
     color:white;
     font-family: 'Georgia', serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    overflow-x:hidden;
 }
 
-/* Contenedor central */
+/* Contenedor */
 .container{
     text-align:center;
+    margin-top:80px;
+    max-width:700px;
+    padding:20px;
 }
 
 /* Reloj */
 .clock{
-    width:140px;
-    height:140px;
-    border:3px solid rgba(255,255,255,0.2);
+    width:180px;
+    height:180px;
+    border:4px solid rgba(255,255,255,0.2);
     border-radius:50%;
     position:relative;
-    margin:0 auto 30px;
+    margin:0 auto 40px;
+    box-shadow:0 0 25px rgba(255,0,150,0.3);
 }
 
+.center-dot{
+    width:8px;
+    height:8px;
+    background:#ff5cb8;
+    border-radius:50%;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}
+
+/* Agujas */
 .hand{
     position:absolute;
-    width:2px;
-    height:55px;
-    background:#ff4da6;
-    top:15px;
+    background:#ff5cb8;
+    top:50%;
     left:50%;
     transform-origin:bottom;
-    transform:rotate(0deg);
-    transition:transform 1s linear;
+}
+
+.second{
+    width:2px;
+    height:70px;
+}
+
+.minute{
+    width:4px;
+    height:55px;
+    background:#ff9bd6;
 }
 
 /* Texto */
 .text{
-    font-size:22px;
-    opacity:0.8;
-}
-
-.big{
-    font-size:36px;
-    margin-top:30px;
-    opacity:0;
-    transition:opacity 2s ease;
-}
-
-.final{
-    font-size:42px;
-    margin-top:20px;
-    color:#ff7ac3;
+    font-size:24px;
+    line-height:1.9;
+    text-align:justify;
     opacity:0;
     transition:opacity 3s ease;
-    text-shadow:0 0 20px rgba(255,100,200,0.8);
 }
 </style>
 </head>
@@ -72,52 +82,74 @@ body{
 <body>
 
 <div class="container">
+
     <div class="clock">
-        <div class="hand" id="hand"></div>
+        <div class="hand second" id="secondHand"></div>
+        <div class="hand minute" id="minuteHand"></div>
+        <div class="center-dot"></div>
     </div>
 
-    <div class="text" id="counter">
-        Otro segundo sin ti...
+    <div class="text" id="mensaje">
+Cada segundo por ti se siente más largo de lo normal.  
+A veces la espera pesa, y el silencio se vuelve demasiado grande.
+
+Sé que tienes tu mundo, tus tiempos, tus prioridades,  
+y me alegra que tu vida esté llena de cosas importantes.
+
+Pero cuando no estás, me doy cuenta de cuánto significas para mí.  
+Me pregunto si estarás bien, si sonreíste hoy,  
+si en algún momento pensaste en mí aunque sea un instante.
+
+Tal vez para ti todo esto parezca exagerado,  
+pero no puedo ignorar lo que siento.
+
+Porque desde que llegaste, todo tiene más color.  
+Y cuando no estás, el mundo se siente un poco más gris.
+
+No es dependencia.  
+Es que aprendí lo mucho que vales para mí.
+
+Y aunque no siempre esté a tu lado,  
+ni siempre hablemos,  
+ni siempre coincidan nuestros tiempos…
+
+Aquí estoy.
+
+Pensándote.
+Extrañándote.
+Queriéndote.
     </div>
 
-    <div class="big" id="message1">
-        Pero ni un segundo dejo de pensarte.
-    </div>
-
-    <div class="final" id="message2">
-        Te extraño.
-    </div>
 </div>
 
 <script>
 
-let segundos = 0;
-let hand = document.getElementById("hand");
-let counter = document.getElementById("counter");
-let msg1 = document.getElementById("message1");
-let msg2 = document.getElementById("message2");
+const secondHand = document.getElementById("secondHand");
+const minuteHand = document.getElementById("minuteHand");
+const mensaje = document.getElementById("mensaje");
 
-let intervalo = setInterval(()=>{
-    segundos++;
-    hand.style.transform = "rotate(" + (segundos*6) + "deg)";
-    counter.innerHTML = "Otro segundo sin ti... (" + segundos + ")";
-    
-    if(segundos === 8){   // duración antes del impacto
-        clearInterval(intervalo);
-        
-        setTimeout(()=>{
-            msg1.style.opacity = 1;
-        },800);
+function updateClock(){
+    const now = new Date();
+    const seconds = now.getSeconds();
+    const minutes = now.getMinutes();
 
-        setTimeout(()=>{
-            msg2.style.opacity = 1;
-        },3000);
-    }
+    const secondsDegrees = seconds * 6;
+    const minutesDegrees = minutes * 6 + seconds * 0.1;
 
-},1000);
+    secondHand.style.transform = `translate(-50%, -100%) rotate(${secondsDegrees}deg)`;
+    minuteHand.style.transform = `translate(-50%, -100%) rotate(${minutesDegrees}deg)`;
+}
+
+setInterval(updateClock,1000);
+updateClock();
+
+/* Mostrar texto después de unos segundos */
+setTimeout(()=>{
+    mensaje.style.opacity = 1;
+},5000);
 
 </script>
 
 </body>
-  </html>
-  
+    </html>
+    
