@@ -9,38 +9,69 @@
 body{
     margin:0;
     min-height:100vh;
-    background:radial-gradient(circle at center,#140022,#000);
+    background:radial-gradient(circle at center,#1a002b,#000);
     color:white;
-    font-family: 'Georgia', serif;
+    font-family: 'Cormorant Garamond', serif;
     display:flex;
     flex-direction:column;
     align-items:center;
     overflow-x:hidden;
+    animation:latidoFondo 4s ease-in-out infinite;
+}
+
+/* 💓 Efecto latido visual */
+@keyframes latidoFondo{
+    0%{background-size:100%;}
+    50%{background-size:105%;}
+    100%{background-size:100%;}
+}
+
+/* 🌸 Partículas rosadas */
+.particle{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#ff6ec7;
+    opacity:0.7;
+    animation:flotar linear infinite;
+}
+
+@keyframes flotar{
+    from{
+        transform:translateY(100vh);
+        opacity:0;
+    }
+    to{
+        transform:translateY(-10vh);
+        opacity:1;
+    }
 }
 
 /* Contenedor */
 .container{
     text-align:center;
-    margin-top:80px;
+    margin-top:100px;
     max-width:700px;
-    padding:20px;
+    padding:25px;
 }
 
 /* Reloj */
 .clock{
-    width:180px;
-    height:180px;
-    border:4px solid rgba(255,255,255,0.2);
+    width:200px;
+    height:200px;
+    border:4px solid rgba(255,255,255,0.15);
     border-radius:50%;
     position:relative;
-    margin:0 auto 40px;
-    box-shadow:0 0 25px rgba(255,0,150,0.3);
+    margin:0 auto 50px;
+    box-shadow:0 0 50px rgba(255,0,150,0.4);
+    backdrop-filter:blur(4px);
 }
 
 .center-dot{
-    width:8px;
-    height:8px;
-    background:#ff5cb8;
+    width:10px;
+    height:10px;
+    background:#ff9bd6;
     border-radius:50%;
     position:absolute;
     top:50%;
@@ -51,7 +82,6 @@ body{
 /* Agujas */
 .hand{
     position:absolute;
-    background:#ff5cb8;
     top:50%;
     left:50%;
     transform-origin:bottom;
@@ -59,27 +89,40 @@ body{
 
 .second{
     width:2px;
-    height:70px;
+    height:80px;
+    background:#ff4da6;
 }
 
 .minute{
     width:4px;
-    height:55px;
-    background:#ff9bd6;
+    height:60px;
+    background:#ffb3e6;
 }
 
 /* Texto */
 .text{
-    font-size:24px;
-    line-height:1.9;
+    font-size:26px;
+    line-height:2;
     text-align:justify;
     opacity:0;
     transition:opacity 3s ease;
+    text-shadow:0 0 15px rgba(255,100,200,0.5);
 }
 </style>
 </head>
 
 <body>
+
+<!-- 🌸 Generar partículas -->
+<script>
+for(let i=0;i<50;i++){
+    let p=document.createElement("div");
+    p.className="particle";
+    p.style.left=Math.random()*100+"vw";
+    p.style.animationDuration=(6+Math.random()*6)+"s";
+    document.body.appendChild(p);
+}
+</script>
 
 <div class="container">
 
@@ -90,27 +133,28 @@ body{
     </div>
 
     <div class="text" id="mensaje">
-Cada segundo por ti se siente más largo de lo normal.  
+Cada segundo por ti se siente más largo de lo normal.
+
 A veces la espera pesa, y el silencio se vuelve demasiado grande.
 
-Sé que tienes tu mundo, tus tiempos, tus prioridades,  
+Sé que tienes tu mundo, tus tiempos, tus prioridades,
 y me alegra que tu vida esté llena de cosas importantes.
 
-Pero cuando no estás, me doy cuenta de cuánto significas para mí.  
-Me pregunto si estarás bien, si sonreíste hoy,  
+Pero cuando no estás, me doy cuenta de cuánto significas para mí.
+Me pregunto si estarás bien, si sonreíste hoy,
 si en algún momento pensaste en mí aunque sea un instante.
 
-Tal vez para ti todo esto parezca exagerado,  
+Tal vez para ti todo esto parezca exagerado,
 pero no puedo ignorar lo que siento.
 
-Porque desde que llegaste, todo tiene más color.  
+Porque desde que llegaste, todo tiene más color.
 Y cuando no estás, el mundo se siente un poco más gris.
 
-No es dependencia.  
+No es dependencia.
 Es que aprendí lo mucho que vales para mí.
 
-Y aunque no siempre esté a tu lado,  
-ni siempre hablemos,  
+Y aunque no siempre esté a tu lado,
+ni siempre hablemos,
 ni siempre coincidan nuestros tiempos…
 
 Aquí estoy.
@@ -146,10 +190,9 @@ updateClock();
 /* Mostrar texto después de unos segundos */
 setTimeout(()=>{
     mensaje.style.opacity = 1;
-},5000);
+},4000);
 
 </script>
 
 </body>
-    </html>
-    
+</html>
