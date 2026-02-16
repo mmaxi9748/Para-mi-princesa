@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cada segundo sin ti</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    background:radial-gradient(circle at center,#0a0015,#000);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+    font-family: 'Georgia', serif;
+}
+
+/* Contenedor central */
+.container{
+    text-align:center;
+}
+
+/* Reloj */
+.clock{
+    width:140px;
+    height:140px;
+    border:3px solid rgba(255,255,255,0.2);
+    border-radius:50%;
+    position:relative;
+    margin:0 auto 30px;
+}
+
+.hand{
+    position:absolute;
+    width:2px;
+    height:55px;
+    background:#ff4da6;
+    top:15px;
+    left:50%;
+    transform-origin:bottom;
+    transform:rotate(0deg);
+    transition:transform 1s linear;
+}
+
+/* Texto */
+.text{
+    font-size:22px;
+    opacity:0.8;
+}
+
+.big{
+    font-size:36px;
+    margin-top:30px;
+    opacity:0;
+    transition:opacity 2s ease;
+}
+
+.final{
+    font-size:42px;
+    margin-top:20px;
+    color:#ff7ac3;
+    opacity:0;
+    transition:opacity 3s ease;
+    text-shadow:0 0 20px rgba(255,100,200,0.8);
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="clock">
+        <div class="hand" id="hand"></div>
+    </div>
+
+    <div class="text" id="counter">
+        Otro segundo sin ti...
+    </div>
+
+    <div class="big" id="message1">
+        Pero ni un segundo dejo de pensarte.
+    </div>
+
+    <div class="final" id="message2">
+        Te extraño.
+    </div>
+</div>
+
+<script>
+
+let segundos = 0;
+let hand = document.getElementById("hand");
+let counter = document.getElementById("counter");
+let msg1 = document.getElementById("message1");
+let msg2 = document.getElementById("message2");
+
+let intervalo = setInterval(()=>{
+    segundos++;
+    hand.style.transform = "rotate(" + (segundos*6) + "deg)";
+    counter.innerHTML = "Otro segundo sin ti... (" + segundos + ")";
+    
+    if(segundos === 8){   // duración antes del impacto
+        clearInterval(intervalo);
+        
+        setTimeout(()=>{
+            msg1.style.opacity = 1;
+        },800);
+
+        setTimeout(()=>{
+            msg2.style.opacity = 1;
+        },3000);
+    }
+
+},1000);
+
+</script>
+
+</body>
+  </html>
+  
