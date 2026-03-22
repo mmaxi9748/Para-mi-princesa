@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Abi 💛</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(#87CEEB, #fefae0);
+        overflow-x: hidden;
+        text-align: center;
+    }
+
+    .screen {
+        display: none;
+        padding: 20px;
+    }
+
+    .active {
+        display: block;
+    }
+
+    button {
+        padding: 12px 20px;
+        font-size: 18px;
+        border: none;
+        border-radius: 10px;
+        background-color: #ffd166;
+        cursor: pointer;
+    }
+
+    #garden {
+        height: 70vh;
+        position: relative;
+    }
+
+    .flower {
+        position: absolute;
+        font-size: 24px;
+        animation: grow 0.5s ease;
+        cursor: pointer;
+    }
+
+    @keyframes grow {
+        from { transform: scale(0); }
+        to { transform: scale(1); }
+    }
+
+    #messageBox {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #444;
+    }
+
+    #finalMessage {
+        font-size: 24px;
+        margin-top: 30px;
+        color: #333;
+    }
+
+    /* Flores cayendo */
+    .falling-flower {
+        position: fixed;
+        top: -30px;
+        font-size: 20px;
+        animation: fall linear forwards;
+        pointer-events: none;
+        opacity: 0.9;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh) rotate(360deg);
+            opacity: 0.7;
+        }
+    }
+</style>
+</head>
+<body>
+
+<!-- Pantalla inicial -->
+<div id="start" class="screen active">
+    <h1>Esto es para alguien muy especial…</h1>
+    <button onclick="startGarden()">Entrar al jardín</button>
+</div>
+
+<!-- Jardín -->
+<div id="gardenScreen" class="screen">
+    <h2>Abi 💛</h2>
+    <p>Cada momento que paso con ella porque es lo más preciado que tengo y espero mantenerlo para siempre</p>
+    <div id="garden" onclick="createFlower(event)"></div>
+    <div id="messageBox"></div>
+</div>
+
+<!-- Mensaje final -->
+<div id="endScreen" class="screen">
+    <h2>💛</h2>
+    <p id="finalMessage">Siempre me hago la misma pregunta, ¿qué ve una chica tan linda, tan amable y tan grandiosa como tú para seguir hablando con un simple chico como yo? Pero sea lo que sea, siempre me alegra poder estar contigo. No importa cuántas veces me den a elegir, siempre te elegiré a ti, porque solo contigo quiero ser feliz, porque tú eres a quien quiero y amo de verdad y por eso solo contigo lo sueño y deseo todo.<br><br>Te amo mi princesa, lo hago cada segundo de mi vida 💛</p>
+</div>
+
+<script>
+const messages = [
+    "Te quiero más de lo que las palabras pueden explicar 💛",
+    "Te amo con cada parte de mí 💛",
+    "Eres mi mundo y mi lugar favorito 🌎",
+    "Desde que llegaste, todo tiene más sentido",
+    "Me haces feliz de una forma que no sabía que existía",
+    "Eres lo más hermoso que tengo",
+    "No quiero imaginar mi vida sin vos",
+    "Siempre estás en mis pensamientos",
+    "Tu sonrisa ilumina incluso mis días más oscuros",
+    "Quiero compartir cada momento de mi vida con vos"
+];
+
+let flowerCount = 0;
+
+// Generar flores cayendo continuamente
+setInterval(createFallingFlower, 500);
+
+function createFallingFlower() {
+    const flower = document.createElement('div');
+    flower.classList.add('falling-flower');
+    flower.innerText = "🌼";
+
+    flower.style.left = Math.random() * 100 + "vw";
+    flower.style.animationDuration = (3 + Math.random() * 5) + "s";
+
+    document.body.appendChild(flower);
+
+    setTimeout(() => {
+        flower.remove();
+    }, 8000);
+}
+
+function startGarden() {
+    document.getElementById('start').classList.remove('active');
+    document.getElementById('gardenScreen').classList.add('active');
+}
+
+function createFlower(event) {
+    const garden = document.getElementById('garden');
+    const flower = document.createElement('div');
+
+    flower.classList.add('flower');
+    flower.innerText = "🌼";
+
+    const x = event.clientX;
+    const y = event.clientY - 100;
+
+    flower.style.left = x + 'px';
+    flower.style.top = y + 'px';
+
+    const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+
+    flower.onclick = function(e) {
+        e.stopPropagation();
+        document.getElementById('messageBox').innerText = randomMessage;
+    };
+
+    garden.appendChild(flower);
+
+    flowerCount++;
+
+    if (flowerCount > 15) {
+        setTimeout(showFinalMessage, 1500);
+    }
+}
+
+function showFinalMessage() {
+    document.getElementById('gardenScreen').classList.remove('active');
+    document.getElementById('endScreen').classList.add('active');
+}
+</script>
+
+</body>
+  </html>
+  
