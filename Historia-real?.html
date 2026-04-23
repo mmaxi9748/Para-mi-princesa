@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aunque no fueras para mí</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Blackletter', 'Old English Text MT', 'Garamond', serif;
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .book {
+      width: 100vw;
+      max-width: 100vw;
+      min-height: 100vh;
+      background: #f4e7c5;
+      background-image:
+        radial-gradient(rgba(120, 90, 40, 0.08) 1px, transparent 1px),
+        radial-gradient(rgba(90, 60, 20, 0.05) 1px, transparent 1px);
+      background-size: 18px 18px, 24px 24px;
+      background-position: 0 0, 12px 12px;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+      position: relative;
+    }
+
+    .page {
+      display: none;
+      min-height: 100vh;
+      padding: 60px;
+      animation: fade 0.5s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Portada */
+    .cover {
+      background: linear-gradient(to right, #7a7a7a 50%, #d4af37 50%);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+    }
+
+    .symbols {
+      font-size: 5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .heart {
+      color: #c70021;
+      font-size: 5.5rem;
+      text-shadow: 0 0 12px rgba(199,0,33,0.4);
+    }
+
+    .title {
+      font-size: 2.5rem;
+      max-width: 700px;
+      line-height: 1.2;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.25);
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      letter-spacing: 2px;
+      opacity: 0.9;
+    }
+
+    /* Páginas */
+    h2 {
+      font-family: 'Blackletter', 'Old English Text MT', 'Garamond', serif;
+      margin-bottom: 25px;
+      font-size: 2rem;
+      color: #7a1f1f;
+      text-align: center;
+    }
+
+    p {
+      font-family: 'Blackletter', 'Old English Text MT', 'Garamond', serif;
+      font-size: 1.08rem;
+      line-height: 1.9;
+      color: #2d2d2d;
+      margin-bottom: 16px;
+      text-align: justify;
+    }
+
+    .controls {
+      position: absolute;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 999px;
+      background: #7a1f1f;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+    }
+
+    button:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+
+    .page-number {
+      position: absolute;
+      bottom: 85px;
+      right: 40px;
+      color: #777;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .page {
+        padding: 35px 25px 110px;
+      }
+
+      .title {
+        font-size: 2rem;
+      }
+
+      .symbols {
+        font-size: 3.5rem;
+      }
+
+      .heart {
+        font-size: 4rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="book">
+
+  <!-- Portada -->
+  <div class="page cover active">
+    <div class="subtitle">UN CUENTO SOBRE EL DESTINO</div>
+    <div class="symbols">
+      <span>?</span>
+      <span class="heart">♥</span>
+      <span>?</span>
+    </div>
+    <div class="title">Aunque no fueras para mí</div>
+  </div>
+
+  <!-- Página 1 -->
+  <div class="page">
+    <h2>Capítulo I</h2>
+    <p>En aquel reino, todos crecían con la misma creencia: nadie estaba realmente solo.</p>
+    <p>Decían que, al nacer, un hilo rojo se ataba al dedo meñique de cada persona, uniendo su alma con la de alguien más. No importaba la distancia, el tiempo ni los errores; tarde o temprano, ese hilo siempre guiaba a dos personas destinadas a encontrarse.</p>
+    <p>Era una promesa silenciosa. Una certeza. Un consuelo.</p>
+    <p>Todos confiaban en ello.</p>
+    <p>Todos, menos él.</p>
+    <p>Porque el suyo estaba roto.</p>
+  </div>
+
+  <!-- Página 2 -->
+  <div class="page">
+    <h2>Capítulo II</h2>
+    <p>Lo descubrió cuando era apenas un niño. Mientras otros presumían con emoción la dirección de sus hilos, el suyo colgaba débil, deshilachado, como si el destino hubiera empezado a escribir su historia... y luego hubiera decidido abandonarla.</p>
+    <p>Desde entonces, aprendió a vivir con esa idea.</p>
+    <p>No estaba destinado a nadie.</p>
+    <p>No habría una historia escrita para él, ni un encuentro inevitable, ni una mano esperándolo al final del camino.</p>
+  </div>
+
+  <!-- Página 3 -->
+  <div class="page">
+    <h2>Capítulo III</h2>
+    <p>Hasta que apareció ella.</p>
+    <p>No llegó como llegan las cosas extraordinarias en los cuentos. No hubo magia, ni música, ni una señal del cielo.</p>
+    <p>Fue algo simple.</p>
+    <p>La vio una tarde cualquiera, sentada bajo el gran árbol del patio de la escuela, leyendo como si el ruido del mundo no pudiera alcanzarla.</p>
+    <p>Desde entonces, empezó a coincidir con ella en pequeños lugares.</p>
+  </div>
+
+  <!-- Página 4 -->
+  <div class="page">
+    <h2>Capítulo IV</h2>
+    <p>Primero fueron conversaciones cortas. Después risas compartidas. Luego silencios cómodos.</p>
+    <p>Y sin darse cuenta, ella se volvió parte de sus días.</p>
+    <p>Él aprendió la forma exacta en que ella fruncía el ceño cuando estaba preocupada, la manera en que escondía su tristeza detrás de una sonrisa pequeña.</p>
+    <p>Aprendió a quererla en los detalles. Tal vez demasiado.</p>
+  </div>
+
+  <!-- Página 5 -->
+  <div class="page">
+    <h2>Capítulo V</h2>
+    <p>Pero había algo que él nunca olvidaba.</p>
+    <p>El hilo rojo en su mano.</p>
+    <p>Porque mientras el suyo seguía roto, el de ella seguía intacto. Y no llevaba hacia él.</p>
+    <p>Y aun así, se quedó.</p>
+    <p>La acompañó en sus días malos. Celebró sus logros como si fueran propios. Era su refugio, su mundo, y su anhelo más querido.</p>
+  </div>
+
+  <!-- Página 6 -->
+  <div class="page">
+    <h2>Capítulo VI</h2>
+    <p>En la noche del Festival de las Linternas, todo el reino parecía suspendido en luz.</p>
+    <p>Miles de pequeñas llamas flotaban sobre el río, llevando deseos, promesas y despedidas.</p>
+    <p>Ella estaba a su lado.</p>
+    <p>—A veces creo que eres demasiado bueno conmigo —dijo ella.</p>
+    <p>—No lo soy —respondió él.</p>
+  </div>
+
+  <!-- Página 7 -->
+  <div class="page">
+    <h2>Capítulo VII</h2>
+    <p>—Porque sé lo que sientes… y no sé si puedo darte lo mismo.</p>
+    <p>Ahí estaba. La verdad, dicha en voz baja.</p>
+    <p>—Lo sé —dijo él al fin.</p>
+    <p>—Entonces, ¿por qué sigues aquí?</p>
+    <p>—Porque no elegí enamorarme de ti. Solo pasó.</p>
+  </div>
+
+  <!-- Página 8 -->
+  <div class="page">
+    <h2>Final</h2>
+    <p>—Sé que tu destino quizás no tiene mi nombre... pero haberte conocido ya fue una de las cosas más hermosas que me pasaron.</p>
+    <p>Ella tomó su mano entre las suyas.</p>
+    <p>—Quizás el destino no es un camino escrito. Quizás es una decisión.</p>
+    <p>Y por primera vez, el hilo roto no se sintió como un final.</p>
+    <p>Sino como una posibilidad.</p>
+  </div>
+
+  <div class="page-number" id="pageNumber">Página 1</div>
+
+  <div class="controls">
+    <button id="prevBtn" onclick="changePage(-1)">← Anterior</button>
+    <button id="nextBtn" onclick="changePage(1)">Siguiente →</button>
+  </div>
+</div>
+
+<script>
+  const pages = document.querySelectorAll('.page');
+  const pageNumber = document.getElementById('pageNumber');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+
+  let currentPage = 0;
+
+  function showPage(index) {
+    pages.forEach(page => page.classList.remove('active'));
+    pages[index].classList.add('active');
+
+    pageNumber.textContent = `Página ${index + 1}`;
+
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === pages.length - 1;
+  }
+
+  function changePage(direction) {
+    currentPage += direction;
+    if (currentPage < 0) currentPage = 0;
+    if (currentPage >= pages.length) currentPage = pages.length - 1;
+    showPage(currentPage);
+  }
+
+  showPage(currentPage);
+</script>
+
+</body>
+</html>
