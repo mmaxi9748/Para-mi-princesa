@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <title>El Monstruo y el Ángel</title>
 
-<!-- Fuente estilo gótico -->
 <link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=IM+Fell+English&display=swap" rel="stylesheet">
 
 <style>
@@ -15,64 +13,7 @@ body {
     font-family: 'IM Fell English', serif;
 }
 
-/* PORTADA */
-.cover {
-    display: flex;
-    height: 100vh;
-}
-
-.cover-left, .cover-right {
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-}
-
-/* Lado amarillo */
-.cover-left {
-    background: linear-gradient(135deg, #ffd700, #ffb700);
-}
-
-/* Sombra en lado amarillo */
-.cover-left::after {
-    content: "";
-    position: absolute;
-    width: 200px;
-    height: 300px;
-    background: rgba(0,0,0,0.6);
-    filter: blur(20px);
-    border-radius: 50%;
-}
-
-/* Lado oscuro */
-.cover-right {
-    background: linear-gradient(135deg, #000000, #1a1a1a);
-}
-
-/* Rayo en lado oscuro */
-.cover-right::after {
-    content: "";
-    position: absolute;
-    width: 4px;
-    height: 300px;
-    background: linear-gradient(white, transparent);
-    box-shadow: 0 0 20px white;
-    transform: rotate(20deg);
-}
-
-/* Título */
-.title {
-    position: absolute;
-    bottom: 40px;
-    width: 100%;
-    text-align: center;
-    font-family: 'UnifrakturCook', cursive;
-    font-size: 40px;
-    color: #fff;
-}
-
-/* PERGAMINO */
+/* Pergamino */
 .scroll {
     background: #f5e6c8;
     color: #2b1b0f;
@@ -84,136 +25,305 @@ body {
     line-height: 1.8;
     font-size: 20px;
     border-radius: 10px;
+    white-space: pre-line; /* respeta saltos de línea exactos */
 }
 
-/* efecto envejecido */
-.scroll::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* párrafos */
-p {
-    margin-bottom: 20px;
+/* título */
+.title {
+    text-align: center;
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 40px;
+    color: white;
+    margin-top: 40px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- PORTADA -->
-<div class="cover">
-    <div class="cover-left"></div>
-    <div class="cover-right"></div>
-    <div class="title">El Monstruo y el Ángel</div>
-</div>
+<div class="title">El Monstruo y el Ángel</div>
 
-<!-- PERGAMINO -->
 <div class="scroll">
+En un rincón olvidado del mundo, donde la luz apenas se atrevía a entrar, vivía un monstruo.
 
-<p>En un rincón olvidado del mundo, donde la luz apenas se atrevía a entrar, vivía un monstruo.</p>
+No era solo su forma lo que lo hacía temible. Era su existencia misma. Una presencia que parecía no pertenecer a ningún lugar, como si el mundo lo hubiera creado… y luego abandonado.
 
-<p>No era solo su forma lo que lo hacía temible. Era su existencia misma. Una presencia que parecía no pertenecer a ningún lugar, como si el mundo lo hubiera creado… y luego abandonado.</p>
+Su cuerpo era grotesco, deforme, cubierto de sombras que parecían respirar con él. Su piel era áspera, su mirada vacía, y su presencia hacía que incluso el viento evitara tocarlo.
 
-<p>Su cuerpo era grotesco, deforme, cubierto de sombras que parecían respirar con él. Su piel era áspera, su mirada vacía, y su presencia hacía que incluso el viento evitara tocarlo.</p>
+No tenía nombre, porque nadie se lo había dado.
+No tenía voz, porque nunca hubo alguien que quisiera oírlo.
 
-<p>No tenía nombre, porque nadie se lo había dado.<br>
-No tenía voz, porque nunca hubo alguien que quisiera oírlo.</p>
+Solo existía… condenado a una soledad que no entendía, pero que lo consumía.
 
-<p>Solo existía… condenado a una soledad que no entendía, pero que lo consumía.</p>
+Los días pasaban, luego se hacían semanas quizás años y nunca cambió.
 
-<p>Los días pasaban… y nunca cambió.</p>
+O al menos… eso creía.
 
-<p>Hasta que un día… una luz descendió.</p>
+Hasta que un día, sin aviso, sin señal alguna, una luz descendió.
 
-<p>No fue un estruendo. Fue algo suave… como si el cielo hubiese suspirado.</p>
+No fue un estruendo. No fue un milagro imponente.
+Fue algo suave… casi tímido.
 
-<p>Y de ese suspiro… apareció ella.</p>
+Como si el cielo hubiese suspirado.
 
-<p>Un ángel.</p>
+Y de ese suspiro… apareció ella.
 
-<p>Cabello rubio como la luz del amanecer… ojos verdes llenos de vida.</p>
+Un ángel.
 
-<p>Se posó en la distancia.</p>
+Cabello rubio como la luz del amanecer, ojos verdes que parecían contener la esencia misma de la vida. No brillaba de forma cegadora… pero su sola presencia hacía que el gris del mundo pareciera menos pesado.
 
-<p>Y lo miró.</p>
+Se posó en la distancia.
 
-<p>No con miedo.<br>
-No con rechazo.<br>
-Sino con algo que el monstruo no supo reconocer.</p>
+Y lo miró.
 
-<p>Y así comenzaron los días…</p>
+No con miedo.
 
-<p>Ella hablaba.<br>
-Él escuchaba.</p>
+No con rechazo.
 
-<p>Hasta que un día…</p>
+Sino con algo que el monstruo no supo reconocer.
 
-<p>—¿Nunca vas a decir nada?</p>
+Él, en cambio retrocedió.
+Se escondió más en las sombras, como si estas pudieran protegerlo de aquello que no entendía.
 
-<p>Y por primera vez… lo intentó.</p>
+Y así pasaron los días.
 
-<p>Un sonido roto… pero suyo.</p>
+O quizás semanas.
 
-<p>Y el ángel… sonrió.</p>
+Ella permanecía allí, sentada sobre una roca, observando el paisaje muerto como si viera belleza donde no la había.
 
-<p>Ese fue el inicio.</p>
+Él la observaba desde la oscuridad.
 
-<p>El monstruo comenzó a cambiar.</p>
+Ambos sabían del otro.
 
-<p>Aprendió a acercarse.<br>
-Aprendió a sentir.</p>
+Pero ninguno se atrevía a cruzar ese abismo invisible que los separaba.
 
-<p>Pero cuando ella se iba…</p>
+Hasta que un día, el ángel habló.
 
-<p>Todo se rompía.</p>
+—Debe ser solitario aquí…
 
-<p>El monstruo regresaba.</p>
+El monstruo no respondió.
 
-<p>Hasta que un día…</p>
+En cambio se escondió mas en las sombras, temiendo de lo desconocido.
 
-<p>—Hazlo por ti.</p>
+Al día siguiente, volvió a hablar.
 
-<p>Y se alejó.</p>
+Y al siguiente.
 
-<p>Entonces… él eligió.</p>
+Le hablaba del cielo. De las nubes. Del sonido de la risa. De cosas tan simples que para ella eran normales… pero para él eran mundos enteros.
 
-<p>Dio un paso.</p>
+Y él escuchaba.
 
-<p>Luego otro.</p>
+Siempre desde las sombras.
 
-<p>Hasta que estuvo frente a ella.</p>
+Al principio, sin entender.
 
-<p>Extendió la mano.</p>
+Luego esperando con ansias mas de eso.
 
-<p>Temblando.</p>
+Hasta que un día, el ángel guardó silencio.
 
-<p>Sin palabras.</p>
+Y lo miró directamente.
 
-<p>Pero esta vez… no huía.</p>
+—¿Nunca vas a decir nada?
 
-<p>Y quizás… eso era lo más importante.</p>
+El monstruo sintió algo extraño.
 
-<hr>
+No era miedo.
 
-<p>Se dice que el monstruo aún lucha.</p>
+No del todo.
 
-<p>Pero ahora… cuando las sombras lo llaman…</p>
+Era… presión. Como si algo dentro de él quisiera salir.
 
-<p>ya no responde de inmediato.</p>
+Y por primera vez… lo intentó.
 
-<p>Y en ese instante de duda…</p>
+No fue una palabra.
+Ni siquiera un sonido claro.
 
-<p>vive algo nuevo.</p>
+Fue algo ruidoso como roto, alco incompleto.
 
-<p>Algo frágil.</p>
+Pero fue suyo.
 
-<p>Algo peligroso.</p>
+Y el ángel… sonrió.
 
-<p>Algo de amor.</p>
+Ese fue el inicio.
 
+Poco a poco, el monstruo comenzó a cambiar.
+
+Aprendió a acercarse sin huir.
+Aprendió a escuchar… y a responder.
+
+Y con el tiempo… su cuerpo también comenzó a transformarse.
+
+Las sombras dejaron de aferrarse con tanta fuerza.
+Su piel se hizo mas suave.
+Sus ojos comenzaron a reflejar algo más que ese inmenso  vacío.
+
+Se estaba volviendo quizas algo... humano.
+
+Pero había algo que no lograba comprender.
+
+El ángel.
+
+No entenida como seguia quedandose ahi, como podias vivir viendo algo como lo que era el.
+ Pero a su vez tampoco queria que fuera diferente.
+Porque cada vez que ella estaba cerca, sentía calor.
+Cada vez que se alejaba, sentía frío.
+
+Un vacío distinto al que estaba acostumbrado.
+ Era mas ás profundo.
+
+Más doloroso.
+
+Porque cuando ella se iba.
+
+Y algo cambiaba… todo se rompía.
+
+El humano desaparecía.
+
+Y el monstruo regresaba.
+
+Como si nunca se hubiera ido.
+
+Como si esa nueva versión de sí mismo fuera solo un sueño.
+
+Hasta que un día… el ángel volvió diferente.
+
+Más seria.
+
+Más distante.
+
+—No puedo seguir así…
+
+Su voz ya no era ligera.
+
+—No puedo quedarme si cada vez que me voy… dejas de ser quien eres.
+
+El monstruo bajó la mirada.
+
+—Te daré una última oportunidad —dijo ella—. Pero esta vez… no lo hagas por mí.
+
+Hizo una pausa.
+
+—Hazlo por ti.
+
+Y se alejó.
+
+No lo abandonó.
+
+Pero tampoco se acercó.
+
+Y entonces, el silencio volvió.
+
+El monstruo sintió cómo las sombras intentaban reclamarlo otra vez.
+
+Y se dijo -Y si no puedo cambiar, si solo seré esto por el resto de la eternidad- y lo pensó mucho porque....
+
+Era fácil.
+
+Era conocido.
+
+Era seguro.
+
+Pero entonces…
+
+Miró sus manos.
+
+No eran completamente monstruosas.
+
+Pero tampoco completamente humanas.
+
+Y por primera vez…
+
+Eligió.
+
+Dio un paso.
+
+Torpe.
+
+Inseguro.
+
+Pero hacia adelante.
+
+Las sombras tiraban de él.
+
+Su cuerpo temblaba.
+
+Su mente gritaba.
+
+Pero avanzó.
+
+Un paso más.
+
+Y  luego otro.
+
+Hasta que estuvo frente a ella.
+
+No sabía qué decir.
+
+No sabía cómo actuar.
+
+No entendía lo que sentía.
+
+Pero lo sentía.
+
+Y eso era suficiente para intentarlo.
+
+Extendió la mano.
+
+Temblando.
+
+Sin palabras.
+
+El ángel lo miró en silencio.
+
+Y el mundo pareció detenerse.
+
+Porque en ese instante…
+
+No importaba si era suficiente.
+
+No importaba si iba a fallar.
+
+No importaba si volvería a caer.
+
+Porque por primera vez…
+
+No estaba huyendo.
+
+Y quizás…
+
+eso era más importante que cualquier resultado.
+----------○------------○------------
+Se dice que el monstruo aún lucha.
+
+Que a veces cae.
+
+Que a veces duda.
+
+Pero que cada vez que lo hace… recuerda esa sensación.
+
+Ese calor desconocido.
+
+Esa necesidad de avanzar.
+
+Y aunque nadie sabe si logrará mantenerse humano…
+
+Hay algo que sí cambió para siempre.
+
+Porque ahora…
+
+cuando las sombras lo llaman…
+
+ya no responde de inmediato.
+
+Y en ese pequeño instante de duda…
+
+vive algo nuevo.
+
+Algo frágil.
+
+Algo peligroso.
+
+Algo de amor.
 </div>
 
 </body>
