@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>El Monstruo y el Ángel</title>
+
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    background:#111;
+    font-family: 'UnifrakturCook', cursive;
+}
+
+/* CONTENEDOR */
+.book{
+    width:900px;
+    height:600px;
+    margin:40px auto;
+    perspective:2000px;
+    position:relative;
+}
+
+/* PORTADA */
+.cover{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:flex;
+    cursor:pointer;
+    transition: transform 1s;
+    transform-origin:left;
+    z-index:10;
+}
+
+.cover.open{
+    transform: rotateY(-160deg);
+}
+
+/* LADO LUZ */
+.cover-left{
+    width:50%;
+    background:linear-gradient(135deg,#ffd700,#ffea70);
+    position:relative;
+}
+
+.cover-left::after{
+    content:"";
+    position:absolute;
+    width:70%;
+    height:70%;
+    background:radial-gradient(circle, rgba(0,0,0,0.4), transparent);
+    top:15%;
+    left:15%;
+    border-radius:50%;
+}
+
+/* LADO OSCURIDAD */
+.cover-right{
+    width:50%;
+    background:#000;
+    position:relative;
+}
+
+.cover-right::after{
+    content:"";
+    position:absolute;
+    width:4px;
+    height:80%;
+    background:white;
+    top:10%;
+    left:50%;
+    box-shadow:0 0 20px white,0 0 40px white;
+    transform:rotate(20deg);
+}
+
+/* PÁGINAS */
+.pages{
+    width:100%;
+    height:100%;
+    display:flex;
+    flex-wrap:wrap;
+    overflow:auto;
+    background:#c9a96a;
+    padding:20px;
+    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+}
+
+/* PERGAMINO */
+.page{
+    width:45%;
+    margin:2%;
+    padding:20px;
+    background:linear-gradient(#f5e3b3,#e0c48a);
+    box-shadow:0 0 10px rgba(0,0,0,0.5);
+    border-radius:5px;
+    color:#2b1a0f;
+    line-height:1.6;
+    font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="book">
+
+    <!-- PORTADA -->
+    <div class="cover" onclick="abrirLibro(this)">
+        <div class="cover-left"></div>
+        <div class="cover-right"></div>
+    </div>
+
+    <!-- PÁGINAS -->
+    <div class="pages">
+
+        <div class="page">
+En un rincón olvidado del mundo, donde la luz apenas se atrevía a entrar, vivía un monstruo.
+        </div>
+
+        <div class="page">
+No era solo su forma lo que lo hacía temible. Era su existencia misma.
+        </div>
+
+        <div class="page">
+No tenía nombre. No tenía voz.
+Solo existía… condenado a una soledad infinita.
+        </div>
+
+        <div class="page">
+Hasta que un día… una luz descendió.
+        </div>
+
+        <div class="page">
+No fue un milagro imponente.
+Fue algo suave… casi tímido.
+        </div>
+
+        <div class="page">
+Y de ese suspiro… apareció ella.
+Un ángel.
+        </div>
+
+        <div class="page">
+Ella lo miró.
+No con miedo. No con rechazo.
+        </div>
+
+        <div class="page">
+Sino con algo que el monstruo no supo reconocer.
+        </div>
+
+        <div class="page">
+Día tras día… ella hablaba.
+Y él escuchaba.
+        </div>
+
+        <div class="page">
+Hasta que un día…
+Él respondió.
+        </div>
+
+        <div class="page">
+No fue perfecto.
+Pero fue suyo.
+        </div>
+
+        <div class="page">
+Y el ángel… sonrió.
+Ese fue el inicio.
+        </div>
+
+        <div class="page">
+El monstruo comenzó a cambiar.
+        </div>
+
+        <div class="page">
+Pero cada vez que ella se iba…
+todo se rompía.
+        </div>
+
+        <div class="page">
+—Hazlo por ti —dijo el ángel.
+        </div>
+
+        <div class="page">
+Y por primera vez…
+eligió avanzar.
+        </div>
+
+        <div class="page">
+No importaba fallar.
+No importaba caer.
+        </div>
+
+        <div class="page">
+Solo importaba no huir.
+        </div>
+
+        <div class="page">
+Extendió la mano.
+Temblando.
+        </div>
+
+        <div class="page">
+Y en ese instante…
+todo cambió.
+        </div>
+
+        <div class="page">
+Porque ahora…
+cuando las sombras lo llaman…
+        </div>
+
+        <div class="page">
+ya no responde de inmediato.
+        </div>
+
+        <div class="page">
+Y en ese pequeño instante…
+        </div>
+
+        <div class="page">
+vive algo nuevo.
+Algo frágil.
+        </div>
+
+        <div class="page">
+Algo peligroso.
+        </div>
+
+        <div class="page">
+Algo de amor.
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+function abrirLibro(el){
+    el.classList.toggle("open");
+}
+</script>
+
+</body>
+</html>
