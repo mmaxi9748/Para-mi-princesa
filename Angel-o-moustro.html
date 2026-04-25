@@ -1,248 +1,220 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <title>El Monstruo y el Ángel</title>
 
-<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
+<!-- Fuente estilo gótico -->
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturCook:wght@700&family=IM+Fell+English&display=swap" rel="stylesheet">
 
 <style>
-body{
-    margin:0;
-    background:#111;
-    font-family: 'UnifrakturCook', cursive;
-}
-
-/* CONTENEDOR */
-.book{
-    width:900px;
-    height:600px;
-    margin:40px auto;
-    perspective:2000px;
-    position:relative;
+body {
+    margin: 0;
+    background: #1a1a1a;
+    font-family: 'IM Fell English', serif;
 }
 
 /* PORTADA */
-.cover{
-    position:absolute;
-    width:100%;
-    height:100%;
-    display:flex;
-    cursor:pointer;
-    transition: transform 1s;
-    transform-origin:left;
-    z-index:10;
+.cover {
+    display: flex;
+    height: 100vh;
 }
 
-.cover.open{
-    transform: rotateY(-160deg);
+.cover-left, .cover-right {
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
 }
 
-/* LADO LUZ */
-.cover-left{
-    width:50%;
-    background:linear-gradient(135deg,#ffd700,#ffea70);
-    position:relative;
+/* Lado amarillo */
+.cover-left {
+    background: linear-gradient(135deg, #ffd700, #ffb700);
 }
 
-.cover-left::after{
-    content:"";
-    position:absolute;
-    width:70%;
-    height:70%;
-    background:radial-gradient(circle, rgba(0,0,0,0.4), transparent);
-    top:15%;
-    left:15%;
-    border-radius:50%;
+/* Sombra en lado amarillo */
+.cover-left::after {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 300px;
+    background: rgba(0,0,0,0.6);
+    filter: blur(20px);
+    border-radius: 50%;
 }
 
-/* LADO OSCURIDAD */
-.cover-right{
-    width:50%;
-    background:#000;
-    position:relative;
+/* Lado oscuro */
+.cover-right {
+    background: linear-gradient(135deg, #000000, #1a1a1a);
 }
 
-.cover-right::after{
-    content:"";
-    position:absolute;
-    width:4px;
-    height:80%;
-    background:white;
-    top:10%;
-    left:50%;
-    box-shadow:0 0 20px white,0 0 40px white;
-    transform:rotate(20deg);
+/* Rayo en lado oscuro */
+.cover-right::after {
+    content: "";
+    position: absolute;
+    width: 4px;
+    height: 300px;
+    background: linear-gradient(white, transparent);
+    box-shadow: 0 0 20px white;
+    transform: rotate(20deg);
 }
 
-/* PÁGINAS */
-.pages{
-    width:100%;
-    height:100%;
-    display:flex;
-    flex-wrap:wrap;
-    overflow:auto;
-    background:#c9a96a;
-    padding:20px;
-    box-shadow: inset 0 0 50px rgba(0,0,0,0.8);
+/* Título */
+.title {
+    position: absolute;
+    bottom: 40px;
+    width: 100%;
+    text-align: center;
+    font-family: 'UnifrakturCook', cursive;
+    font-size: 40px;
+    color: #fff;
 }
 
 /* PERGAMINO */
-.page{
-    width:45%;
-    margin:2%;
-    padding:20px;
-    background:linear-gradient(#f5e3b3,#e0c48a);
-    box-shadow:0 0 10px rgba(0,0,0,0.5);
-    border-radius:5px;
-    color:#2b1a0f;
-    line-height:1.6;
-    font-size:18px;
+.scroll {
+    background: #f5e6c8;
+    color: #2b1b0f;
+    padding: 60px;
+    max-width: 900px;
+    margin: 50px auto;
+    border: 10px solid #d2b48c;
+    box-shadow: 0 0 40px rgba(0,0,0,0.7);
+    line-height: 1.8;
+    font-size: 20px;
+    border-radius: 10px;
+}
+
+/* efecto envejecido */
+.scroll::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* párrafos */
+p {
+    margin-bottom: 20px;
 }
 </style>
 </head>
 
 <body>
 
-<div class="book">
-
-    <!-- PORTADA -->
-    <div class="cover" onclick="abrirLibro(this)">
-        <div class="cover-left"></div>
-        <div class="cover-right"></div>
-    </div>
-
-    <!-- PÁGINAS -->
-    <div class="pages">
-
-        <div class="page">
-En un rincón olvidado del mundo, donde la luz apenas se atrevía a entrar, vivía un monstruo.
-        </div>
-
-        <div class="page">
-No era solo su forma lo que lo hacía temible. Era su existencia misma.
-        </div>
-
-        <div class="page">
-No tenía nombre. No tenía voz.
-Solo existía… condenado a una soledad infinita.
-        </div>
-
-        <div class="page">
-Hasta que un día… una luz descendió.
-        </div>
-
-        <div class="page">
-No fue un milagro imponente.
-Fue algo suave… casi tímido.
-        </div>
-
-        <div class="page">
-Y de ese suspiro… apareció ella.
-Un ángel.
-        </div>
-
-        <div class="page">
-Ella lo miró.
-No con miedo. No con rechazo.
-        </div>
-
-        <div class="page">
-Sino con algo que el monstruo no supo reconocer.
-        </div>
-
-        <div class="page">
-Día tras día… ella hablaba.
-Y él escuchaba.
-        </div>
-
-        <div class="page">
-Hasta que un día…
-Él respondió.
-        </div>
-
-        <div class="page">
-No fue perfecto.
-Pero fue suyo.
-        </div>
-
-        <div class="page">
-Y el ángel… sonrió.
-Ese fue el inicio.
-        </div>
-
-        <div class="page">
-El monstruo comenzó a cambiar.
-        </div>
-
-        <div class="page">
-Pero cada vez que ella se iba…
-todo se rompía.
-        </div>
-
-        <div class="page">
-—Hazlo por ti —dijo el ángel.
-        </div>
-
-        <div class="page">
-Y por primera vez…
-eligió avanzar.
-        </div>
-
-        <div class="page">
-No importaba fallar.
-No importaba caer.
-        </div>
-
-        <div class="page">
-Solo importaba no huir.
-        </div>
-
-        <div class="page">
-Extendió la mano.
-Temblando.
-        </div>
-
-        <div class="page">
-Y en ese instante…
-todo cambió.
-        </div>
-
-        <div class="page">
-Porque ahora…
-cuando las sombras lo llaman…
-        </div>
-
-        <div class="page">
-ya no responde de inmediato.
-        </div>
-
-        <div class="page">
-Y en ese pequeño instante…
-        </div>
-
-        <div class="page">
-vive algo nuevo.
-Algo frágil.
-        </div>
-
-        <div class="page">
-Algo peligroso.
-        </div>
-
-        <div class="page">
-Algo de amor.
-        </div>
-
-    </div>
-
+<!-- PORTADA -->
+<div class="cover">
+    <div class="cover-left"></div>
+    <div class="cover-right"></div>
+    <div class="title">El Monstruo y el Ángel</div>
 </div>
 
-<script>
-function abrirLibro(el){
-    el.classList.toggle("open");
-}
-</script>
+<!-- PERGAMINO -->
+<div class="scroll">
+
+<p>En un rincón olvidado del mundo, donde la luz apenas se atrevía a entrar, vivía un monstruo.</p>
+
+<p>No era solo su forma lo que lo hacía temible. Era su existencia misma. Una presencia que parecía no pertenecer a ningún lugar, como si el mundo lo hubiera creado… y luego abandonado.</p>
+
+<p>Su cuerpo era grotesco, deforme, cubierto de sombras que parecían respirar con él. Su piel era áspera, su mirada vacía, y su presencia hacía que incluso el viento evitara tocarlo.</p>
+
+<p>No tenía nombre, porque nadie se lo había dado.<br>
+No tenía voz, porque nunca hubo alguien que quisiera oírlo.</p>
+
+<p>Solo existía… condenado a una soledad que no entendía, pero que lo consumía.</p>
+
+<p>Los días pasaban… y nunca cambió.</p>
+
+<p>Hasta que un día… una luz descendió.</p>
+
+<p>No fue un estruendo. Fue algo suave… como si el cielo hubiese suspirado.</p>
+
+<p>Y de ese suspiro… apareció ella.</p>
+
+<p>Un ángel.</p>
+
+<p>Cabello rubio como la luz del amanecer… ojos verdes llenos de vida.</p>
+
+<p>Se posó en la distancia.</p>
+
+<p>Y lo miró.</p>
+
+<p>No con miedo.<br>
+No con rechazo.<br>
+Sino con algo que el monstruo no supo reconocer.</p>
+
+<p>Y así comenzaron los días…</p>
+
+<p>Ella hablaba.<br>
+Él escuchaba.</p>
+
+<p>Hasta que un día…</p>
+
+<p>—¿Nunca vas a decir nada?</p>
+
+<p>Y por primera vez… lo intentó.</p>
+
+<p>Un sonido roto… pero suyo.</p>
+
+<p>Y el ángel… sonrió.</p>
+
+<p>Ese fue el inicio.</p>
+
+<p>El monstruo comenzó a cambiar.</p>
+
+<p>Aprendió a acercarse.<br>
+Aprendió a sentir.</p>
+
+<p>Pero cuando ella se iba…</p>
+
+<p>Todo se rompía.</p>
+
+<p>El monstruo regresaba.</p>
+
+<p>Hasta que un día…</p>
+
+<p>—Hazlo por ti.</p>
+
+<p>Y se alejó.</p>
+
+<p>Entonces… él eligió.</p>
+
+<p>Dio un paso.</p>
+
+<p>Luego otro.</p>
+
+<p>Hasta que estuvo frente a ella.</p>
+
+<p>Extendió la mano.</p>
+
+<p>Temblando.</p>
+
+<p>Sin palabras.</p>
+
+<p>Pero esta vez… no huía.</p>
+
+<p>Y quizás… eso era lo más importante.</p>
+
+<hr>
+
+<p>Se dice que el monstruo aún lucha.</p>
+
+<p>Pero ahora… cuando las sombras lo llaman…</p>
+
+<p>ya no responde de inmediato.</p>
+
+<p>Y en ese instante de duda…</p>
+
+<p>vive algo nuevo.</p>
+
+<p>Algo frágil.</p>
+
+<p>Algo peligroso.</p>
+
+<p>Algo de amor.</p>
+
+</div>
 
 </body>
 </html>
