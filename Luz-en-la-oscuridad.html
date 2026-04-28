@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carta Cinematográfica</title>
+
+<style>
+body {
+    margin: 0;
+    background: radial-gradient(circle at center, #0a0a0a, #000);
+    font-family: 'Georgia', serif;
+    color: #d4af37;
+    overflow-x: hidden;
+}
+
+/* Fondo con movimiento */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.05) 0%, transparent 60%);
+    animation: moveBg 20s linear infinite;
+}
+
+@keyframes moveBg {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-10%, -10%); }
+    100% { transform: translate(0,0); }
+}
+
+/* Contenedor */
+.container {
+    width: 70%;
+    margin: auto;
+    padding: 120px 0;
+    position: relative;
+    z-index: 2;
+}
+
+/* Texto */
+.text {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1.8s ease;
+    line-height: 1.8;
+    font-size: 1.2em;
+    margin-bottom: 25px;
+    white-space: pre-wrap;
+
+    text-shadow:
+        0 0 5px #d4af37,
+        0 0 15px rgba(212,175,55,0.8),
+        0 0 30px rgba(212,175,55,0.5);
+
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow:
+            0 0 5px #d4af37,
+            0 0 10px rgba(212,175,55,0.5);
+    }
+    to {
+        text-shadow:
+            0 0 10px #d4af37,
+            0 0 25px rgba(212,175,55,1),
+            0 0 40px rgba(212,175,55,0.7);
+    }
+}
+
+.text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Partículas */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    pointer-events: none;
+}
+</style>
+
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="container" id="text-container"></div>
+
+<script>
+// TEXTO (sin cambios)
+const texto = `En un rincón del mundo donde nadie miraba demasiado, existía un pequeño ser.
+
+No tenía nombre, ni forma definida. Era apenas una presencia tenue, casi invisible, que flotaba entre las personas sin que estas lo notaran. Había nacido —si es que podía llamarse así— de algo oscuro, y desde entonces solo conocía una forma de existir: alimentándose de las emociones negativas de quienes lo rodeaban.
+
+La tristeza lo sostenía.
+El miedo lo fortalecía.
+La ira lo hacía crecer, aunque fuera un poco.
+
+No entendía esas emociones, no las cuestionaba. Para él, eran simplemente… alimento. Era lo único que conocía. Lo único que era.
+
+Y así vivió durante lo que parecían eternidades.
+
+Hasta que un día, algo cambió.
+
+La vio.
+
+Era una chica común a simple vista. Caminaba entre la gente como cualquiera, pero había algo en ella… algo que el pequeño ser no lograba comprender. Se acercó, como hacía siempre, buscando nutrirse de aquello que las personas llevaban dentro.
+
+Pero no encontró tristeza.
+No encontró miedo.
+No encontró odio.
+
+Encontró algo distinto.
+
+Era una energía cálida. Suave. Brillante.
+
+No quemaba, no dolía… pero tampoco lo alimentaba como las otras. Y aun así, le gustaba.
+
+No sabía cómo describirlo. No tenía palabras para eso. Pero por primera vez, no se sintió vacío.
+
+Desde ese día, comenzó a seguirla.
+
+Al principio, a la distancia. Luego, cada vez más cerca.
+
+La chica no podía verlo, pero a veces parecía sentirlo. Se detenía, miraba a su alrededor, y sonreía sin razón aparente. Y cada vez que lo hacía, ese calor volvía… envolviéndolo.
+
+Con el tiempo, el pequeño ser empezó a cambiar.
+
+Ya no solo existía.
+Ahora… sentía.
+
+Sentía calma cuando estaba cerca de ella.
+Sentía algo parecido a la alegría cuando ella reía.
+Y por primera vez, sintió miedo… pero no del mundo.
+
+Miedo a perder eso.
+
+Y fue entonces cuando ocurrió.
+
+Un día… ella desapareció.
+
+No hubo despedida.
+No hubo explicación.
+
+Simplemente… ya no estaba.
+
+El pequeño ser la buscó.
+
+Entre la multitud, en los rincones donde solía encontrarla, en cada lugar donde alguna vez sintió esa calidez. Pero no había rastro de ella. Nada.
+
+Y entonces… todo lo que había contenido durante tanto tiempo, estalló.
+
+Toda la tristeza que había absorbido.
+Todo el dolor.
+Toda la oscuridad.
+
+Salió de él como un rayo violento, formando una cúpula negra a su alrededor.
+
+El mundo se volvió gris.
+Apagado.
+Pesado.
+
+Como siempre lo había sido… antes de conocerla.
+
+Y allí quedó.
+
+Solo.
+
+Encerrado en su propia naturaleza.
+
+El tiempo dejó de tener sentido. Días, años… tal vez siglos. Nada cambiaba. Nada mejoraba.
+
+Hasta que, un día… sin aviso alguno…
+
+Una luz apareció.
+
+Débil al principio. Lejana.
+
+Pero avanzaba.
+
+Era ella.
+
+Había regresado.
+
+Caminaba dentro de aquella oscuridad como si no pudiera tocarla. A cada paso, el mundo recuperaba un poco de color. El aire se volvía más ligero. La sombra retrocedía.
+
+Pero el centro… seguía siendo el mismo.
+
+Allí estaba él.
+
+Más grande ahora. Más denso. Más roto.
+
+Ella lo vio.
+
+Y sin dudarlo, corrió hacia él.
+
+Lo abrazó.
+
+No dijo nada al principio. Solo lo sostuvo, con fuerza, como si temiera que desapareciera.
+
+El pequeño ser no reaccionó de inmediato. Había pasado demasiado tiempo en la oscuridad. Demasiado tiempo sintiendo solo lo peor del mundo.
+
+Pero entonces…
+
+Sintió algo.
+
+Ese calor.
+
+Esa presencia.
+
+Esa emoción que no sabía nombrar… pero que recordaba perfectamente.
+
+Lentamente… despertó.
+
+La oscuridad comenzó a resquebrajarse.
+
+La cúpula tembló.
+
+Y por primera vez desde que había nacido… el pequeño ser hizo algo distinto.
+
+No absorbió.
+
+Devolvió.
+
+La abrazó.
+
+Y en ese instante, algo dentro de él cambió para siempre.
+
+La oscuridad no desapareció por completo… pero dejó de controlarlo.
+
+Porque ahora, dentro de él, también existía esa otra energía.
+
+Esa que había aprendido gracias a ella.
+
+El mundo, poco a poco, volvió a tener color.
+
+Y el pequeño ser… ya no era solo un ser que sobrevivía del dolor ajeno.
+
+Ahora… era alguien capaz de sentir, de elegir… y de amar.
+
+Desde ese día, nunca volvieron a separarse.
+
+Y aunque la sombra seguía siendo parte de él, ya no lo definía.
+
+Porque cada vez que el mundo se volvía gris…
+
+Ella estaba ahí.
+
+Y él también.
+
+Sosteniéndose mutuamente.
+
+Iluminándose.
+
+Como si, entre los dos… hubieran aprendido a crear algo que ni la oscuridad más profunda podía consumir.`;
+
+// Crear párrafos
+const container = document.getElementById("text-container");
+texto.split("\n\n").forEach(parte => {
+    const p = document.createElement("p");
+    p.classList.add("text");
+    p.textContent = parte;
+    container.appendChild(p);
+});
+
+// Scroll reveal
+const elementos = document.querySelectorAll('.text');
+
+function mostrarTexto() {
+    const trigger = window.innerHeight * 0.9;
+    elementos.forEach(el => {
+        if (el.getBoundingClientRect().top < trigger) {
+            el.classList.add('visible');
+        }
+    });
+}
+
+window.addEventListener('scroll', mostrarTexto);
+window.addEventListener('load', mostrarTexto);
+
+// Partículas
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        d: Math.random() * 1
+    });
+}
+
+function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "rgba(212,175,55,0.7)";
+    particles.forEach(p => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+    });
+    updateParticles();
+}
+
+function updateParticles() {
+    particles.forEach(p => {
+        p.y -= p.d;
+        if (p.y < 0) {
+            p.y = canvas.height;
+            p.x = Math.random() * canvas.width;
+        }
+    });
+}
+
+setInterval(drawParticles, 30);
+</script>
+
+</body>
+</html>
