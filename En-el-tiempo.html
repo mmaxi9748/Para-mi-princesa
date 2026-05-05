@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mensajes que no deberían existir</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Georgia', serif;
+    background: #0a0a12;
+    color: #e6e6e6;
+    overflow-x: hidden;
+}
+
+/* 🌌 Iluminación animada */
+body::before {
+    content: "";
+    position: fixed;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(100,100,255,0.08), transparent 40%),
+                radial-gradient(circle at 70% 60%, rgba(255,100,150,0.06), transparent 40%);
+    animation: glowMove 20s linear infinite;
+    z-index: -2;
+}
+
+@keyframes glowMove {
+    0% { transform: translate(0,0); }
+    50% { transform: translate(-10%, -10%); }
+    100% { transform: translate(0,0); }
+}
+
+/* ✨ Partículas */
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+/* 📖 Contenedor */
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 50px 20px;
+}
+
+/* Título */
+h1 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.3em;
+}
+
+/* Texto */
+p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: 1s;
+}
+
+/* 💬 Mensajes */
+.mensaje {
+    padding: 12px 16px;
+    border-radius: 12px;
+    margin: 10px 0;
+    max-width: 70%;
+    opacity: 0;
+    transform: translateY(15px);
+    transition: 0.8s;
+}
+
+.el {
+    background: rgba(120, 60, 60, 0.4);
+    margin-left: auto;
+}
+
+.ella {
+    background: rgba(60, 80, 120, 0.4);
+}
+
+/* Animación visible */
+.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Separador */
+.separador {
+    text-align: center;
+    margin: 30px 0;
+    opacity: 0.4;
+}
+
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="container">
+<h1>Mensajes que no deberían existir</h1>
+
+<p>El chico nunca creyó demasiado en las casualidades. Su vida era una repetición tranquila y silenciosa de días iguales: despertarse, cumplir con sus responsabilidades, volver a casa y distraerse con cualquier cosa hasta que el cansancio lo vencía. No era infeliz… pero tampoco sentía que algo importante estuviera ocurriendo.</p>
+
+<p>Por eso, cuando encontró aquel celular viejo en una feria, no le dio demasiada importancia. Lo compró casi por impulso. Era barato, estaba algo gastado… pero había algo en él que le llamó la atención sin motivo claro.</p>
+
+<p>Esa misma noche decidió encenderlo.</p>
+
+<p>La pantalla tardó en responder. Cuando finalmente lo hizo, algo no encajaba: la fecha estaba mal. Marcaba varios años atrás.</p>
+
+<p>Intentó cambiarla, pero el sistema no reaccionaba.
+Resignado, lo dejó a un lado.</p>
+
+<p>Hasta que vibró.</p>
+
+<p>El chico lo miró fijamente. Nadie tenía ese número.
+Aun así, lo tomó.</p>
+
+<p>Había un mensaje.</p>
+
+<div class="mensaje ella">¿Hola? ¿Quién sos? Este no es el número de mi amigo…</div>
+<div class="mensaje el">Creo que te equivocaste.</div>
+<div class="mensaje ella">Qué raro… estaba hablando con él hace nada. ¿Seguro?</div>
+<div class="mensaje el">Sí.</div>
+<div class="mensaje ella">Bueno… perdón</div>
+
+<p>El chico se quedó mirando la pantalla. Podía dejarlo ahí.
+Pero no lo hizo.</p>
+
+<div class="mensaje el">No pasa nada.</div>
+<div class="mensaje ella">¿Cómo te llamás?</div>
+<div class="mensaje el">Tampoco.</div>
+<div class="mensaje ella">Entonces estamos a mano.</div>
+
+<div class="separador">•••</div>
+
+<p>Y sin proponérselo, empezaron a hablar.</p>
+
+<p>Al principio eran mensajes sueltos.
+Después, conversaciones diarias.</p>
+
+<p>Ella le contaba cosas simples: cómo había sido su día, lo que pensaba mientras caminaba, las pequeñas cosas que le hacían reír.
+Él, que no solía abrirse con nadie, empezó a responder más de lo que esperaba.</p>
+
+<p>Sin verse. Sin conocerse realmente.
+Pero cada vez más cerca.</p>
+
+<p>Había algo en la forma en que ella escribía… una naturalidad que lo desarmaba.</p>
+
+<div class="mensaje ella">Siento como si ya te conociera.</div>
+<div class="mensaje el">Yo también.</div>
+
+<p>Y por primera vez en mucho tiempo, lo sintió de verdad.</p>
+
+<p>Con el paso de los días, algo empezó a incomodarlo.</p>
+
+<p>Detalles pequeños.</p>
+
+<p>Ella mencionaba cosas que no coincidían.
+Eventos que, según él, habían ocurrido hace años… pero para ella eran recientes.</p>
+
+<p>Al principio pensó que era confusión.
+Hasta que decidió comprobarlo.</p>
+
+<div class="mensaje el">Eso fue hace años.</div>
+<div class="mensaje ella">No… pasó hace unos días.</div>
+
+<p>El chico sintió un vacío en el pecho.</p>
+
+<p>Revisó el celular otra vez.
+La fecha seguía mal.</p>
+
+<p>Pero… ¿y si no era un error?</p>
+
+<p>Pasaron horas de mensajes intentando entenderlo.</p>
+
+<p>Compararon fechas.
+Hechos.
+Recuerdos.</p>
+
+<p>Hasta que ya no hubo duda.</p>
+
+<p>Estaban en tiempos distintos.</p>
+
+<p>Lejos de asustarlos, eso los unió más.</p>
+
+<p>Era absurdo. Imposible.
+Pero también… único.</p>
+
+<p>Hablar con alguien que no pertenecía a su tiempo se volvió lo más importante del día.</p>
+
+<p>Se contaban todo.
+Miedos. Sueños. Cosas que nunca habían dicho en voz alta.</p>
+
+<p>Y sin decirlo directamente, lentamente algo sucedia dentro de cada uno.</p>
+
+<p>Hasta que el chico decidió buscarla.</p>
+
+<p>No podía quedarse solo con los mensajes.</p>
+
+<p>Necesitaba saber quién era realmente.</p>
+
+<p>Y la encontró.</p>
+
+<p>No a ella… sino su rastro.</p>
+
+<p>Una noticia.</p>
+
+<p>Un accidente.</p>
+
+<p>Un nombre que coincidía.</p>
+
+<p>Una fecha.</p>
+
+<p>Sintió cómo el cuerpo se le helaba.</p>
+
+<p>Era pronto.
+Demasiado pronto</p>
+
+<div class="mensaje ella">¿Te pasa algo?</div>
+<div class="mensaje el">No.</div>
+<div class="mensaje ella">No te creo.</div>
+<div class="mensaje ella">Siento que me estás ocultando algo.</div>
+
+<p>El chico apretó el teléfono con fuerza.</p>
+
+<p>Tenía miedo.</p>
+
+<p>No de perderla…
+Sino de que, al intentar salvarla, la perdiera igual.</p>
+
+<p>Pasaron días tensos.</p>
+
+<p>Ella insistía.
+Él evitaba.</p>
+
+<div class="mensaje el">Va a pasarte algo.</div>
+<div class="mensaje ella">¿Qué?</div>
+<div class="mensaje el">Un accidente.</div>
+<div class="mensaje ella">Eso no es gracioso.</div>
+<div class="mensaje el">No estoy bromeando.</div>
+<div class="mensaje ella">¿Cómo lo sabés?</div>
+<div class="mensaje el">Porque para mí… ya pasó.</div>
+
+<p>Después de eso, nada volvió a ser igual.</p>
+
+<p>Ella no sabía si creerle.
+Pero el miedo empezó a crecer.</p>
+
+<p>Y él tampoco sabía si había hecho lo correcto.</p>
+
+<p>Intentaron evitarlo.</p>
+
+<p>Cambiar decisiones.
+Evitar lugares.
+Modificar rutinas.</p>
+
+<p>Pero cada cambio parecía llevar al mismo punto.</p>
+
+<p>Como si el tiempo no quisiera ser alterado.</p>
+
+<p>Como si todo ya estuviera escrito.</p>
+
+<p>El día llegó.</p>
+
+<div class="mensaje ella">Creo que ya sé a qué te referías…</div>
+<div class="mensaje el">Salí de ahí.</div>
+<div class="mensaje ella">Estoy intentando…</div>
+<div class="mensaje el">Por favor</div>
+
+<p>Hubo un silencio largo.</p>
+
+<p>Demasiado largo.</p>
+
+<p>El chico sintió que el aire desaparecía.</p>
+
+<div class="mensaje ella">Gracias por haberme encontrado</div>
+
+<p>La pantalla quedó en silencio.</p>
+
+<p>El celular nunca volvió a vibrar.</p>
+
+<p>Pasaron meses.</p>
+
+<p>El chico siguió con su vida… o al menos lo intentó.</p>
+
+<p>Nada era igual.</p>
+
+<p>Había aprendido algo que no podía olvidar:
+que incluso algo imposible podía sentirse más real que todo lo demás.</p>
+
+<p>Años después, una tarde cualquiera, caminando sin rumbo, la vio.</p>
+
+<p>Era ella.</p>
+
+<p>Sin dudas.</p>
+
+<p>El mismo gesto.
+La misma forma de mirar.</p>
+
+<p>El corazón le golpeó con fuerza.</p>
+
+<p>Se acercó.</p>
+
+<p>Ella lo miró, confundida.</p>
+
+<p>Como a un desconocido.</p>
+
+<p>Y lo era.</p>
+
+<p>Para ella, él no existía.</p>
+
+<p>Nunca había existido.</p>
+
+<p>El chico sonrió, aunque le doliera.</p>
+
+<p>No dijo nada.</p>
+
+<p>No hacía falta.</p>
+
+<p>Porque, por un instante…
+ella también dudó.</p>
+
+<p>Como si algo dentro suyo reconociera algo que no podía explicar.</p>
+
+<p>Y aunque el tiempo los había separado…
+algo de esa historia seguía ahí.</p>
+
+<p>Invisible.</p>
+
+<p>Pero imposible de borrar.</p>
+
+</div>
+
+<script>
+// partículas
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for (let i = 0; i < 80; i++) {
+    particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 2,
+        s: Math.random() * 0.5
+    });
+}
+
+function animate() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+        p.y -= p.s;
+        if(p.y < 0) p.y = canvas.height;
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fillStyle="rgba(255,255,255,0.3)";
+        ctx.fill();
+    });
+    requestAnimationFrame(animate);
+}
+animate();
+
+// aparición al hacer scroll
+const elements = document.querySelectorAll("p, .mensaje");
+
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add("visible");
+        }
+    });
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
+
+</body>
+  </html>
