@@ -6,6 +6,7 @@
 <title>El Caballero Maldito</title>
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -20,7 +21,7 @@ body{
     justify-content:center;
     align-items:center;
     overflow:hidden;
-    font-family: "Georgia", serif;
+    font-family:Georgia, serif;
     color:#f1f1f1;
 }
 
@@ -41,15 +42,13 @@ body{
     position:absolute;
     background:
     linear-gradient(to right,#1a1a27,#25253b);
-    border-radius:15px;
+    border-radius:18px;
     padding:50px;
     box-shadow:
-    0 0 30px rgba(0,0,0,0.6),
+    0 0 35px rgba(0,0,0,0.7),
     inset 0 0 40px rgba(255,255,255,0.03);
-    transform-origin:left;
-    transition:transform 1s;
-    backface-visibility:hidden;
     overflow:hidden;
+    transition:1s;
 }
 
 .page::before{
@@ -58,7 +57,7 @@ body{
     inset:0;
     background:
     url('https://www.transparenttextures.com/patterns/stardust.png');
-    opacity:0.15;
+    opacity:0.12;
 }
 
 .page-content{
@@ -91,7 +90,7 @@ body{
 .cover h1{
     font-size:3rem;
     letter-spacing:3px;
-    color:#e9e9ff;
+    color:#f0f0ff;
     text-shadow:
     0 0 10px rgba(255,255,255,0.2),
     0 0 30px rgba(130,130,255,0.3);
@@ -99,47 +98,21 @@ body{
 
 .cover p{
     margin-top:20px;
-    color:#aaa;
+    color:#b5b5d6;
     font-size:1rem;
 }
 
 .text{
+    white-space:pre-line;
     line-height:1.9;
     font-size:1.05rem;
-    white-space:pre-line;
-}
-
-.controls{
-    position:absolute;
-    bottom:20px;
-    width:100%;
-    display:flex;
-    justify-content:center;
-    gap:20px;
-}
-
-button{
-    background:#232338;
-    color:white;
-    border:none;
-    padding:12px 25px;
-    border-radius:30px;
-    cursor:pointer;
-    transition:0.3s;
-    font-size:1rem;
-    box-shadow:0 0 15px rgba(0,0,0,0.4);
-}
-
-button:hover{
-    background:#3b3b5a;
-    transform:scale(1.05);
 }
 
 .page-number{
     position:absolute;
     bottom:20px;
     right:30px;
-    color:#999;
+    color:#8d8da7;
     font-size:0.9rem;
 }
 
@@ -147,26 +120,39 @@ button:hover{
     position:absolute;
     width:500px;
     height:500px;
-    background:radial-gradient(circle,rgba(120,120,255,0.12),transparent 70%);
-    filter:blur(20px);
+    border-radius:50%;
+    filter:blur(40px);
     z-index:-1;
 }
 
 .glow.one{
+    background:rgba(118,118,255,0.12);
     top:-150px;
     left:-150px;
 }
 
 .glow.two{
+    background:rgba(255,255,255,0.05);
     bottom:-150px;
     right:-150px;
+}
+
+.tap-hint{
+    position:absolute;
+    bottom:20px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#9c9cbc;
+    font-size:0.9rem;
+    opacity:0.7;
+    z-index:10;
 }
 
 @media(max-width:900px){
 
 .book{
     width:95vw;
-    height:85vh;
+    height:90vh;
 }
 
 .cover h1{
@@ -176,7 +162,9 @@ button:hover{
 .text{
     font-size:0.95rem;
 }
+
 }
+
 </style>
 </head>
 
@@ -190,14 +178,20 @@ button:hover{
 <div class="book">
 
 <div class="page cover" id="cover">
+
 <div>
 <h1>EL CABALLERO MALDITO</h1>
 <p>Toca para abrir el libro</p>
 </div>
+
 </div>
 
+<!-- PAGINA 1 -->
+
 <div class="page" id="page1" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 En un reino donde la luz era considerada sagrada, existía un hombre al que todos temían mirar.
 No llevaba corona.
@@ -227,12 +221,18 @@ Y cada vez que usaba ese poder… sentía cómo algo dentro suyo dejaba de ser h
 Aun así, siguió luchando.
 Porque el reino todavía necesitaba un monstruo que peleara por ellos.
 </div>
+
 <div class="page-number">Página 1</div>
+
 </div>
 </div>
 
+<!-- PAGINA 2 -->
+
 <div class="page" id="page2" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 Muy lejos del miedo y de la oscuridad existía alguien completamente distinta.
 
@@ -266,12 +266,18 @@ La chica estaba arrodillada junto a unas flores nocturnas intentando protegerlas
 No parecía una santa en ese momento.
 Parecía simplemente alguien amable.
 </div>
+
 <div class="page-number">Página 2</div>
+
 </div>
 </div>
 
+<!-- PAGINA 3 -->
+
 <div class="page" id="page3" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 Ella notó su presencia y levantó lentamente la mirada.
 
@@ -307,12 +313,18 @@ Con el paso de las semanas comenzó a dejar flores negras frente a la puerta de 
 Siempre de noche.
 Siempre sin ser visto.
 </div>
+
 <div class="page-number">Página 3</div>
+
 </div>
 </div>
 
+<!-- PAGINA 4 -->
+
 <div class="page" id="page4" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 Flores extrañas que solamente crecían en lugares donde la maldición dejaba rastros.
 
@@ -347,12 +359,18 @@ Y por primera vez entendió algo.
 
 Aquel hombre que todos odiaban estaba destruyéndose lentamente para proteger personas que jamás le agradecerían nada.
 </div>
+
 <div class="page-number">Página 4</div>
+
 </div>
 </div>
 
+<!-- PAGINA 5 -->
+
 <div class="page" id="page5" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 Esa noche llovió con fuerza.
 
@@ -393,12 +411,18 @@ Y él tembló.
 
 Porque nunca experimento esa sensación de ser tocado con tanta delicadeza.
 </div>
+
 <div class="page-number">Página 5</div>
+
 </div>
 </div>
 
+<!-- PAGINA 6 -->
+
 <div class="page" id="page6" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 Desde entonces ella comenzó a visitarlo.
 
@@ -435,12 +459,18 @@ Y se odió por eso.
 
 Porque sabía que no tenía derecho a sentir algo así.
 </div>
+
 <div class="page-number">Página 6</div>
+
 </div>
 </div>
 
+<!-- PAGINA 7 -->
+
 <div class="page" id="page7" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 Con el tiempo comenzaron a surgir rumores.
 
@@ -481,12 +511,18 @@ Demasiado tranquilo.
 
 —Porque si huyo… el reino te odiará contigo.
 </div>
+
 <div class="page-number">Página 7</div>
+
 </div>
 </div>
 
+<!-- PAGINA 8 -->
+
 <div class="page" id="page8" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 La chica apretó sus manos temblando.
 
@@ -522,12 +558,18 @@ El aire pareció detenerse.
 
 Ella abrió los labios intentando responder algo… pero ninguna palabra salió.
 </div>
+
 <div class="page-number">Página 8</div>
+
 </div>
 </div>
 
+<!-- PAGINA 9 -->
+
 <div class="page" id="page9" style="display:none;">
+
 <div class="page-content">
+
 <div class="text">
 Porque en el fondo ambos entendían la verdad.
 
@@ -567,24 +609,31 @@ Como si incluso morir fuera algo aceptable mientras ella siguiera viva.
 
 Y mientras los soldados avanzaban hacia él bajo la nieve… la chica comprendió demasiado tarde que el monstruo más humano del reino siempre había sido aquel hombre al que todos temían.
 </div>
+
 <div class="page-number">Final</div>
+
 </div>
 </div>
 
+<div class="tap-hint">
+Toca el lado derecho para avanzar y el izquierdo para volver
 </div>
 
-<div class="controls">
-<button onclick="prevPage()">◀ Página anterior</button>
-<button onclick="nextPage()">Página siguiente ▶</button>
 </div>
-
 </div>
 
 <script>
 
 const pages = [
-"page1","page2","page3","page4",
-"page5","page6","page7","page8","page9"
+"page1",
+"page2",
+"page3",
+"page4",
+"page5",
+"page6",
+"page7",
+"page8",
+"page9"
 ];
 
 let currentPage = 0;
@@ -597,44 +646,67 @@ cover.addEventListener("click", () => {
     if(!opened){
 
         cover.style.transform = "rotateY(-180deg)";
-        
+
         setTimeout(() => {
+
             cover.style.display = "none";
             document.getElementById(pages[0]).style.display = "block";
+
         },900);
 
         opened = true;
     }
+
 });
 
 function showPage(index){
 
-    pages.forEach(page=>{
+    pages.forEach(page => {
         document.getElementById(page).style.display = "none";
     });
 
     document.getElementById(pages[index]).style.display = "block";
 }
 
-function nextPage(){
+/* TOCAR PANTALLA */
+
+document.addEventListener("click", (e) => {
 
     if(!opened) return;
 
-    if(currentPage < pages.length -1){
-        currentPage++;
-        showPage(currentPage);
+    if(e.target.closest(".page-content")){
+
+        const width = window.innerWidth;
+
+        /* DERECHA = SIGUIENTE */
+
+        if(e.clientX > width / 2){
+
+            if(currentPage < pages.length - 1){
+
+                currentPage++;
+                showPage(currentPage);
+
+            }
+
+        }
+
+        /* IZQUIERDA = ANTERIOR */
+
+        else{
+
+            if(currentPage > 0){
+
+                currentPage--;
+                showPage(currentPage);
+
+            }
+
+        }
+
     }
-}
 
-function prevPage(){
-
-    if(!opened) return;
-
-    if(currentPage > 0){
-        currentPage--;
-        showPage(currentPage);
-    }
-}
+});
 
 </script>
 
