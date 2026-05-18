@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Caballero Maldito</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:
+    radial-gradient(circle at top,#2a2a3f,#0c0c16 70%);
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    font-family: "Georgia", serif;
+    color:#f1f1f1;
+}
+
+.book-container{
+    perspective:2500px;
+}
+
+.book{
+    width:850px;
+    height:550px;
+    position:relative;
+    transform-style:preserve-3d;
+}
+
+.page{
+    width:100%;
+    height:100%;
+    position:absolute;
+    background:
+    linear-gradient(to right,#1a1a27,#25253b);
+    border-radius:15px;
+    padding:50px;
+    box-shadow:
+    0 0 30px rgba(0,0,0,0.6),
+    inset 0 0 40px rgba(255,255,255,0.03);
+    transform-origin:left;
+    transition:transform 1s;
+    backface-visibility:hidden;
+    overflow:hidden;
+}
+
+.page::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:
+    url('https://www.transparenttextures.com/patterns/stardust.png');
+    opacity:0.15;
+}
+
+.page-content{
+    position:relative;
+    z-index:2;
+    height:100%;
+    overflow-y:auto;
+    padding-right:10px;
+}
+
+.page-content::-webkit-scrollbar{
+    width:6px;
+}
+
+.page-content::-webkit-scrollbar-thumb{
+    background:#666;
+    border-radius:10px;
+}
+
+.cover{
+    background:
+    linear-gradient(145deg,#111,#1c1c2c,#0f0f18);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    cursor:pointer;
+}
+
+.cover h1{
+    font-size:3rem;
+    letter-spacing:3px;
+    color:#e9e9ff;
+    text-shadow:
+    0 0 10px rgba(255,255,255,0.2),
+    0 0 30px rgba(130,130,255,0.3);
+}
+
+.cover p{
+    margin-top:20px;
+    color:#aaa;
+    font-size:1rem;
+}
+
+.text{
+    line-height:1.9;
+    font-size:1.05rem;
+    white-space:pre-line;
+}
+
+.controls{
+    position:absolute;
+    bottom:20px;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
+
+button{
+    background:#232338;
+    color:white;
+    border:none;
+    padding:12px 25px;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s;
+    font-size:1rem;
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
+}
+
+button:hover{
+    background:#3b3b5a;
+    transform:scale(1.05);
+}
+
+.page-number{
+    position:absolute;
+    bottom:20px;
+    right:30px;
+    color:#999;
+    font-size:0.9rem;
+}
+
+.glow{
+    position:absolute;
+    width:500px;
+    height:500px;
+    background:radial-gradient(circle,rgba(120,120,255,0.12),transparent 70%);
+    filter:blur(20px);
+    z-index:-1;
+}
+
+.glow.one{
+    top:-150px;
+    left:-150px;
+}
+
+.glow.two{
+    bottom:-150px;
+    right:-150px;
+}
+
+@media(max-width:900px){
+
+.book{
+    width:95vw;
+    height:85vh;
+}
+
+.cover h1{
+    font-size:2rem;
+}
+
+.text{
+    font-size:0.95rem;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow one"></div>
+<div class="glow two"></div>
+
+<div class="book-container">
+
+<div class="book">
+
+<div class="page cover" id="cover">
+<div>
+<h1>EL CABALLERO MALDITO</h1>
+<p>Toca para abrir el libro</p>
+</div>
+</div>
+
+<div class="page" id="page1" style="display:none;">
+<div class="page-content">
+<div class="text">
+En un reino donde la luz era considerada sagrada, existía un hombre al que todos temían mirar.
+No llevaba corona.
+No tenía un hogar.
+Y hacía mucho tiempo había dejado de ser tratado como un humano.
+
+La gente lo llamaba “el caballero maldito”.
+Decían que la oscuridad respiraba junto a él.
+Que las sombras se movían bajo sus pies.
+Que cualquier lugar donde apareciera terminaba cubierto de muerte.
+
+Los niños corrían a esconderse cuando lo veían pasar.
+Las personas cerraban puertas y ventanas.
+Incluso los soldados evitaban permanecer cerca demasiado tiempo.
+
+Pero nadie sabía la verdad.
+
+Años atrás, cuando el reino estuvo a punto de desaparecer por una guerra, fue él quien aceptó cargar una maldición prohibida para salvar a todos.
+
+La oscuridad le dio fuerza.
+Pero lentamente comenzó a devorar su cuerpo.
+
+Marcas negras cubrieron su piel como grietas.
+Sombras parecidas a alas nacían detrás de él cuando peleaba.
+Y cada vez que usaba ese poder… sentía cómo algo dentro suyo dejaba de ser humano.
+
+Aun así, siguió luchando.
+Porque el reino todavía necesitaba un monstruo que peleara por ellos.
+</div>
+<div class="page-number">Página 1</div>
+</div>
+</div>
+
+<div class="page" id="page2" style="display:none;">
+<div class="page-content">
+<div class="text">
+Muy lejos del miedo y de la oscuridad existía alguien completamente distinta.
+
+La santa del reino.
+Una chica de cabellos dorados que brillaban mas que el sol y de ojos verde esmeralda que ponian loco a mas de uno.
+
+Era admirada por todos.
+Su voz calmaba personas.
+Sus manos podían sanar heridas.
+Y allí donde caminaba, la gente sonreía.
+
+Ella vivía dentro de la enorme catedral blanca en el centro de la capital.
+Siempre rodeada de flores, luz y canciones.
+
+Era alguien que jamás debería cruzarse con alguien como él.
+
+Y sin embargo…
+él terminó enamorándose.
+
+Todo comenzó de forma absurda.
+
+Una noche, después de regresar de una batalla, el caballero pasó frente al jardín de la catedral.
+Estaba herido.
+Cubierto de sangre y barro.
+
+Pensó seguir caminando como siempre.
+Pero entonces la vio.
+
+La chica estaba arrodillada junto a unas flores nocturnas intentando protegerlas de la lluvia con sus propias manos.
+
+No parecía una santa en ese momento.
+Parecía simplemente alguien amable.
+</div>
+<div class="page-number">Página 2</div>
+</div>
+</div>
+
+<div class="page" id="page3" style="display:none;">
+<div class="page-content">
+<div class="text">
+Ella notó su presencia y levantó lentamente la mirada.
+
+El caballero esperaba ver miedo.
+Asco.
+Lo de siempre.
+
+Pero la chica solamente preguntó:
+
+—¿Estás herido?
+
+Él quedó en silencio.
+Nadie le preguntaba eso desde hacía años.
+
+—No es nada —respondió finalmente antes de alejarse.
+
+Pero esa noche, por primera vez en muchísimo tiempo… pensó en alguien antes de dormir.
+
+Desde entonces comenzó a verla constantemente.
+Desde lejos.
+
+Nunca se acercaba demasiado.
+A veces permanecía oculto sobre los tejados de la ciudad observando cómo ayudaba a niños enfermos.
+
+Otras veces la veía caminar por los jardines mientras hablaba con ancianos.
+
+Pequeñas escenas simples.
+Y aun así… él las guardaba como tesoros.
+
+Porque para alguien acostumbrado a la guerra, la destrucción y la soledad… verla sonreír se sentía como observar algo imposible.
+
+Con el paso de las semanas comenzó a dejar flores negras frente a la puerta de la catedral.
+Siempre de noche.
+Siempre sin ser visto.
+</div>
+<div class="page-number">Página 3</div>
+</div>
+</div>
+
+<div class="page" id="page4" style="display:none;">
+<div class="page-content">
+<div class="text">
+Flores extrañas que solamente crecían en lugares donde la maldición dejaba rastros.
+
+La chica nunca descubrió quién las dejaba.
+Pero empezó a guardarlas dentro de agua en su habitación.
+
+Y eso era suficiente para él.
+
+Una tarde el reino fue atacado por criaturas nacidas de la oscuridad.
+
+Monstruos enormes aparecieron entre la niebla destruyendo aldeas cercanas.
+
+Los soldados eran incapaces de detenerlas.
+La gente rezaba aterrada.
+
+Y entonces apareció él.
+
+Solo.
+Cubierto por sombras negras.
+
+Las criaturas se lanzaron contra el caballero como animales hambrientos.
+
+La batalla fue brutal.
+
+Cada golpe destruía monstruos… pero las marcas oscuras avanzaban más por su cuerpo.
+
+La maldición se alimentaba del combate.
+
+La chica observó todo desde las murallas del reino.
+
+Y por primera vez entendió algo.
+
+Aquel hombre que todos odiaban estaba destruyéndose lentamente para proteger personas que jamás le agradecerían nada.
+</div>
+<div class="page-number">Página 4</div>
+</div>
+</div>
+
+<div class="page" id="page5" style="display:none;">
+<div class="page-content">
+<div class="text">
+Esa noche llovió con fuerza.
+
+El caballero regresó gravemente herido.
+
+Intentó esconderse en unas ruinas abandonadas fuera de la capital, como siempre hacía.
+
+Pero alguien lo siguió.
+
+La chica apareció bajo la lluvia sosteniendo una pequeña lámpara.
+
+Cuando lo vio cubierto de sangre, abrió los ojos con preocupación.
+
+—Debes curarte.
+
+Él retrocedió inmediatamente.
+
+—No te acerques.
+
+—¿Por qué?
+
+—Porque esta oscuridad puede dañarte.
+
+Ella guardó silencio unos segundos.
+
+Luego caminó lentamente hacia él de todos modos.
+
+El caballero sintió miedo.
+No por el, sino de lastimarla.
+
+La chica apoyó suavemente sus manos sobre las heridas de su pecho.
+
+Una cálida luz dorada iluminó las ruinas.
+
+El dolor desapareció lentamente.
+
+Y él tembló.
+
+Porque nunca experimento esa sensación de ser tocado con tanta delicadeza.
+</div>
+<div class="page-number">Página 5</div>
+</div>
+</div>
+
+<div class="page" id="page6" style="display:none;">
+<div class="page-content">
+<div class="text">
+Desde entonces ella comenzó a visitarlo.
+
+Al principio solo para cambiar vendas.
+Después para llevarle comida.
+Y más adelante… simplemente porque quería hablar con él.
+
+Las ruinas dejaron de sentirse vacías.
+
+A veces ella leía libros en voz alta mientras él escuchaba en silencio.
+
+Otras noches se quedaban observando las estrellas entre las paredes destruidas.
+
+Poco a poco, el caballero comenzó a esperar esos momentos más que cualquier otra cosa.
+
+Pero mientras más tiempo pasaban juntos… más difícil se volvía ocultar lo que sentía.
+
+Él la observaba reír y sentía dolor.
+
+Porque sabía que alguien como ella jamás podría amar a alguien como él.
+
+Ella pertenecía a la luz.
+Él era literalmente una maldición viviente.
+
+Un día la chica mencionó casualmente que varios nobles deseaban casarse con ella.
+
+El caballero permaneció en silencio.
+
+Pero esa noche no pudo dormir.
+
+Por primera vez en años sintió celos.
+
+Y se odió por eso.
+
+Porque sabía que no tenía derecho a sentir algo así.
+</div>
+<div class="page-number">Página 6</div>
+</div>
+</div>
+
+<div class="page" id="page7" style="display:none;">
+<div class="page-content">
+<div class="text">
+Con el tiempo comenzaron a surgir rumores.
+
+Los sacerdotes notaron que la santa desaparecía algunas noches.
+
+Soldados afirmaban haberla visto cerca de las ruinas.
+
+Y finalmente descubrieron la verdad.
+
+La iglesia reaccionó con horror.
+
+Decían que el caballero estaba contaminando a la santa.
+
+Que la oscuridad terminaría consumiéndola.
+
+Entonces tomaron una decisión.
+
+El caballero debía morir.
+
+Cuando la chica escuchó la sentencia corrió desesperadamente hacia las ruinas.
+
+Lo encontró sentado frente a una ventana rota mirando la nieve caer lentamente.
+
+Parecía tranquilo.
+Demasiado tranquilo.
+
+—Van a ejecutarte… —susurró ella con lágrimas en los ojos.
+
+—Lo sé.
+
+—Debemos irnos.
+
+—No puedo.
+
+—¿Por qué?
+
+Él la observó en silencio unos segundos.
+
+—Porque si huyo… el reino te odiará contigo.
+</div>
+<div class="page-number">Página 7</div>
+</div>
+</div>
+
+<div class="page" id="page8" style="display:none;">
+<div class="page-content">
+<div class="text">
+La chica apretó sus manos temblando.
+
+—No me importa.
+
+Pero él sí.
+
+Siempre le importó más la felicidad de ella que la suya propia.
+Incluso ahora.
+
+Esa noche hablaron durante horas.
+
+Como si ambos supieran que sería la última vez.
+
+La chica lloró.
+Le pidió que escapara.
+Que dejara de sacrificarse por personas crueles.
+
+Pero el caballero solamente la escuchaba con una tristeza silenciosa.
+
+Hasta que finalmente dijo algo que jamás había dicho en voz alta.
+
+—Desde el momento en que te vi bajo la lluvia… supe que nunca volvería a estar solo.
+
+La chica levantó lentamente la mirada.
+
+Él sonrió apenas.
+Una sonrisa cansada.
+
+—Te amo.
+
+El aire pareció detenerse.
+
+Ella abrió los labios intentando responder algo… pero ninguna palabra salió.
+</div>
+<div class="page-number">Página 8</div>
+</div>
+</div>
+
+<div class="page" id="page9" style="display:none;">
+<div class="page-content">
+<div class="text">
+Porque en el fondo ambos entendían la verdad.
+
+Ella se preocupaba por él.
+Lo apreciaba profundamente.
+Quizá era la persona más importante de su vida.
+
+Pero no podía corresponder ese amor.
+
+Y él siempre lo supo.
+
+A la mañana siguiente, las puertas del reino estaban rodeadas por soldados.
+
+La nieve caía lentamente sobre las armaduras.
+
+El caballero caminó solo hacia ellos.
+
+Sin resistencia.
+Sin miedo.
+
+La chica apareció entre la multitud intentando alcanzarlo.
+
+Pero los sacerdotes la detuvieron.
+
+Ella gritó su nombre una y otra vez.
+
+Y entonces él volteó por última vez.
+
+A pesar de todo… sonrió.
+
+No había odio en esa sonrisa.
+Ni resentimiento.
+
+Solo tristeza… y amor.
+
+Como si incluso morir fuera algo aceptable mientras ella siguiera viva.
+
+Y mientras los soldados avanzaban hacia él bajo la nieve… la chica comprendió demasiado tarde que el monstruo más humano del reino siempre había sido aquel hombre al que todos temían.
+</div>
+<div class="page-number">Final</div>
+</div>
+</div>
+
+</div>
+
+<div class="controls">
+<button onclick="prevPage()">◀ Página anterior</button>
+<button onclick="nextPage()">Página siguiente ▶</button>
+</div>
+
+</div>
+
+<script>
+
+const pages = [
+"page1","page2","page3","page4",
+"page5","page6","page7","page8","page9"
+];
+
+let currentPage = 0;
+let opened = false;
+
+const cover = document.getElementById("cover");
+
+cover.addEventListener("click", () => {
+
+    if(!opened){
+
+        cover.style.transform = "rotateY(-180deg)";
+        
+        setTimeout(() => {
+            cover.style.display = "none";
+            document.getElementById(pages[0]).style.display = "block";
+        },900);
+
+        opened = true;
+    }
+});
+
+function showPage(index){
+
+    pages.forEach(page=>{
+        document.getElementById(page).style.display = "none";
+    });
+
+    document.getElementById(pages[index]).style.display = "block";
+}
+
+function nextPage(){
+
+    if(!opened) return;
+
+    if(currentPage < pages.length -1){
+        currentPage++;
+        showPage(currentPage);
+    }
+}
+
+function prevPage(){
+
+    if(!opened) return;
+
+    if(currentPage > 0){
+        currentPage--;
+        showPage(currentPage);
+    }
+}
+
+</script>
+
+</body>
+</html>
