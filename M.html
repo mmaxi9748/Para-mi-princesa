@@ -1,0 +1,602 @@
+<!DOCTYPE html><html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Mi Libro</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet"><style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0f0b12;
+    font-family:'Cormorant Garamond',serif;
+    overflow:hidden;
+}
+
+#book{
+    display:flex;
+    height:100vh;
+    overflow-x:auto;
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
+}
+
+#book::-webkit-scrollbar{
+    display:none;
+}
+
+.page{
+    min-width:100vw;
+    height:100vh;
+
+    scroll-snap-align:start;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #2b2038 0%,
+        #18121d 40%,
+        #0f0b12 100%
+    );
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:30px;
+    position:relative;
+}
+
+.page::before{
+    content:"✦ ✧ ✦";
+    position:absolute;
+    top:18px;
+    left:50%;
+    transform:translateX(-50%);
+    color:#8b6cff;
+    opacity:.4;
+    font-size:22px;
+}
+
+.content{
+
+    width:min(900px,95vw);
+
+    background:rgba(0,0,0,.28);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:40px;
+
+    color:#f3ede2;
+
+    font-size:1.15rem;
+
+    line-height:1.8;
+
+    text-align:justify;
+
+    overflow-y:auto;
+
+    max-height:85vh;
+
+    box-shadow:
+    0 0 30px rgba(0,0,0,.4);
+}
+
+.content p{
+    margin-bottom:18px;
+}
+
+.cover{
+    text-align:center;
+}
+
+.cover h1{
+    color:#d8b87c;
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.cover p{
+    color:#f3ede2;
+    font-size:1.4rem;
+}
+
+.number{
+    position:absolute;
+    bottom:15px;
+    right:25px;
+    color:#d8b87c;
+    font-size:1.1rem;
+}
+
+.nav{
+    position:fixed;
+
+    bottom:20px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    display:flex;
+    gap:10px;
+
+    z-index:999;
+}
+
+.nav button{
+
+    background:#2e2140;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    font-size:1rem;
+}
+
+.nav button:hover{
+    background:#44305f;
+}
+
+@media(max-width:768px){
+
+    .content{
+        font-size:1rem;
+        padding:25px;
+        line-height:1.7;
+    }
+
+    .cover h1{
+        font-size:2.5rem;
+    }
+
+    .cover p{
+        font-size:1.1rem;
+    }
+}
+
+</style></head><body><div id="book"><div class="page cover">
+    <div>
+        <h1>Título del Libro</h1>
+        <p>Subtítulo opcional</p>
+    </div>
+</div>
+
+</div><div class="nav">
+    <button onclick="anterior()">◀ Anterior</button>
+    <button onclick="siguiente()">Siguiente ▶</button>
+</div><script>
+
+const texto = `
+
+El caballero y la hechicera
+
+En un reino rodeado por montañas y bosques encantados se alzaba una vieja torre de piedra donde vivía la hechicera más poderosa del continente.
+
+También era la más temida.
+
+Los aldeanos contaban historias sobre ella.
+
+Decían que era fría.
+
+Que tenía mal carácter.
+
+Que expulsaba a cualquiera que se acercara demasiado.
+
+Y la mayoría de esas historias eran ciertas.
+
+La hechicera prefería la soledad.
+
+Nunca hablaba de sus problemas.
+
+Nunca pedía ayuda.
+
+Y si alguien intentaba acercarse demasiado, levantaba un muro aún más alto.
+
+Por eso nadie permanecía mucho tiempo a su lado.
+
+Nadie excepto un caballero.
+
+No era un héroe legendario ni el más fuerte de los guerreros.
+
+Era simplemente un joven amable, algo torpe y con la extraña costumbre de dibujar todo aquello que le parecía hermoso.
+
+La conoció cuando recibió el encargo de entregar un paquete a la torre.
+
+La hechicera le cerró la puerta en la cara.
+
+La segunda vez también.
+
+Y la tercera.
+
+Sin embargo, por alguna razón, él siempre encontraba una excusa para regresar.
+
+Un día llevaba flores.
+
+Otro día quería recuperar un dibujo que el viento había arrastrado.
+
+Otro simplemente aparecía para preguntarle algo absurdo.
+
+—¿Las lechuzas prefieren vivir en árboles o en torres?
+
+—¿Has venido hasta aquí para preguntarme eso?
+
+—Sí.
+
+—Eres un idiota.
+
+—Eso me dicen bastante.
+
+Aquello la irritaba.
+
+O al menos eso decía.
+
+Porque cada vez que él dejaba de aparecer durante algunos días, se sorprendía mirando por la ventana más de lo habitual.
+
+Con el paso de los años desarrollaron una rutina extraña.
+
+Discutían constantemente.
+
+Ella criticaba sus dibujos.
+
+Él se burlaba de lo mucho que se enfadaba.
+
+Ella afirmaba que sus flores eran inútiles.
+
+Pero siempre las conservaba.
+
+Él fingía no darse cuenta.
+
+Y poco a poco la torre dejó de sentirse tan vacía.
+
+Mientras tanto, el caballero llenaba cuadernos enteros.
+
+Paisajes.
+
+Montañas.
+
+Lagos.
+
+Y, sobre todo, dibujos de la hechicera.
+
+A veces leyendo.
+
+A veces observando la lluvia.
+
+A veces sonriendo cuando creía que nadie la veía.
+
+Ella siempre decía que aquellos dibujos eran horribles.
+
+Pero los guardaba todos.
+
+Lo que el caballero no sabía era que la hechicera ocultaba un secreto.
+
+Desde hacía siglos, su familia era responsable de mantener sellada una antigua entidad conocida como el Dios de las Sombras.
+
+Una criatura capaz de destruir el reino entero.
+
+Cada hechizo que utilizaba para mantener el sello consumía parte de su propia energía.
+
+Por eso siempre estaba cansada.
+
+Por eso rara vez sonreía.
+
+Y por eso nunca permitía que nadie se acercara demasiado.
+
+Sabía que algún día aquella responsabilidad podría acabar con ella.
+
+Pero jamás se lo contó.
+
+Como siempre, decidió cargar sola con el peso.
+
+Hasta que llegó el día en que el sello se rompió.
+
+La tierra tembló.
+
+Los cielos se oscurecieron.
+
+Criaturas nacidas de la sombra comenzaron a extenderse por todo el reino.
+
+Los ejércitos fueron derrotados.
+
+Los magos no pudieron contenerlas.
+
+Y la hechicera comprendió que estaba perdiendo.
+
+Durante días buscó una solución.
+
+No dormía.
+
+No comía.
+
+Revisaba antiguos grimorios una y otra vez.
+
+El caballero permaneció a su lado todo ese tiempo.
+
+Aunque ella insistiera en que se marchara.
+
+Aunque le gritara.
+
+Aunque fingiera que no necesitaba ayuda.
+
+Él siguió allí.
+
+Una noche encontró algo.
+
+Un hechizo prohibido.
+
+Un hechizo capaz de destruir para siempre al Dios de las Sombras.
+
+Pero tenía un precio.
+
+La vida de quien lo utilizara.
+
+El caballero cerró el libro lentamente.
+
+Y tomó una decisión.
+
+A la mañana siguiente desapareció.
+
+La hechicera no lo encontró en la torre.
+
+Ni en el bosque.
+
+Ni en ningún lugar.
+
+Entonces escuchó las campanas de la capital.
+
+La batalla final había comenzado.
+
+Cuando llegó al campo de batalla lo vio.
+
+Solo.
+
+Frente a una montaña de oscuridad.
+
+Runas doradas brillaban alrededor de su cuerpo.
+
+Y la hechicera comprendió inmediatamente lo que estaba haciendo.
+
+—¡Detente! —gritó desesperada.
+
+El caballero giró la cabeza.
+
+Y le dedicó una sonrisa tranquila.
+
+—Gracias por dejarme quedarme a tu lado.
+
+Las lágrimas comenzaron a caer por el rostro de la hechicera.
+
+—No hagas esto.
+
+—Alguien tiene que proteger aquello que ama.
+
+—¡No!
+
+La luz explotó.
+
+Más brillante que el sol.
+
+Las sombras desaparecieron.
+
+El monstruo fue destruido.
+
+El reino se salvó.
+
+Y el caballero desapareció junto con la oscuridad.
+
+Durante semanas la hechicera permaneció encerrada en la torre.
+
+No recibió visitas.
+
+No habló con nadie.
+
+Simplemente observaba los cuadernos que él había dejado.
+
+Cada página contenía un recuerdo.
+
+Una caminata.
+
+Una discusión absurda.
+
+Un día de lluvia.
+
+Una flor olvidada.
+
+Y fue entonces cuando comprendió algo que había intentado ignorar durante años.
+
+Lo amaba.
+
+Lo había amado durante mucho tiempo.
+
+Simplemente había tenido miedo de aceptarlo.
+
+Aquella noche abrió el grimorio más antiguo de la torre.
+
+Un libro que ningún mago se atrevía a tocar.
+
+Un hechizo imposible.
+
+Un hechizo capaz de traer de vuelta a alguien que había entregado su alma.
+
+Pero el precio sería toda la magia de quien lo lanzara.
+
+Toda.
+
+Sin excepción.
+
+La hechicera no dudó.
+
+Durante tres días y tres noches mantuvo el ritual.
+
+Su energía desaparecía lentamente.
+
+Las runas iluminaban el cielo.
+
+El bosque entero temblaba.
+
+Pero ella continuó.
+
+Porque por primera vez en su vida había encontrado a alguien a quien no quería perder.
+
+La última noche la torre quedó envuelta en una luz blanca.
+
+Y la hechicera cayó inconsciente.
+
+Cuando abrió los ojos vio los primeros rayos del amanecer.
+
+Le costó incorporarse.
+
+Todo su cuerpo le dolía.
+
+Entonces escuchó una voz familiar.
+
+—Parece que sigues siendo igual de gruñona al despertar.
+
+La hechicera giró la cabeza.
+
+Y allí estaba él.
+
+Sentado junto a su cama.
+
+Sonriendo.
+
+Vivo.
+
+Las lágrimas volvieron a aparecer.
+
+Se lanzó hacia él y lo abrazó con fuerza.
+
+Como si temiera que desapareciera nuevamente.
+
+—Idiota.
+
+—Sí, probablemente.
+
+—No vuelvas a hacer algo así.
+
+—Si tú prometes dejar de enfrentar todos tus problemas sola.
+
+Ella soltó una pequeña risa.
+
+La primera risa sincera en mucho tiempo.
+
+Y cuando lo miró a los ojos ya no intentó ocultar sus sentimientos.
+
+—Te amo.
+
+El caballero quedó inmóvil unos segundos.
+
+Después sonrió.
+
+—Me alegra escuchar eso. Porque yo llevo años amándote.
+
+Desde aquel día la torre cambió.
+
+Las flores aparecieron en las ventanas.
+
+Las discusiones continuaron, aunque ahora terminaban en risas.
+
+Los dibujos siguieron acumulándose.
+
+Y las noches dejaron de ser solitarias.
+
+Vivieron juntos durante muchos años.
+
+Paseaban por el bosque.
+
+Tomaban té junto a la chimenea.
+
+Discutían sobre tonterías.
+
+Y observaban las estrellas desde lo alto de la torre.
+
+La hechicera seguía teniendo carácter fuerte.
+
+El caballero seguía apareciendo con ideas absurdas.
+
+Pero ninguno de los dos habría querido que fuera de otra manera.
+
+Después de todo, habían luchado contra la oscuridad más grande del mundo.
+
+Y al final, lo que encontraron fue algo mucho más valioso.
+
+Un hogar en la compañía del otro.
+
+`;
+
+const paginas = [];
+const longitudPagina = 1000;
+
+for(let i=0;i<texto.length;i+=longitudPagina){
+    paginas.push(texto.slice(i,i+longitudPagina));
+}
+
+const book = document.getElementById("book");
+
+paginas.forEach((contenido,index)=>{
+
+    const page = document.createElement("div");
+    page.className = "page";
+
+    page.innerHTML = `
+        <div class="content">
+            ${
+                contenido
+                .split(/\n\s*\n/)
+                .map(parrafo => `<p>${parrafo.replace(/\n/g,"<br>")}</p>`)
+                .join("")
+            }
+        </div>
+
+        <div class="number">
+            ${index+1}
+        </div>
+    `;
+
+    book.appendChild(page);
+});
+
+function siguiente(){
+    book.scrollBy({
+        left:window.innerWidth,
+        behavior:"smooth"
+    });
+}
+
+function anterior(){
+    book.scrollBy({
+        left:-window.innerWidth,
+        behavior:"smooth"
+    });
+}
+
+document.addEventListener("keydown",(e)=>{
+
+    if(e.key==="ArrowRight"){
+        siguiente();
+    }
+
+    if(e.key==="ArrowLeft"){
+        anterior();
+    }
+});
+
+</script></body>
+</html>
